@@ -1,0 +1,26 @@
+<!doctype html>
+<head>
+	<meta charset="utf-8" />
+	<title>Grunt.js 中文文档</title>
+	<script src="./js/jquery-1.9.1.min.js"></script>
+	<script src="./js/markdown-js.js"></script>
+	<script>
+
+		$(function(){
+
+			$.get('./docs/documention/getting_started.md').done(function(docText){
+
+				$('#content').html(markdown.toHTML(docText));
+
+			});
+
+		});
+
+	</script>
+</head>
+
+<body>
+<div id="content">
+</div>
+</body>
+</html>
