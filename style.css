@@ -9,6 +9,7 @@ pre {
 	background: #eee;
 	border: 1px solid #ccc;
 	padding: 5px 10px;
-	white-space: nowrap;
-	overflow-x: scroll;
+	word-wrap: break-word;
+	overflow-x: auto;
+    white-space: nowrap;
 }
