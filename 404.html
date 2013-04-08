@@ -6,15 +6,23 @@
 	<script src="/js/jquery-1.9.1.min.js"></script>
 	<script src="/js/markdown-js.js"></script>
 	<script src="/js/404router.js"></script>
+	<script src="/nav.js"></script>
 	<script>
 
 		$(function(){
 
+			// 路由
 			$404router.route('/:pageName',function(param){
 
 				if(!param.pageName) param.pageName = 'home';
 
-				$.get('/docs/documention/'+param.pageName+'.md').done(function(docText){
+				var targetNav = nav.filter(function(navItem){
+
+					return navItem.url === param.pageName;
+
+				});
+
+				$.get(targetNav.doc).done(function(docText){
 
 					$('#content').html(markdown.toHTML(docText));
 
@@ -34,13 +42,43 @@
 
 			});
 
+			// 处理导航
+			if(window.nav && nav.length){
+
+				var navHtml = '';
+
+				nav.forEach(function(navItem){
+
+					navHtml += '<li><a href="/' + navItem.url + '">' + navItem.title + '</a></li>';
+
+				});
+
+				$('#mainNav ul').html(navHtml);
+
+			}
+
 		});
 
 	</script>
 </head>
 
 <body>
+<header>
+	<div id="logo"></div>
+	<nav id="mainNav">
+		<ul>
+		</ul>
+	</nav>
+</header>
 <div id="content">
 </div>
+<footer>
+	<p>Grunt.js 中文社区为开源项目，由网友创建并维护。</p>
+	<p>
+		贡献者：
+		<a href="http://www.basecss.net" target="_blank">@Basecss</a>
+		<a href="http://www.toobug.net" target="_blank">@TooBug</a>
+	</p>
+</footer>
 </body>
 </html>
