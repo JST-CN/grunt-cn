@@ -10,23 +10,17 @@
 
 		$(function(){
 
-			$404router.route('/:pageName',function(pageName){
+			$404router.route('/:pageName',function(param){
 
-				if(!pageName) pageName = 'getting_started';
+				if(!param.pageName) param.pageName = 'getting_started';
 
-				$.get('/docs/documention/'+pageName+'.md').done(function(docText){
+				$.get('/docs/documention/'+param.pageName+'.md').done(function(docText){
 
 					$('#content').html(markdown.toHTML(docText));
 
 				});
 
 			});
-
-			/*$.get('./docs/documention/getting_started.md').done(function(docText){
-
-				$('#content').html(markdown.toHTML(docText));
-
-			});*/
 
 		});
 
