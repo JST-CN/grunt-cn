@@ -1,8 +1,4 @@
-#Grunt API
-
-> ##grunt
-
-##grunt
+#grunt
 
 Grunt的所有方法和属性都通过传递到你的[Gruntfile](http://gruntjs.com/getting-started)中Grunt插件或者[任务文件](http://gruntjs.com/creating-tasks)的`module.exports`入口函数中而暴露在`grunt`对象中。
 
