@@ -1,34 +1,34 @@
-#Creating tasks
+#创建任务
 
-任务是grunt的面包和黄油。你经常使用的东西例如`jshint`和`nodeunit`。当每次运行Grunt时，你指定运行一个或者多个任务，用于告诉Grunt你希望它去做什么。
+任务是grunt的面包和黄油。例如你经常做的事情`jshint`和`nodeunit`。当每次运行Grunt时，你可以指定运行一个或者多个任务，用于告诉Grunt你希望它去做什么。
 
 如果你没有指定一个任务，就会有一个名为'default'的任务被定义，将运行一个默认的任务(这并不是惊奇的)。
 
 ##任务别名
 
-如果指定了任务列表，新的任无将有针对一个或者更多其他任务的别名。每当'别名任务'运行时，在`taskList`中指定的任务都会按指定的顺序运行。`taskList`的参数是一个任务数据。
+如果指定了任务列表，新的任务将是一个或者更多其他任务的别名。每当'别名任务'运行时，每一个在`taskList`中指定的任务都会按指定的顺序运行。`taskList`的参数是一个任务数组。
 
 	grunt.registerTask(taskName, [description, ] taskList);
 	
-这个任务别名的例子指定了一个'default'例子，当Grunt没有指定一些任务时被执行它会自动运行使用'jshint','qunit','concat'和'uglify'任务。
+这个任务别名实例定义了一个"default"任务，如果Grunt运行时没有指定任何任务它将自动运行"jshint","qunit","concat"和"uglify"任务。
 
 	grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
 	
-可以适当的指定任务的参数。在这个例子中，别名'dist'运行'concat'和'min'两个任务，都带有一个'dist'参数:
+最好是指定任务参数。在这个例子中，别名"dest"可以运行'concat'和'min'两个任务，因为它们都带有一个'dist'参数:
 
 	grunt.registerTask('dist', ['concat:dist', 'uglify:dist']);
 	
 ###多个任务
 
-当运行多个任务时，Grunt与Grunt配置中的一个属性同名属性。多个任务可以有多个配置，使用任意"targets"命名定义。
+当运行多个任务时，Grunt会在Grunt配置中查找一个同名属性。多个任务可以有多个配置，使用任意"目标"命名定义。
 
-指定类似`grunt concat:foo`或者`grunt concat:bar`的任务和目标将立即处理指定的目标配置，然而运行`grunt concat`将遍历所有的目标，然后依次处理。注意如果使用grunt.renameTask重命名一个任务，Grunt将在配置对象中查找新任务的名称属性。
+指定像`grunt concat:foo`或者`grunt concat:bar`的两个任务和目标将用于处理指定的目标配置，然而运行`grunt concat`将遍历所有的目标，然后按顺序处理。注意如果任务已经使用[grunt.renameTask](https://github.com/gruntjs/grunt/wiki/grunt#wiki-grunt-renameTask)重命名，Grunt将在配置对象中查找新任务的名称属性。
 
-大多数的基本任务，包括grunt-contrib-jshint插件的jshint任务，concat任务和grunt-contrib插件的concat的任务都是多任务的。
+大多数的扩展任务，包括[处理的jshint任务的grunt-contrib-jshint插件](https://github.com/gruntjs/grunt-contrib-jshint)，[处理concat任务的grunt-contrib插件](https://github.com/gruntjs/grunt-contrib-concat)都是多任务。
 
 	grunt.registerMultiTask(taskName, [description, ] taskFunction)
 	
-考虑到指定的配置，这个例子中如果Grunt通过运行`grunt log:foo`多任务将输出`foo: 1,2,3`日志信息。或者Grunt通过运行`grunt log:bar`会输出`bar: hello world`。然而如果Grunt运行`grunt log`，将输出`foo: 1,2,3`然后是`bar: hello world`，最后时`baz: false`。
+鉴于指定的配置，这里有一个实例演示了如果Grunt通过运行`grunt log:foo`多任务将输出`foo: 1,2,3`日志信息。或者Grunt通过运行`grunt log:bar`会输出`bar: hello world`。然而如果Grunt运行`grunt log`，将输出`foo: 1,2,3`然后是`bar: hello world`，最后是`baz: false`。
 
 	grunt.initConfig({
 		log: {
@@ -44,7 +44,7 @@
 	
 ###基本任务
 
-当运行一个基本任务时，Grunt并不在配置或者环境中能看到，它会立即运行指定的任务函数，传递指定的的独特的运算符作为函数参数。
+当运行一个基本任务时，Grunt不会再配置或者环境中查找，它只是运行执行的任务函数，传递指定的的独特的运算符作为函数参数。
 
 	grunt.registerTask(taskName, [description, ] taskFunction)
 	
