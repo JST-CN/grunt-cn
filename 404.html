@@ -1,0 +1,40 @@
+<!doctype html>
+<head>
+	<meta charset="utf-8" />
+	<title>Grunt入门</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<script src="/js/jquery-1.9.1.min.js"></script>
+	<script src="/js/markdown-js.js"></script>
+	<script src="/js/404router.js"></script>
+	<script>
+
+		$(function(){
+
+			$404router.route('/:pageName',function(pageName){
+
+				if(!pageName) pageName = 'getting_started';
+
+				$.get('/docs/documention/'+pageName+'.md').done(function(docText){
+
+					$('#content').html(markdown.toHTML(docText));
+
+				});
+
+			});
+
+			/*$.get('./docs/documention/getting_started.md').done(function(docText){
+
+				$('#content').html(markdown.toHTML(docText));
+
+			});*/
+
+		});
+
+	</script>
+</head>
+
+<body>
+<div id="content">
+</div>
+</body>
+</html>
