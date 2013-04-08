@@ -303,11 +303,12 @@ header #mainNav li a:hover {
     text-align: right;
 }
 #content code, #content tt {
-    background-color: #F8F8F8;
-    border: 1px solid #EAEAEA;
-    border-radius: 3px 3px 3px 3px;
-    margin: 0 2px;
-    padding: 0 5px;
+    font-size: 13px;
+    font-family: Monaco,Consolas,"Lucida Console",monospace;
+    padding: 2px 4px;
+    color: #d14;
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
     white-space: nowrap;
 }
 #content pre > code {
