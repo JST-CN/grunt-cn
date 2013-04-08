@@ -12,7 +12,7 @@
 
 			$404router.route('/:pageName',function(param){
 
-				if(!param.pageName) param.pageName = 'getting_started';
+				if(!param.pageName) param.pageName = 'home';
 
 				$.get('/docs/documention/'+param.pageName+'.md').done(function(docText){
 
