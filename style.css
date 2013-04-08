@@ -2,7 +2,9 @@
 #content {
     width: 800px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
 }
 #content {
     font-size: 14px;
