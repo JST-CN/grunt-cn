@@ -20,6 +20,10 @@
 
 				});
 
+			},function(statusCode){
+
+				$('#content').html(markdown.toHTML('# 404\n你要找的页面暂时失踪……'));
+
 			});
 
 		});
