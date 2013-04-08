@@ -1,3 +1,14 @@
 ##首页
 
-> 这家伙很懒，什么都没写。
+> 请轻拍
+
+###文档(documention)
+
+1.  [Grunt入门](http://www.gruntjs.org/getting_started)
+2.  [配置任务](http://www.gruntjs.org/configuring_tasks)
+3.  [Gruntfile范例](http://www.gruntjs.org/sample_gruntfile)
+
+
+###API
+
+> comming soon
