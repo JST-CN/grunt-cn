@@ -18,11 +18,19 @@
 
 					$('#content').html(markdown.toHTML(docText));
 
+				}).fail(function(xhr,errText,errObj){
+
+					if(xhr.status === 404){
+
+						$('#content').html(markdown.toHTML('# 404\n你要找的页面暂时失踪……'));
+
+					}
+
 				});
 
 			},function(statusCode){
 
-				$('#content').html(markdown.toHTML('# 404\n你要找的页面暂时失踪……'));
+				$('#content').html(markdown.toHTML('# 404\n啊哦，路由出问题了，找不到回家的路了……'));
 
 			});
 
