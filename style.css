@@ -1,0 +1,14 @@
+@charset 'utf-8';
+
+body {
+	width: 800px;
+	padding: 20px 0;
+	margin: 0 auto;
+}
+pre {
+	background: #eee;
+	border: 1px solid #ccc;
+	padding: 5px 10px;
+	word-wrap: break-word;
+	overflow-x: auto;
+}
