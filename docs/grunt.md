@@ -62,4 +62,4 @@ Grunt的所有方法和属性都通过传递到你的[Gruntfile](http://gruntjs.
 	
 ####grunt.version
 
-当前grunt的版本，一个字符串。这仅仅是`grunt.package.varsion`属性的缩写。
+当前grunt的版本，一个字符串。这仅仅是`grunt.package.version`属性的缩写。
