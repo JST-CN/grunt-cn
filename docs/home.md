@@ -12,6 +12,8 @@
 
 ###进阶
 
+1.  [安装Grunt](http://www.gruntjs.org/installing_grunt)
+
 ###社区
 
 ###迁移指南
