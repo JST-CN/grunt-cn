@@ -14,6 +14,7 @@
 
 1.  [安装Grunt](http://www.gruntjs.org/installing_grunt)
 2.  [常见问题](http://www.gruntjs.org/frequently_asked_questions)
+3.  [项目架构](http://www.gruntjs.org/project_scaffolding)
 
 ###社区
 
