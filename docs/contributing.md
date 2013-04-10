@@ -1,71 +1,71 @@
-#Contributing
+#贡献
 
 这里有一些Grunt项目
 
-+  grunt - Grunt主项目
-+  grunt-init - 单独的grunt项目架构工具
-+  gruntjs.com - gruntjs.com的网站
-+  grunt-contrib collection - 一个Grunt'contrib'插件的集合。
++  [grunt](https://github.com/gruntjs/grunt) - Grunt主项目
++  [grunt-init](https://github.com/gruntjs/grunt-init) - 独立的grunt项目架构工具
++  [gruntjs.com](https://github.com/gruntjs/gruntjs.com) - gruntjs官方的网站
++  [grunt-contrib collection](https://github.com/gruntjs/grunt-contrib) - Grunt'contrib'插件的集。
 
-此外，每一个单独的grunt-contrib插件都是gruntjs org homepage列表上的一个单独的仓库。
+此外，每个单独的grunt-contrib插件都是一个独立的仓库被列在[gruntjs](https://github.com/gruntjs)主页上。
 
-##问题收集
+##问题反馈
 
-如果你认为应该工作的一些事情并没有工作，请阅读这个文档，尤其时Getting Start指南。如果你想和任何人聊聊，流行到IRC讨论grunt和在这里提出你的问题。
+如果有些事情不是像你想象的那样工作的，请阅读[文档](https://github.com/gruntjs/grunt/wiki)，尤其是[入门](http://gruntjs.com/getting-started/)指南。如果你想和别人聊聊grunt，请加入到grunt社区[IRC](http://gruntjs.com/contributing#discussing-grunt)并提出你的问题。
 
-如果你有一些问题并没有在这个文档中涵盖或者希望报告一个bug，最好的方式是在合适的问题追踪中确保它可以获取一个地址指向一个文件。
+如果你有一些问题并没有在这个文档中涵盖或者希望申报一个bug，解决它最好的方式是查看文件路径并适当的跟踪问题。
 
-+  **如果有一些grut, grunt-init, grunt-lib-??模块，或者执行的grunt-contrib插件**
-+  +  请在项目的问题综合请给出一个问题文件
-+  **如果你喜欢贡献一个新的插件。**
-+  +  请在grunt-contrib的问题即可栏中给出一个你遇到的问题。我们不接受所有的插件，但我们会考虑你的意见。
-+  **如果网站中遇到问题**
-+  +  请在grunt.js网站的问题列表中给一个问题文件。
-+  **如果有一个问题不指向上面的任意解决方案**
-+  +  请带grunt问题列表中提出并给出文件，然后让我们知道为什么你能收集到这里。
++  **如果有一些grut, grunt-init, grunt-lib-??模块，或者执行的grunt-contrib插件的问题**
++  +  请在提交到项目的问题跟踪模块。
++  **如果你愿意贡献一个新的插件。**
++  +  请提交到[grunt-contrib问题跟踪集合](https://github.com/gruntjs/grunt-contrib/issues)中。我们不接受所有的插件，但我们会考虑你的意见。
++  **如果发现[官方网站](http://gruntjs.com/)有问题**
++  +  请提交到[Grunt官网问题跟踪集合](https://github.com/gruntjs/gruntjs.com/issues)中。
++  **如果遇到以上描述之外的问题**
++  +  请提交到[grunt问题跟踪](https://github.com/gruntjs/grunt/issues)中并让我们知道你为什么提交它。
 
 ###简化问题
 
-尝试减少你的代码在，最小化你在这个问题上的混肴。这使得它较早(较快)避免或者解决问题。
+尽量[减少你的代码](http://www.webkit.org/quality/reduction.html)最低限度的重现问题。这使得它更容易(及早)避免或解决问题。
 
-###问题说明
+###解释问题
 
-如果我们不能重现问题，我们就不能解决它。请精确的列出每一步需求并重现这个问题。包括你的系统版本，Node.js版本，grunt版本等等。包括相关的日志或者简单的代码。
+如果我们不能重现问题，我们就不能解决它。请列出重现该问题的步骤，包括你的系统版本，Node.js版本，grunt版本等等。包括相关的日志或示例代码。
 
 ##Grunt讨论
 
-假如freenode IRC的#grunt频道。我们可以获取一些信息。
+加入[freenode](http://freenode.net/) IRC的#grunt频道。我们有一个机器人和所有信息。
 
 请不要发私人的信息。
 
 ##修改grunt
 
-首先，确保你安装了最新的Node.js和npm。
+首先，确保你安装了最新版本的[Node.js](http://nodejs.org/)和[npm](http://npmjs.org/)。
 
-1.  确保安装了grunt-cli(查看Getting Start指南获取更多信息)
-2.  Fork或者clone一个分支
-3.  检出master分支(多数的grunt/grunt-contrib开发都发生在这里)
-4.  运行`npm install`去安装所有的Grunt依赖
-5.  运行`grunt`来构建grunt.
+1.  确保安装了grunt-cli(查看[入门](http://gruntjs.com/getting-started/)指南获取更多信息)。
+2.  Fork和clone仓库。
+3.  检出master分支(多数的grunt/grunt-contrib开发都发生在这里)。
+4.  运行`npm install`安装所有的Grunt依赖。
+5.  运行`grunt`来构建grunt。
 
-假设你没有看到红色的部分，你就准备开始。在创造一些改变之后就运行`grunt`，确保没有被中断。
+假设你没有看到红色的部分，那说明你准备好了。在所有更改完成之后运行`grunt`，以确保不会被中断。
 
 ###提交pull requests
 
 1.  创建一个新的分支，请不要直接在`master`上工作。
-2.  给你希望改变的部分添加失败测试，运行`grunt`去差距安测试结果。
-3.  解决错误
-4.  如果通过则运行`grunt`查看，并重复2-4此直到它完成工作。
-5.  更新文档反应任何改变。
+2.  给你想要的改变添加失败测试，运行`grunt`查看失败测试。
+3.  解决问题。
+4.  如果运行`grunt`通过测试，请重复2-4次直到它完成工作。
+5.  更新文档以反应任何改变。
 6.  推送到你的分支并提交pull request。
 
 ###语法
 
 +  使用两个空格缩进而不要在任何位置使用tab键。如果字符传中需要一个tab字符则使用`\t`。
-+  不要在结尾使用空格，除了在markdown文件中必须使用它来换行。
-+  不要在上下使用空格
-+  不要每一个都使用`var`语句分配
++  不要使用多余的空格，除了在markdown文件必须使用它来强制换行。
++  不要极端的使用空格。
++  不要每一个变量都使用`var`语句赋值。
 +  使用单引号`'`分割字符串而不是双引号`"`。
-+  提出`if`和`else`然后使用熟悉的`?:`控制流程或者`||`,`&&`逻辑运算符。
++  提出`if`和`else`语句，使用灵活的`?:`控制流程或者`||`,`&&`逻辑运算符。
 +  注释是很强大的。应该将他们放在代码的前面，而不是代码的后面。
-+  **当拿不准时，按照惯例你可以查看你经常使用的源码**
++  **如果还有疑问，请在你的源代码中遵循上面你看到的规则**

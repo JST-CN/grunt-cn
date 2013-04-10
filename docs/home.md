@@ -18,6 +18,8 @@
 
 ###社区
 
+1.  [贡献](http://www.gruntjs.org/contributing)
+
 ###迁移指南
 
 ###API
