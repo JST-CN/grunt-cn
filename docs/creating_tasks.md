@@ -28,7 +28,7 @@
 
 	grunt.registerMultiTask(taskName, [description, ] taskFunction)
 	
-鉴于指定的配置，这里有一个实例演示了如果Grunt通过运行`grunt log:foo`多任务将输出`foo: 1,2,3`日志信息。或者Grunt通过运行`grunt log:bar`会输出`bar: hello world`。然而如果Grunt运行`grunt log`，将输出`foo: 1,2,3`然后是`bar: hello world`，最后是`baz: false`。
+鉴于指定的配置，这里有一个实例演示了如果通过Grunt运行`grunt log:foo`多任务将输出`foo: 1,2,3`日志信息。或者通过Grunt运行`grunt log:bar`会输出`bar: hello world`。然而如果Grunt运行`grunt log`，将输出`foo: 1,2,3`然后是`bar: hello world`，最后是`baz: false`。
 
 	grunt.initConfig({
 		log: {
@@ -44,11 +44,11 @@
 	
 ###基本任务
 
-当运行一个基本任务时，Grunt不会再配置或者环境中查找，它只是运行执行的任务函数，传递指定的的独特的运算符作为函数参数。
+当运行一个基本任务时，Grunt不会在配置或者环境中查找，它只是运行执行的任务函数，传递任意指定冒号分割的参数作为函数参数。
 
 	grunt.registerTask(taskName, [description, ] taskFunction)
 	
-当Grunt通过运行`grunt foo:testing:123`时这个例子输出`foo, testing 123`任务日志。如果这个任务运行时没有传递参数而只运行了`grunt foo`这个任务将指输出`foo, no args`日志信息。
+这里有一个例子，当通过Grunt运行`grunt foo:testing:123`时输出`foo, testing 123`任务日志。如果这个任务运行时没有传递参数而只运行了`grunt foo`这个任务将指输出`foo, no args`日志信息。
 
 	grunt.registerTask('foo','A sample task that logs stuff', function(arg1, arg2){
 		if(arguments.length === 0){
@@ -58,9 +58,9 @@
 		}
 	});
 	
-###定制任务
+###自定义任务
 
-你可以疯狂的使用任务。如果你的任务没有遵循"多任务"结构，使用定制任务吧。
+你可以为任务而疯狂。如果你的任务没有遵循"多任务"结构，可以使用自定义任务。
 
 	grunt.registerTask('default','My "default" task description', function(){
 		grunt.log.writeln('Currently running the "default" task.');
@@ -75,14 +75,14 @@
 		grunt.task.run(['bar', 'baz']);
 	});
 
-任务也可以是异步的。
+任务可以是异步的。
 
 	grunt.registerTask('asyncfoo', 'My "asyncfoo" task.', function(){
-		//推动任务到一步模块之中并定义一个"done"函数进行处理
+		//迫使任务成为异步模式, "done"函数获取处理
 		var done = this.async();
-		//运行一些同步的任务
+		//同步阻塞
 		grunt.log.writeln("Processing task…");
-		//添加一些异步的信息
+		//异步阻塞
 		setTimeout(function(){
 			grunt.log.writeln('All done!');
 			done();
@@ -102,14 +102,14 @@
 	// grunt foo:bar:baz
 	// logs: "foo", "bar", "baz"
 	
-如果我们记录了一些错误信息，任务可以被舍弃。
+如果记录到任何错误，任务可能失败。
 
 	grunt.registerTask('foo', 'My "foo" task', function(){
 		if(failureSomeKind){
 			grunt.log.error('This is an error message');
 		}
 		
-		//如果任务发生错误返回false并退出
+		//如果发生错误，任务失败并返回false
 		if(isErrors){
 			return false;
 		}
@@ -117,7 +117,7 @@
 		grunt.log.writeln('This is the success message');
 	});
 	
-当任务失败时，所有后面的任务除了指定了`--force`的任务都会随之流产。
+当任务失败时，所有后面的任务除了指定了`--force`的任务都会失败。
 
 	grunt.registerTask('foo','My "foo" task.', function(){
 		//同步失败
@@ -132,7 +132,7 @@
 		}, 1000);
 	});
 	
-任务可以依赖其他成功执行的任务。注意`grunt.task.requires`实际上并不运行其他任务。它将立即检查运行并不退出。
+任务可以依赖其他成功执行的任务。注意`grunt.task.requires`实际上并不运行其他任务。它只检测它是否运行，而不是失败。
 
 	grunt.registerTask('foo', 'My "foo" task', function(){
 		return false;
@@ -151,7 +151,7 @@
 	// grunt bar
 	// 不记录，因为foo从未运行
 
-任务可能失败，如果必要的配置属性并不存在。
+任务可能失败，如果需要的配置属性并不存在。
 
 	grunt.registerTask('foo', 'My "foo" task', function(){
 		//如果省略"meta.name"配置属性则任务失败
@@ -171,17 +171,17 @@
 		grunt.log.writeln('Ths meta.name property is:' + grunt.config(['meta', 'name']));
 	});
 	
-在contrib tasks中可以获取更多的例子。
+在[contrib tasks](https://github.com/gruntjs/)中可以查看更多的例子。
 
 ##CLI选项和环境
 
 TODO(从FAQ拉取，推荐process.env)
 
-##为什么我的异步任务没有执行
+##为什么我的异步任务没有执行？
 
-偶尔发生这种情况是因为你可能忘记调用this.async方法告诉Grunt你的任务是异步的。一个简单理由，Grunt使用一个异步的代码风格，可以在任务体中通过调用`this.async`转换为异步的。
+可能会发生这种情况，由于你可能忘记调用[this.async](http://gruntjs.com/api/grunt.task#wiki-this-async)方法告诉Grunt你的任务是异步的。为了简单起见，Grunt使用同步的编码风格，可以在任务体中通过调用`this.async`将任务转换为异步的。
 
-注意传递`false`给`done`函数就会告诉Grunt这个任务失败了。
+注意传递`false`给`done`函数就会告诉Grunt任务失败。
 
 例如：
 
