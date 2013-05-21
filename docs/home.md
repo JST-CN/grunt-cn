@@ -1,6 +1,6 @@
 ##首页
 
-> 请轻拍
+**说明: 粗略翻译,如有错误还烦请不吝纠正. **
 
 ###文档(documention)
 
@@ -14,7 +14,7 @@
 
 1.  [安装Grunt](http://www.gruntjs.org/installing_grunt)
 2.  [常见问题](http://www.gruntjs.org/frequently_asked_questions)
-3.  [项目架构](http://www.gruntjs.org/project_scaffolding)
+3.  [项目脚手架](http://www.gruntjs.org/project_scaffolding)
 
 ###社区
 
