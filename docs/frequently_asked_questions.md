@@ -1,90 +1,92 @@
 #常见问题
 
+##如何安装Grunt?
 
-###如何安装grunt?
+对于一般安装说明, 请阅读[新手入门](http://gruntjs.com/getting-started/)指南. 如果你在阅读新手入门指南之后需要更多具体的信息, 请阅读详细的[安装Grunt](http://gruntjs.com/installing-grunt/)指南.
 
-对于常规的安装说明，请阅读[Getting Start](http://gruntjs.com/getting-started/)指南。如果在阅读完之后你需要更多的详细信息，你可以阅读更详细的的[Installing grunt](http://gruntjs.com/installing-grunt/)指南。
+##我什么时候能够使用开发中的某个特性?
 
-###什么时候我将可以使用开发中的特性"X"?
+按照[安装Grunt](http://gruntjs.com/installing-grunt/)指南中的说明同时安装发布的和未发布的开发版本的Grunt.
 
-在[Installing grunt](http://gruntjs.com/installing-grunt/)指南中介绍了安装发布的和未发布的开发版本的Grunt。
+##Grunt能在Windows上工作吗?
 
-###Grunt可以在Windows上工作吗?
+Grunt在Windows上工作得很好. 因为[Node.js](http://nodejs.org/)和[npm](http://npmjs.org/)在Windows上都工作得很好. 通常情况下问题在于[Cygwin](http://www.cygwin.com/), 因为它绑定了一个过时版本的Node.js.
 
-Grunt可以很好的在windows上工作，因为[Node.js](http://nodejs.org/)和[npm](http://npmjs.org/)都能够很好的在windows上工作。通常情况下，问题在于[Cygwin](http://www.cygwin.com/)，因为它捆绑着一个过时版本的Node.js。
+避免这个问题最好的方式是使用[msysGit安装器](http://msysgit.github.com/)安装二进制的`git`, 使用[Node.js安装器](http://nodejs.org/#download)安装二进制的`node`和`npm`, 并且使用内置的[Window命令提示符](http://www.cs.princeton.edu/courses/archive/spr05/cos126/cmd-prompt.html)或者[PowerShell](http://support.microsoft.com/kb/968929)替代Cygwin.
 
-避免这个问题最好的办法是使用[msysGit installer](http://msysgit.github.com/)安装二进制的`git`和使用[Node.js installer](http://nodejs.org/#download)去安装二进制的`node`和`npm`，然后使用内置的Windows command prompt或者时PowerShell去替代Cygwin。
+##为什么我的异步任务不能完成?
 
-###为什么我的异步任务没有完成?
+可能发生这种情况, 由于你忘记调用[this.async](http://gruntjs.com/grunt.task#wiki-this-async)方法来告诉Grunt你的任务是异步的. 为了简单起见, Grunt使用了同步编码的风格, 可以通过再任务体内调用`this.async()`方法将任务切换为异步的.
 
-发生这种情况可能是因为你忘记调用[this.async](http://gruntjs.com/grunt.task#wiki-this-async)方法告诉Grunt你的任务是一个异步的。为了简单起见，Grunt使用的是同步的编码风格，你可以在任务体中通过调用`this.async`来转换为异步的任务。
+注意, 传递`false`给`done()`函数就会告诉Grunt该任务失败.
 
-例如:
+例子:
 
-	grunt.registerTask('asyncme', 'My asyncronous task', function(){
-		var done = this.async();
-		doSomethingAsync(done);
-	});
-	
-###如何启用shell自动完成?
+    grunt.registerTask('asyncme', 'My asynchronous task.', function() {
+        var done = this.async();
+        doSomethingAsync(done);
+    });
 
-为了在子程序中启用grunt自动完成，可以在你的`~/.bashrc`中添加下面一行。
+##如何启用tab命令来自动完成?
 
-	eval "$(grunt --cpmpletion=bash)"
-	
-这要确保已经使用`npm install -g grunt`安装的全局Grunt。目前只有命令支持子程序。
+添加下面的代码到你的`~/.bashrc`文件中, 在grunt中来启用bash tab自动完成:
 
-###我如何跨多个任务共享我的参数?
+    eval "$(grunt --completion=bash)"
+    
+假设已经使用`npm install -g grunt`在全局安装了Grunt. 目前仅仅支持bash命令.
 
-虽然每个任务可以使用它自己的参数，这里有一些选项允许你跨多任务共享参数。
+##如何跨多任务共享参数?
 
-####"动态的"任务别名
+虽然每个任务都可以接受它自己的参数, 但是这里有几个可选项在多任间进行参数共享.
 
-**这是挎多任务共享参数的首选方法**
+###"动态"别名任务
 
-鉴于[任务别名](http://gruntjs.com/grunt#wiki-grunt-registertask)是很简单的，常见的做法是可以使用[grunt.task.run](http://gruntjs.com/grunt.task#wiki-grunt-task-run)使一个有效的函数作为“动态的”任务别名。在这里有一个例子，在命令行运行`grunt build:001`，正在运行的任务返回`foo:001`,`bar:001`和`baz:001`任务。
+**这是多任务共享参数的首选方法**
 
-	grunt.registerTask('build', 'Run all my build task.', function(n){
-		if(n == null){
-			grunt.warn('Build num must be specified, like build:001');
-		}
-		grunt.task.run('foo:' + n, 'bar:' +   n, 'baz:' + n);
-	});
-	
-####--选项
+而[别名任务](http://gruntjs.com/grunt#wiki-grunt-registertask)是很简单的, 一个常规的任务可以使用[grunt.task.run](http://gruntjs.com/grunt.task#wiki-grunt-task-run)使其作为一个有效的"动态"别名任务函数. 在下面的例子中, 在命令行运行`grunt build:001`的结果是运行`foo:001`,`bar:001`和`baz:001`中的任务.
 
-另一种跨多任务共享参数的方式是可以使用[grunt.option](http://gruntjs.com/grunt#wiki-grunt-option)。在这里有一个例子，在命令行总运行`grunt deploy --target=staging`会导致`grunt.option('target')`返回`staging`。
+    grunt.registerTask('build', 'Run all my build task.', function(){
+        if(n == null){
+            grunt.warn('Build num must be specified, like build:001');
+        }
+    })
+    
+### -- options
 
-	grunt.registerTask('upload', 'Upload code to specified target.', function(n){
-		var target = grunt.option('target');
-		//这里做一些有效的目标
-	});
-	grunt.registerTask('deploy', ['validata', 'upload']);
-	
-注意布尔值的选项可以指定使用一个没有值的键。例如，在命令行中运行`grunt deploy --staging`会导致`grunt.option('target')`返回`true`。
+另一种跨多任务共享参数的方式就是使用[grunt.option](http://gruntjs.com/grunt#wiki-grunt-option). 在下面的例子中, 在命令行中运行`grunt deploy --target=staging`将导致`grunt.option('target')`返回`"staging"`.
 
-####全局和配置
+    grunt.registerTask('upload','Upload code to specified target.', function(n){
+        var target = grunt.option('target');
+        //在这里使用target做一些有用的事情
+    });
+    grunt.registerTask('deploy', ['validate', 'upload']);
 
-在其他情况下，你可能希望以公开的方式设置配置或者全局值。在这种情况下，注册一个任务设置它的参数作为一个全局的或者配置值。
+注意布尔选项可以指定使用一个没有值的键. 例如, 在命行中运行`grunt deploy --staging`将导致`grunt.option('staging')`返回`true`.
 
-这里有一个例子，在命令行中运行`grunt set_global:name:peter set_config:target:staging deploy`会导致`global.name`为`"peter"`和`grunt.config('target')`返回`"staging"`。假设，`deploy`任务会使用这些值。
+###全局和配置
 
-	grunt.registerTask('set_global', 'Set a global variable.', function(name, val) {
-		global[name] = val;
-	});
+在其他情况下, 你可能需要暴露一种方式来设置配置或者全局的值. 在这种情况下, 注册一个任务并设置其参数作为一个全局的或者配置值.
 
-	grunt.registerTask('set_config', 'Set a config property.', function(name, val) {
-		grunt.config.set(name, val);
-	});
-	
-####Grunt0.3的问题
+在下面的例子中, 在命令行运行`grunt set_global:name:peter set_config:target:staging deploy`将导致`global.name`为`"peter"`以及`grunt.config('target')`将会返回`"staging"`. 由此推断, `deploy`任务将使用这些值.
 
-###在Windows的grunt0.3中，为什么当我尝试运行grunt时我的JS编辑器会打开?
+    grunt.registerTask('set_global', 'Set a global variable.', function(name, val){
+        global[name] = val;
+    });
+    
+    grunt.registerTask('set_config', 'Set a config property.', function(name, val){
+        grunt.config.set(name, val);
+    });
+    
+##Grunt 0.3相关问题
 
-如果[Gruntfile](http://gruntjs.com/getting-started)在你相同的目录中，当你输入grunt时Windows会尝试去执行那个文件。因此你需要输入`grunt.cmd`去替代。
+###在Windows的Grunt 0.3中, 为什么当我尝试运行grunt时会打开我的JS编辑器
 
-另一个选择是使用`DOSKEY`命令去创建一个Grunt宏，按照[这个指示](http://devblog.point2.com/2010/05/14/setup-persistent-aliases-macros-in-windows-command-prompt-cmd-exe-using-doskey/)。这将允许你使用`grunt`替代`grunt.cmd`。
+如果你在[Gruntfile](http://gruntjs.com/getting-started)同一目录中, 当你输入grunt时, Windows中会尝试执行该文件. 因此你应该输入`grunt.cmd`来替代.
 
-这是你能够使用的`DOSKEY`命令:
+另一种方式是使用`DOSKEY`命令创建一个Grunt宏, 以[这种方式](http://devblog.point2.com/2010/05/14/setup-persistent-aliases-macros-in-windows-command-prompt-cmd-exe-using-doskey/). 这样就会允许你使用`grunt`来替代`grunt.cmd`.
 
-	DOSKEY grunt=grunt.cmd $*
+下面是你可以使用的`DOSKEY`命令:
+
+    DOSKEY grunt=grunt.cmd $*
+
+
