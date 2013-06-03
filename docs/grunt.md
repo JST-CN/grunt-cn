@@ -1,6 +1,6 @@
 #grunt
 
-Grunt的所有方法和属性都通过传递到你的[Gruntfile](http://gruntjs.com/getting-started)中Grunt插件或者[任务文件](http://gruntjs.com/creating-tasks)的`module.exports`入口函数中而暴露在`grunt`对象中。
+Grunt中所有的方法和属性都通过传递到你的[Gruntfile](http://gruntjs.com/getting-started), Grunt插件或者[任务文件](http://gruntjs.com/creating-tasks)的`module.exports`出口函数中而暴露在`grunt`对象上.
 
 下面几乎所有的方法都是在别处定义的，但是能够很方面的提供给`grunt`对象。详细的解释和例子请参阅独立的API文档部分。
 
@@ -63,3 +63,5 @@ Grunt的所有方法和属性都通过传递到你的[Gruntfile](http://gruntjs.
 ####grunt.version
 
 当前grunt的版本，一个字符串。这仅仅是`grunt.package.version`属性的缩写。
+
+    grunt.version
