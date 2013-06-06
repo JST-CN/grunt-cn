@@ -1,0 +1,3 @@
+[submodule "source/docs"]
+	path = source/docs
+	url = https://github.com/basestyle/grunt-cn.git
