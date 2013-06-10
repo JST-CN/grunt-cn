@@ -1,0 +1,24 @@
+{
+    "blogName": "Grunt中文社区",
+    "blogSubTitle": "",
+    "blogKeywords": "Grunt.js,Grunt,web前端,前端,HTML,CSS,JavaScript,js,构建,压缩,合并,发布",
+    "blogDescription": "Grunt中文社区是由网友发起的Grunt.js中文交流社区，关注前端构建工具Grunt.js的应用推广。",
+    "authorName": "Grunt中文社区",
+    "domain": "www.gruntjs.org",
+    "sourcePath": "./source",
+    "blogPath":"./docs",
+    "globalPath":"./assets",
+    "skinPath":"./skin",
+    "distPath": "../",
+    "disabledParsePlugins":[
+        "parsePages"
+    ],
+    "disabledPagePlugins":[
+    	"packageSource",
+        "defineSkin",
+        "buildCategories",
+        "buildIndex",
+        "buildPages",
+        "buildRss"
+    ]
+}
