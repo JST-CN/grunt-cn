@@ -9,14 +9,14 @@
     "blogPath":"./docs",
     "globalPath":"./assets",
     "skinPath":"./skin",
-    "distPath": "./www",
+    "distPath": "../",
     "disabledParsePlugins":[
         "parsePages"
     ],
     "disabledPagePlugins":[
     	"packageSource",
         "defineSkin",
-        "buildCateries",
+        "buildCategories",
         "buildIndex",
         "buildPages",
         "buildRss"
