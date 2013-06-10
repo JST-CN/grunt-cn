@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Grunt中文社区是由网友发起的Grunt.js中文交流社区，关注前端构建工具Grunt.js的应用推广。">
+    <meta name="keywords" content="Grunt.js,Grunt,web前端,前端,HTML,CSS,JavaScript,js,构建,压缩,合并,发布">
+    <title>grunt.event - Grunt中文社区</title>
+    <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <div class="header-mask"></div>
+    <div class="wrap">
+      <div class="header">
+        <h1>Grunt</h1>
+        <h2>The JavaScript Task Runner</h2>
+      </div>
+      <div class="nav"><a href="#" class="logo"><img src="../images/grunt-logo.png" alt="Grunt中文社区"></a>
+        <dl id="nav">
+          <dt>参考文档</dt>
+          <dd>
+            <ul>
+              <li><a href="#">新手上路</a></li>
+              <li><a href="#">配置任务</a></li>
+              <li><a href="#">Gruntfile范例</a></li>
+              <li><a href="#">创建任务</a></li>
+              <li><a href="#">创建插件</a></li>
+            </ul>
+          </dd>
+          <dt>高级应用</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">安装Grunt</a></li>
+              <li><a href="#">常见问题</a></li>
+              <li><a href="#">项目脚手架</a></li>
+            </ul>
+          </dd>
+          <dt>社区</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">参考资源</a></li>
+              <li><a href="#">Grunt用户</a></li>
+              <li><a href="#">参与贡献</a></li>
+            </ul>
+          </dd>
+          <dt>升级指南</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">从0.3升级到0.4</a></li>
+            </ul>
+          </dd>
+          <dt>Grunt插件</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">Grunt插件列表</a></li>
+            </ul>
+          </dd>
+          <dt>API参考</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">API列表</a></li>
+            </ul>
+          </dd>
+          <dt>其他</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">内置任务</a></li>
+              <li><a href="#">状态码</a></li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+      <div class="main"><p>尽管在这个页面中仅仅列出了大多数相关的方法，但是完整的<a href="https://github.com/hij1nx/EventEmitter2">EventEmitter2 API</a>在<code>grunt.event</code>对象中都是有效的。Event命名空间可以使用<code>.</code>(点)操作符指定，并且已经启用了命名空间通配符。</p>
+
+<p><em>注意grunt并不允许发布任何events，但是在你自己的任务中任然是有用的。</em></p>
+
+<h3>grunt.event.on</h3>
+
+<p>在指定的event监听器数组尾部添加一个监听器.</p>
+
+<pre><code>grunt.event.on(event, listener)
+</code></pre>
+
+<h3>grunt.event.once</h3>
+
+<p>给event添加一个<strong>一次性</strong>监听器。这个监听器仅仅在event第一次触发时被调用，之后便被移除。</p>
+
+<pre><code>grunt.event.once(event, listener)
+</code></pre>
+
+<h3>grunt.event.many</h3>
+
+<p>添加一个在event被移除之前会执行<strong>n次</strong>的监听器.</p>
+
+<pre><code>grunt.event.many(event, timesToListen, listener);
+</code></pre>
+
+<h3>grunt.event.off</h3>
+
+<p>从指定的event监听器数组中移除一个监听器.</p>
+
+<pre><code>grunt.event.off(event, listener);
+</code></pre>
+
+<h3>grunt.event.removeAllListeners</h3>
+
+<p>移除所有的监听器或者它们指定的event</p>
+
+<pre><code>grunt.event.removeAllListeners([event]);
+</code></pre>
+
+<h3>grunt.event.emit</h3>
+
+<p>执行每一个监听器, 可能按照指定event参数列表指定的顺序进行监听.</p>
+
+<pre><code>grunt.event.emit(event. [arg1], [arg2], [...]);
+</code></pre></div>
+    </div>
+    <div class="footer">
+      <div class="wrap">
+        <p>Grunt.js 中文社区为开源项目，由网友创建并维护。</p>
+        <p>贡献: <a href="http://www.toobug.net">Toobug</a> <a href="http://www.basecss.net">Basecss</a></p>
+      </div>
+    </div>
+  </body>
+</html>

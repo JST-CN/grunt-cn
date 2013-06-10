@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Grunt中文社区是由网友发起的Grunt.js中文交流社区，关注前端构建工具Grunt.js的应用推广。">
+    <meta name="keywords" content="Grunt.js,Grunt,web前端,前端,HTML,CSS,JavaScript,js,构建,压缩,合并,发布">
+    <title>grunt.config - Grunt中文社区</title>
+    <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <div class="header-mask"></div>
+    <div class="wrap">
+      <div class="header">
+        <h1>Grunt</h1>
+        <h2>The JavaScript Task Runner</h2>
+      </div>
+      <div class="nav"><a href="#" class="logo"><img src="../images/grunt-logo.png" alt="Grunt中文社区"></a>
+        <dl id="nav">
+          <dt>参考文档</dt>
+          <dd>
+            <ul>
+              <li><a href="#">新手上路</a></li>
+              <li><a href="#">配置任务</a></li>
+              <li><a href="#">Gruntfile范例</a></li>
+              <li><a href="#">创建任务</a></li>
+              <li><a href="#">创建插件</a></li>
+            </ul>
+          </dd>
+          <dt>高级应用</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">安装Grunt</a></li>
+              <li><a href="#">常见问题</a></li>
+              <li><a href="#">项目脚手架</a></li>
+            </ul>
+          </dd>
+          <dt>社区</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">参考资源</a></li>
+              <li><a href="#">Grunt用户</a></li>
+              <li><a href="#">参与贡献</a></li>
+            </ul>
+          </dd>
+          <dt>升级指南</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">从0.3升级到0.4</a></li>
+            </ul>
+          </dd>
+          <dt>Grunt插件</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">Grunt插件列表</a></li>
+            </ul>
+          </dd>
+          <dt>API参考</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">API列表</a></li>
+            </ul>
+          </dd>
+          <dt>其他</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">内置任务</a></li>
+              <li><a href="#">状态码</a></li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+      <div class="main"><p>使用定义在Gruntfile中具体的项目配置数据。</p>
+
+<p>注意在<code>grunt</code>对象中任何使用☃(unicode形式的雪人)标记的方法都是直接有效的，任何在任务内的<code>this</code>对象中使用☆(白色星星)标记的方法也是有效的。这些都是你需要知道的。</p>
+
+<h2>初始化配置数据</h2>
+
+<p><em>注意下面的方法在<code>grunt</code>对象中如同<code>grunt.initConfig</code>中一样都是可用的。</em></p>
+
+<h3>grunt.config.init</h3>
+
+<p>初始化当前项目的一个配置对象。任务所使用的指定的<code>configObject</code>可以使用<code>grunt.config</code>方法访问。几乎每一个项目的Gruntfile都将调用这个方法。</p>
+
+<pre><code>grunt.config.init(configObject)
+</code></pre>
+
+<p>注意任何指定的<code>&lt;% %&gt;</code>模板字符串在配置数据解析之后都将被处理。</p>
+
+<p>这里有一个<a href="https://github.com/gruntjs/grunt-contrib-jshint">grunt-contrib-jshint插件</a>的<code>jshint</code>任务包含了简单的配置数据。</p>
+
+<pre><code>grunt.config.init({
+    jshint: {
+        all: ['lin/*.js', 'test/*.js', 'Gruntfile.js']
+    }
+});
+</code></pre>
+
+<p>查看<a href="http://www.gruntjs.com/">入门</a>指南可以看到更多的配置的例子。</p>
+
+<p><em>这个方法如同<code>grunt.initConfig</code>一样也是有效的。</em></p>
+
+<h3>使用配置数据</h3>
+
+<p>下面的方法允许通过点号分割的字符串, 像<code>pkg.author.name</code>, 或者通过属性名数组, 像<code>['pkg','author', 'name']</code>来访问Grunt配置数据.</p>
+
+<p>注意如果指定的属性名中包含一个<code>.</code>，它必须使用一个斜线字符进行转义。例如: <code>concat.dist/built\\.js</code>。如果指定了一个数组部分，grunt将使用<code>grunt.config.escape</code>方法在内部进行转义处理。</p>
+
+<h3>grunt.config</h3>
+
+<p>从项目的grunt配置中获取或者设置一个值。这个方法作为其他方法的别名；如果传递两个参数，<code>grunt.config.set</code>被调用，另一方面<code>grunt.config.get</code>也被调用。</p>
+
+<pre><code>grunt.config([prop [, value]]);
+</code></pre>
+
+<h3>grunt.config.get</h3>
+
+<p>从项目的grunt配置中获取一个值。如果指定<code>prop</code>，则返回该属性的值；如果没有定义该属性则返回<code>null</code>。如果没有指定<code>prop</code>，返回一个完整的配置对象副本。模板字符串将使用<code>grunt.config.process</code>方法进行递归处理。</p>
+
+<pre><code>grunt.config.get([prop]);
+</code></pre>
+
+<h3>grunt.config.process</h3>
+
+<p>处理一个值，在grunt配置环境内递归展开<code>&lt;% %&gt;</code>模板(通过<code>grunt.template.process</code>方法)，当遇到这种情况时。这个方法通过<code>grunt.config.get</code>但不是<code>grunt.config.getRow</code>自动调用。</p>
+
+<pre><code>grunt.config.process(value);
+</code></pre>
+
+<p>如果检索到任意的独立的<code>'&lt;%= foo %&gt;'</code>或者<code>'&lt;%= foo.bar %&gt;'</code>模板字符串，并且指定的<code>foo</code>或者<code>foo.bar</code>属性是一个非字符串值(不是<code>null</code>或者<code>undefined</code>)，它将指向实际的值。结合grunt任务系统自动处理数组的功能，它是非常有用的。</p>
+
+<h3>grunt.config.getRaw</h3>
+
+<p>从项目的grunt配置中获取一个原始值，没有经过处理的<code>&lt;% %&gt;</code>模板字符串。如果指定了<code>prop</code>，返回该属性的值，或者如果该属性没有定义则返回<code>null</code>。如果没有指定<code>prop</code>，返回一个完成的配置对象副本。</p>
+
+<pre><code>grunt.config.getRaw([prop])
+</code></pre>
+
+<h3>grunt.config.set</h3>
+
+<p>给项目的grunt配置设置一个值。</p>
+
+<pre><code>grunt.config.set(prop, value)
+</code></pre>
+
+<p>注意任意指定的<code>&lt;% %&gt;</code>模板字符串只会在检索配置数据时处理。</p>
+
+<h3>grunt.config.escape</h3>
+
+<p>忽略给定的<code>propString</code>中的<code>.</code>点号. 这应该用于包含点号的属性名.</p>
+
+<pre><code>grunt.config.escape(propString);
+</code></pre>
+
+<h2>载入配置数据</h2>
+
+<p><em>注意下面列出的方法在任务内部的<code>this</code>对象中如同<code>this.requiresConfig</code>一样也是有效的。</em></p>
+
+<h3>grunt.config.requires ☆</h3>
+
+<p>如果省略一个或者多个需要的配置属性, 为<code>null</code>或者<code>undefined</code>当前任务将失败. 配置属性可以指定一个或者多个字符串或者数组。</p>
+
+<pre><code>grunt.config.requires(prop [, prop [, …]])
+</code></pre>
+
+<p><em>这个方法在任务内部如同<code>this.requiresConfig</code>一样也是有效的。</em></p></div>
+    </div>
+    <div class="footer">
+      <div class="wrap">
+        <p>Grunt.js 中文社区为开源项目，由网友创建并维护。</p>
+        <p>贡献: <a href="http://www.toobug.net">Toobug</a> <a href="http://www.basecss.net">Basecss</a></p>
+      </div>
+    </div>
+  </body>
+</html>

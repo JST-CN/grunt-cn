@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Grunt中文社区是由网友发起的Grunt.js中文交流社区，关注前端构建工具Grunt.js的应用推广。">
+    <meta name="keywords" content="Grunt.js,Grunt,web前端,前端,HTML,CSS,JavaScript,js,构建,压缩,合并,发布">
+    <title>新手上路 - Grunt中文社区</title>
+    <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <div class="header-mask"></div>
+    <div class="wrap">
+      <div class="header">
+        <h1>Grunt</h1>
+        <h2>The JavaScript Task Runner</h2>
+      </div>
+      <div class="nav"><a href="#" class="logo"><img src="../images/grunt-logo.png" alt="Grunt中文社区"></a>
+        <dl id="nav">
+          <dt>参考文档</dt>
+          <dd>
+            <ul>
+              <li><a href="#">新手上路</a></li>
+              <li><a href="#">配置任务</a></li>
+              <li><a href="#">Gruntfile范例</a></li>
+              <li><a href="#">创建任务</a></li>
+              <li><a href="#">创建插件</a></li>
+            </ul>
+          </dd>
+          <dt>高级应用</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">安装Grunt</a></li>
+              <li><a href="#">常见问题</a></li>
+              <li><a href="#">项目脚手架</a></li>
+            </ul>
+          </dd>
+          <dt>社区</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">参考资源</a></li>
+              <li><a href="#">Grunt用户</a></li>
+              <li><a href="#">参与贡献</a></li>
+            </ul>
+          </dd>
+          <dt>升级指南</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">从0.3升级到0.4</a></li>
+            </ul>
+          </dd>
+          <dt>Grunt插件</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">Grunt插件列表</a></li>
+            </ul>
+          </dd>
+          <dt>API参考</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">API列表</a></li>
+            </ul>
+          </dd>
+          <dt>其他</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">内置任务</a></li>
+              <li><a href="#">状态码</a></li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+      <div class="main"><p>Grunt和Grunt插件都是通过<a href="http://nodejs.org/">Node.js</a>包管理器<a href="https://npmjs.org/">npm</a>来安装和管理的.</p>
+
+<p><em>这些说明文档是针对0.4.x版本的Grunt所编写的, 但是对于0.3.x版本的Grunt也是有效的. 你需要注意的只是, 在0.3.x版本的Grunt中, 插件名称和任务配置选项可能不同于"The Gruntfile"一节中所展示的那样</em>.</p>
+
+<p>0.4.x版本的Grunt必须要<code>0.8.0</code>及以上版本的Node.js来支持.</p>
+
+<h2>安装CLI</h2>
+
+<p><strong>如果你已经在全局安装了Grunt, 那么你需要先移除已经安装的Grunt</strong>:</p>
+
+<pre><code>npm uninstall -g grunt
+</code></pre>
+
+<p>为了方便开始使用Grunt, 你会希望在全局安装Grunt的命令行接口(CLI). 你可能需要使用sudo(OSX, *nix, BSD等平台)或者作为超级管理员(Windows平台)运行shell命令来做到这一点.  </p>
+
+<pre><code>npm install -g grunt-cli
+</code></pre>
+
+<p>这将会把<code>grunt</code>命令置入你的系统路径中, 这样就允许你从任何目录来运行它(即可以定位到任何目录使用Grunt).</p>
+
+<p>注意, 安装<code>grunt-cli</code>并不意味着安装Grunt任务运行器. Grunt CLI的工作原理很简单: 运行已安装版本的Grunt之后的Gruntfile. 它允许在同一台机器上同时安装多个版本的Grunt.</p>
+
+<h2>CLI是如何工作的</h2>
+
+<p>每次运行<code>grunt</code>, 它都会使用NodeJS的<code>require()</code>系统查询本地是否安装了Grunt. 正因为如此, 你可以从项目的任何子目录中运行<code>grunt</code>.</p>
+
+<blockquote>
+  <p><strong>译注</strong>: 注意, 这里在任何目录运行Grunt的前提是全局安装了Grunt-CLI, 即上面命令中指定了<code>-g</code>标记表明全局安装.</p>
+</blockquote>
+
+<p>如果发现本地已经安装了Grunt, CLI就会载入本地安装的Grunt库, 然后应用<code>Gruntfile</code>中的配置, 最后你要运行它来执行任意的任务.</p>
+
+<p><em>想要真正了解它发生了什么, 可以<a href="https://github.com/gruntjs/grunt-cli/blob/master/bin/grunt">阅读这份代码</a>. 这个代码很简短</em>.</p>
+
+<h2>使用一个现有的grunt项目进行工作</h2>
+
+<p>假设你已经安装了Grunt CLI, 并且项目已经在<code>package.json</code>和<code>Gruntfile</code>中配置好了, 那么开始使用Grunt是非常容易的:</p>
+
+<ol>
+<li>定位到项目的根目录.</li>
+<li>使用<code>npm install</code>安装项目依赖.</li>
+<li>使用<code>grunt</code>运行Grunt.</li>
+</ol>
+
+<blockquote>
+  <p><strong>译注</strong>: Grunt的执行依赖于package.json和Gruntfile中的配置, Grunt中任务涉及到的文件操作, 目录操作都相对于Gruntfile文件所在目录查找路径. 因此你需要将package.json和Gruntfile置入到项目的根目录. </p>
+  
+  <p>然后所依赖的插件或者其他模块都定义在package.json的"devDependencies"属性中, 然后在Gruntfile中通过grunt.loadNpmTasks();方法载入, 因为任务配置在Gruntfile中, 而你常见的任务都是依赖于插件操作的. 因而需要在Gruntfile中载入相关依赖.</p>
+  
+  <p>最后在运行Grunt之前, 你可以先执行<code>npm install</code>命令来自动安装项目依赖, 这一切工作都由Grunt结合Node.js自动完成. 在成功安装好插件之后你就可以运行<code>grunt</code>命令或者手动指定定义的任务命令来自动化执行指定的任务.</p>
+</blockquote>
+
+<p>这是真的. 安装好的Grunt任务可以通过运行<code>grunt -help</code>列出来, 并且通常以此作为项目文档的开端是一个好主意.</p>
+
+<h2>准备一个新的Grunt项目</h2>
+
+<p>典型的设置将涉及到添加两个文件到你的项目中: <code>package.json</code>和<code>Gruntfile</code>.</p>
+
+<p><strong>package.json</strong>:这个文件被用于通过npm存储发布项目的元素据作为npm模块, 你将在这个文件中列出你项目需要依赖的grunt及grunt插件.</p>
+
+<p><strong>Gruntfile</strong>:这个文件名为<code>Gruntfile.js</code>或者<code>Gruntfile.coffee</code>, 它被用来配置或者定义任务以及加载Grunt插件.</p>
+
+<p>这个文件在Grunt 0.3.x版本中被命名为<code>grunt.js</code>.</p>
+
+<h3>package.json</h3>
+
+<p><code>package.json</code>文件归属于你项目的根目录中, 与<code>Gruntfile</code>相邻, 并且应该与你的项目源文件一同被提交. 在同一目录中运行<code>npm install</code>时会按照<code>package.json</code>文件中列出每一个依赖安装正确的版本.</p>
+
+<p>这里有一些方法在你的项目中创建一个<code>package.json</code>文件:</p>
+
+<ul>
+<li>大多数的<a href="http://gruntjs.com/project-scaffolding">grunt-init</a>模板都会自动创建一个项目特定的<code>package.json</code>文件.</li>
+<li><a href="https://npmjs.org/doc/init.html">npm init</a>命令也会创建一个基本的<code>package.json</code>文件.</li>
+<li>从下面的例子开始, 按需扩展. 但是你要遵循<a href="https://npmjs.org/doc/json.html">规范</a>…</li>
+</ul>
+
+<hr />
+
+<pre><code>{
+    "name": "my-project-name",
+    "version": "0.1.0",
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-contrib-jshint": "~0.1.1",
+        "grunt-contrib-nodeunit": "~0.1.2"
+    }
+}
+</code></pre>
+
+<h2>安装Grunt和grunt插件</h2>
+
+<p>最简单的方式添加Grunt和Grunt插件到现有的<code>package.json</code>中就是使用<code>npm install &lt;module&gt; --save-dev</code>命令.这样不仅仅能在本地安装<code>&lt;module&gt;</code>, 它还会自动被添加到<a href="https://npmjs.org/doc/json.html#devDependencies">依赖</a>部分,使用一个<a href="https://npmjs.org/doc/json.html#Tilde-Version-Ranges">波浪线版本范围</a></p>
+
+<p>例如, 这将在你的项目目录中安装最新版本的Grunt, 并添加到你的依赖中:</p>
+
+<pre><code>npm install grunt --save-dev
+</code></pre>
+
+<p>同样的方式可以用来安装grunt插件和其他的node模块. 当你完成之后, 更新过的<code>package.json</code>一定要和你的项目一起提交.</p>
+
+<h2>Gruntfile</h2>
+
+<p><code>Gruntfile.js</code>或者<code>Gruntfile.coffee</code>是归属于你项目跟目录中的一个有效的JavaScript或者CoffeeScript文件, 与<code>package.json</code>相邻, 并且应该和你的项目源文件一起被提交.这个文件在Grunt 0.3.x版本中被命名为<code>grunt.js</code>.</p>
+
+<p>一个Gruntfile有以下几部分组成:</p>
+
+<ul>
+<li>'wrapper'函数</li>
+<li>项目和任务配置</li>
+<li>Grunt插件和任务加载</li>
+<li>定制任务</li>
+</ul>
+
+<h3>一个Gruntfile示例</h3>
+
+<p>在下面的Gruntfile中, 项目的元数据从项目的<code>package.json</code>文件中被导入到grunt配置中, <a href="http://github.com/gruntjs/grunt-contrib-uglify">grunt-contrib-uglify</a>插件的<code>uglify</code>任务被配置用于压缩一个源代码文件, 并使用该元素据动态的生成一个标语注释. 当在命令行中运行grunt时, 默认的情况下会运行<code>uglify</code>任务.</p>
+
+<pre><code>module.exports = function(grunt){
+
+    //项目配置
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+        uglify: {
+            options: {
+                banner: '/*! &lt;%= pkg.name %&gt; &lt;%= grunt.template.today("yyyy-mm-dd") %&gt; */\n'
+            },
+            build: {
+                src: 'src/&lt;%= pkg.name %&gt;.js',
+                dest: 'build/&lt;%= pkg.name %&gt;.min.js'
+            }
+        }
+    });
+    //加载提供"uglify"任务的插件
+    grunt.loadNpmTask('grunt-contrib-uglify');
+
+    //默认任务
+    grunt.registerTask('default', ['uglify']);
+
+};
+</code></pre>
+
+<p>现在你已经了解到一个整体的Gruntfile, 让我们来看看它的组成部分.</p>
+
+<h3>"wrapper"函数</h3>
+
+<p>每个Gruntfile(以及grunt插件)都使用这个基本的格式, 并且你所有的Grunt代码都必须指定在这个函数里面:</p>
+
+<pre><code>module.exports = function(grunt){
+    //在这里处理grunt相关的事情
+};
+</code></pre>
+
+<h3>项目和任务配置</h3>
+
+<p>大多数的Grunt任务依赖于将配置数据定义在一个对象中,并传递给<a href="http://gruntjs.com/grunt#grunt.initconfig">grunt.initConfig</a>方法.</p>
+
+<p>在这个例子中, <code>grunt.file.readJSON('package.json')</code>用于将存储在<code>package.json</code>中的JSON元数据导入到grunt配置中. 由于<code>&lt;% %&gt;</code>模板字符串可以引用任意的配置属性, 如文件路径配置数据, 文件列表可以指定这种方式用于减少重复.</p>
+
+<p>你可以在配置对象内部存储任意数据, 但它不能与你任务所需要的属性冲突, 否则它将被忽略. 此外, 由于这本质上是JavaScript代码, 你并不限于使用JSON; 你可以在这里使用任意有效的JS. 如果有必要, 你甚至可以以编程的方式生成配置.</p>
+
+<p>跟大多数任务一样, <a href="http://github.com/gruntjs/grunt-contrib-uglify">grunt-contrib-uglify</a>插件的<code>uglify</code>任务认为它的配置数据被指定在与它同名的属性中. 这里指定了一个<code>banner</code>选项, 紧接着名为<code>build</code>的单一uglify目标用于压缩一个独立的源代码文件到一个独立的目标文件.</p>
+
+<pre><code>//项目配置
+grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+    uglify: {
+        options: {
+            banner: '/*! &lt;%= pkg.name %&gt; &lt;%= grunt.template.today("yyyy-mm-dd") %&gt; */\n'
+        },
+        build: {
+            src: 'src/&lt;%= pkg.name %&gt;.js',
+            dest: 'build/&lt;%= pkg.name %&gt;.min.js'
+        }
+    }
+});
+</code></pre>
+
+<h3>加载grunt插件和任务</h3>
+
+<p>很多常用的任务,如<a href="https://github.com/gruntjs/grunt-contrib-concat">concatenation</a>, <a href="http://github.com/gruntjs/grunt-contrib-uglify">minification</a>以及<a href="https://github.com/gruntjs/grunt-contrib-jshint">linting</a>都是可用的<a href="https://github.com/gruntjs">grunt插件</a>. 只要一个插件作为依赖被指定在<code>package.json</code>文件中, 并且已经通过<code>npm install</code>安装好了, 那么就可以在你的<code>Gruntfile</code>内使用一个简单的命令来启用它:</p>
+
+<pre><code>//加载提供"uglify"任务的插件
+grunt.loadNpmTasks('grunt-contrib-uglify');
+</code></pre>
+
+<p><em>*</em>注意*: 使用<code>grunt --help</code>命令可以列出所有可用的任务列表.</p>
+
+<h3>定制/自定义任务</h3>
+
+<p>默认的情况下你可以通过定义一个<code>default</code>任务去配置Grunt运行一个或者多个任务. 在下面的例子中, 在命令行中运行没有指定任务的<code>grunt</code>将自动运行<code>uglify</code>任务. 这与明确运行<code>grunt uglify</code>或者等价的<code>grunt default</code>的功能一样. 可以在数组中指定任意数量的任务(带或不带参数).</p>
+
+<pre><code>//默认任务
+grunt.registerTask('default', ['uglify']);
+</code></pre>
+
+<p>如果你的任务需求不需要通过Grunt插件来提供功能, 你可以在<code>Gruntfile</code>内部定义自定义任务. 例如, 这个Gruntfile定义了一个完整的自定义的<code>default</code>任务, 甚至它并没有利用任务配置:</p>
+
+<pre><code>module.exports = function(grunt){
+
+    //一个非常基本的默认任务
+    grunt.registerTask('default', 'Log some stuff.', function(){
+        grunt.log.write('Logging some stuff…').ok();
+    });
+};
+</code></pre>
+
+<p>自定义的项目特定任务并不一定需要定义在Gruntfile内部; 他们也可以定义在外部的<code>.js</code>文件中, 并且能够通过<a href="http://gruntjs.com/grunt#grunt.loadtasks">grunt的grunt.loadTasks</a>方法来加载. </p>
+
+<h2>扩展阅读</h2>
+
+<ul>
+<li><p><a href="http://gruntjs.com/installing-grunt/">安装Grunt</a>指南中有关于安装特定的, 发布的或者开发中版本的Grunt和Grunt-cli的详细信息.</p></li>
+<li><p><a href="http://gruntjs.com/configuring-tasks/">任务配置</a>指南深入讲解了如何在Gruntfile文件内部去配置任务, 目标和选项, 紧接着讲解了模板, 匹配模式和导入外部数据.</p></li>
+<li><p><a href="http://gruntjs.com/creating-tasks/">创建任务</a>指南列出了不同类型Grunt任务之间的差异, 并展示了一些简单的任务和配置.</p></li>
+<li><p>在<a href="http://gruntjs.com/grunt">开发者文档中</a>可以检出更多的关于编写自定义任务和Grunt插件的信息.</p></li>
+</ul></div>
+    </div>
+    <div class="footer">
+      <div class="wrap">
+        <p>Grunt.js 中文社区为开源项目，由网友创建并维护。</p>
+        <p>贡献: <a href="http://www.toobug.net">Toobug</a> <a href="http://www.basecss.net">Basecss</a></p>
+      </div>
+    </div>
+  </body>
+</html>

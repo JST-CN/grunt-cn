@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Grunt中文社区是由网友发起的Grunt.js中文交流社区，关注前端构建工具Grunt.js的应用推广。">
+    <meta name="keywords" content="Grunt.js,Grunt,web前端,前端,HTML,CSS,JavaScript,js,构建,压缩,合并,发布">
+    <title>grunt.util - Grunt中文社区</title>
+    <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <div class="header-mask"></div>
+    <div class="wrap">
+      <div class="header">
+        <h1>Grunt</h1>
+        <h2>The JavaScript Task Runner</h2>
+      </div>
+      <div class="nav"><a href="#" class="logo"><img src="../images/grunt-logo.png" alt="Grunt中文社区"></a>
+        <dl id="nav">
+          <dt>参考文档</dt>
+          <dd>
+            <ul>
+              <li><a href="#">新手上路</a></li>
+              <li><a href="#">配置任务</a></li>
+              <li><a href="#">Gruntfile范例</a></li>
+              <li><a href="#">创建任务</a></li>
+              <li><a href="#">创建插件</a></li>
+            </ul>
+          </dd>
+          <dt>高级应用</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">安装Grunt</a></li>
+              <li><a href="#">常见问题</a></li>
+              <li><a href="#">项目脚手架</a></li>
+            </ul>
+          </dd>
+          <dt>社区</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">参考资源</a></li>
+              <li><a href="#">Grunt用户</a></li>
+              <li><a href="#">参与贡献</a></li>
+            </ul>
+          </dd>
+          <dt>升级指南</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">从0.3升级到0.4</a></li>
+            </ul>
+          </dd>
+          <dt>Grunt插件</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">Grunt插件列表</a></li>
+            </ul>
+          </dd>
+          <dt>API参考</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">API列表</a></li>
+            </ul>
+          </dd>
+          <dt>其他</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">内置任务</a></li>
+              <li><a href="#">状态码</a></li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+      <div class="main"><p>其他实用工具, 包括Lo-Dash, Async和Hooker.</p>
+
+<h3>grunt.util.kindOf</h3>
+
+<p>返回一个值的"种类". 好比<code>typeof</code>返回内部的<code>[Class](Class/)</code>值. 可能返回<code>"number"</code>, <code>"string"</code>, <code>"boolean"</code>, <code>"function"</code>, <code>"regexp"</code>, <code>"array"</code>, <code>"date"</code>, <code>"error"</code>, <code>"null"</code>, <code>"undefined"</code>以及全面的<code>"object"</code>.</p>
+
+<pre><code>grunt.util.kindOf(value)
+</code></pre>
+
+<h3>grunt.util.error</h3>
+
+<p>返回一个新的Error实例(可以抛出)与相应的消息. 如果指定一个Error对象而不是<code>message</code>, 将放回该对象. 另外, 如果指定一个Error对象<code>origError</code>并且使用<code>--debug 9</code>选项运行Grunt, 原始的Error堆栈将被抛出.</p>
+
+<pre><code>grunt.util.error(message [, origError])
+</code></pre>
+
+<h3>grunt.util.linefeed</h3>
+
+<p>标准化当前操作系统的换行符(Window上是<code>\r\n</code>,否则为<code>\n</code>).</p>
+
+<h3>grunt.util.normalizeIf</h3>
+
+<p>给定一个字符串, 返回一个新字符串, 所有的换行符都被标准化为当前操作系统中的形式(Window上是<code>\r\n</code>,否则为<code>\n</code>).</p>
+
+<pre><code>grunt.util.normalizeIf(string)
+</code></pre>
+
+<h3>grunt.util.recurse</h3>
+
+<p>递归嵌套的对象和数组, 为每个非对象值执行<code>callbackFunction</code>. 如果<code>continueFunction</code>返回<code>false</code>, 给定的对象和值将会跳过.</p>
+
+<pre><code>grunt.util.recurse(object, callbackFunction, continueFunction)
+</code></pre>
+
+<h3>grunt.util.repeat</h3>
+
+<p>返回重复<code>n</code>次的字符串<code>str</code></p>
+
+<pre><code>grunt.util.repeat(n, str)
+</code></pre>
+
+<h3>grunt.util.pluralize</h3>
+
+<p>给定一个<code>"a/b"</code>形式的<code>str</code>, 如果<code>n</code>为<code>1</code>, 返回<code>"a"</code>否则返回<code>"b"</code>. 如果你不能使用'/'则你可以指定一个自定义的分隔符.</p>
+
+<pre><code>grunt.util.pluralize(n, str, separator)
+</code></pre>
+
+<h3>grunt.util.spawn</h3>
+
+<p>生成一个子进程, 跟踪其标准输出, 标准错误和退出代码. 该方法返回一个生成的子进程的引用. 当子进程退出时, 将调用done函数.</p>
+
+<pre><code>grunt.util.spawn(options, doneFunction)
+</code></pre>
+
+<p><code>options</code>对象可能有以下属性:</p>
+
+<pre><code>var options = {
+    // The command to execute. It should be in the system path.
+    cmd: commandToExecute,
+    // If specified, the same grunt bin that is currently running will be
+    // spawned as the child command, instead of the "cmd" option. Defaults
+    // to false.
+    grunt: boolean,
+    // An array of arguments to pass to the command.
+    args: arrayOfArguments,
+    // Additional options for the Node.js child     opts: nodeSpawnOptions,
+    // If this value is set and an error occurs, it will be used as the value
+    // and null will be passed as the error value.
+    fallback: fallbackValue
+};
+</code></pre>
+
+<p>done函数接收以下参数:</p>
+
+<pre><code>function doneFunction(error, result, code) {
+    // If the exit code was non-zero and a fallback wasn't specified, an Error
+    // object, otherwise null.
+    error
+    // The result object is an object with the properties .stdout, .stderr, and
+    // .code (exit code).
+    result
+    // When result is coerced to a string, the value is stdout if the exit code
+    // was zero, the fallback if the exit code was non-zero and a fallback was
+    // specified, or stderr if the exit code was non-zero and a fallback was
+    // not specified.
+    String(result)
+    // The numeric exit code.
+    code
+}
+</code></pre>
+
+<h3>grunt.util.toArray</h3>
+
+<p>给定一个数组或者一个类数组对象, 返回一个数组. 转换<code>arguments</code>对象为数组是很好的.</p>
+
+<pre><code>grunt.util.toArray(arrayLikeObject)
+</code></pre>
+
+<h3>grunt.util.callbackify</h3>
+
+<p>标准化"返回值"和"传递结果给回调"的函数, 总是传递一个结果给指定的回调函数. 如果原始函数返回一个值, 该值将即刻传递给回调函数, 并指定为最后一个参数, 在是哟有的预定义参数之后. 如果原始函数传递一个值给回调函数, 它也会继续这样做.</p>
+
+<pre><code>grunt.util.callbackify(syncOrAsyncFunction)
+</code></pre>
+
+<p>下面这个例子可能能够更好的说明:</p>
+
+<pre><code>function add1(a, b) {
+    return a + b;
+}
+function add2(a, b, callback) {
+    callback(a + b);
+}
+
+var fn1 = grunt.util.callbackify(add1);
+var fn2 = grunt.util.callbackify(add2);
+
+fn1(1, 2, function(result) {
+    console.log('1 plus 2 equals ' + result);
+});
+fn2(1, 2, function(result) {
+    console.log('1 plus 2 equals ' + result);
+});
+</code></pre>
+
+<h2>内部库</h2>
+
+<h3>grunt.util.namespace</h3>
+
+<p>一个内部库用于解决对象内部深层嵌套的属性.</p>
+
+<h3>grunt.util.task</h3>
+
+<p>一个用于运行任务内部库.</p>
+
+<h2>外部库</h2>
+
+<h3>grunt.util._</h3>
+
+<p><a href="http://lodash.com/">Lo-Dash</a> - 超级有用的数组, 函数和对象实用方法. [Underscore.string] - 极其实用的字符串方法.</p>
+
+<p>注意Underscore.string是混合在<code>grunt.util._</code>中的, 它也可以作为<code>grunt.util._.str</code>的方法, 但是它与现有的Lo-Dash方法冲突.</p>
+
+<h3>grunt.util.async</h3>
+
+<p><a href="https://github.com/caolan/async">Async</a> - node和浏览器异步实用工具.</p>
+
+<h3>grunt.util.hooker</h3>
+
+<p><a href="https://github.com/cowboy/javascript-hooker">JavaScript Hooker</a> - 进行调试和填充的小补丁<a href="钩子">Monkey-patch</a>.</p></div>
+    </div>
+    <div class="footer">
+      <div class="wrap">
+        <p>Grunt.js 中文社区为开源项目，由网友创建并维护。</p>
+        <p>贡献: <a href="http://www.toobug.net">Toobug</a> <a href="http://www.basecss.net">Basecss</a></p>
+      </div>
+    </div>
+  </body>
+</html>

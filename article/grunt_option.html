@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Grunt中文社区是由网友发起的Grunt.js中文交流社区，关注前端构建工具Grunt.js的应用推广。">
+    <meta name="keywords" content="Grunt.js,Grunt,web前端,前端,HTML,CSS,JavaScript,js,构建,压缩,合并,发布">
+    <title>grunt.option - Grunt中文社区</title>
+    <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <div class="header-mask"></div>
+    <div class="wrap">
+      <div class="header">
+        <h1>Grunt</h1>
+        <h2>The JavaScript Task Runner</h2>
+      </div>
+      <div class="nav"><a href="#" class="logo"><img src="../images/grunt-logo.png" alt="Grunt中文社区"></a>
+        <dl id="nav">
+          <dt>参考文档</dt>
+          <dd>
+            <ul>
+              <li><a href="#">新手上路</a></li>
+              <li><a href="#">配置任务</a></li>
+              <li><a href="#">Gruntfile范例</a></li>
+              <li><a href="#">创建任务</a></li>
+              <li><a href="#">创建插件</a></li>
+            </ul>
+          </dd>
+          <dt>高级应用</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">安装Grunt</a></li>
+              <li><a href="#">常见问题</a></li>
+              <li><a href="#">项目脚手架</a></li>
+            </ul>
+          </dd>
+          <dt>社区</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">参考资源</a></li>
+              <li><a href="#">Grunt用户</a></li>
+              <li><a href="#">参与贡献</a></li>
+            </ul>
+          </dd>
+          <dt>升级指南</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">从0.3升级到0.4</a></li>
+            </ul>
+          </dd>
+          <dt>Grunt插件</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">Grunt插件列表</a></li>
+            </ul>
+          </dd>
+          <dt>API参考</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">API列表</a></li>
+            </ul>
+          </dd>
+          <dt>其他</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">内置任务</a></li>
+              <li><a href="#">状态码</a></li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+      <div class="main"><p>Grunt option API用于跨多任务共参数以及在命令行中访问参数设置.</p>
+
+<p>很明显的例子便是无论构建目标是在开发期还是演示期间都有一个标志. 在命令行中: <code>grunt deploy --target=staging</code>会导致<code>grunt.option('target')</code>返回<code>"staging"</code>.</p>
+
+<p>一个Gruntfile利用<code>target</code>选项的例子可能如下:</p>
+
+<pre><code>grunt.initConfig({
+    compass: {
+        dev: {
+            options: {
+                /* ... */
+                outputStyle: 'expanded'
+            },
+        },
+        staging: {
+            options: {
+                /* ... */
+                outputStyle: 'compressed'
+            },
+        },
+    },
+});
+var target = grunt.option('target') || 'dev';
+grunt.registerTask('deploy', ['compass:' + target]);
+</code></pre>
+
+<p>当你运行<code>grunt deploy</code>时你的样式表将默认为<code>dev</code>目标并且输出CSS扩展格式. 如果你运行<code>grunt deploy --target=staging</code>, <code>staging</code>目标会替代运行, 你的CSS将变成压缩格式.</p>
+
+<p><code>grunt.option</code>也可以用在任务中, 例如:</p>
+
+<pre><code>grunt.registerTask('upload', 'Upload code to specified target.', function(n) {
+    var target = grunt.option('target');
+  // do something useful with target here
+});
+grunt.registerTask('deploy', ['validate', 'upload']);
+</code></pre>
+
+<p><em>注意: 布尔值选项可以用于只指定一个没有值的键. 例如, 在命令行中运行<code>grunt deploy --staging</code>将导致<code>grunt.option('staging')</code>返回<code>true</code></em>.</p>
+
+<h3>grunt.option ☃</h3>
+
+<p>获取或者设置一个选项.</p>
+
+<pre><code>grunt.option(key[, val])
+</code></pre>
+
+<p>布尔值选项可以通过在<code>key</code>上前置<code>no-</code>来否定, 例如:</p>
+
+<pre><code>grunt.option('staging', false);
+var isDev = grunt.option('no-staging');
+// isDev === true
+</code></pre>
+
+<h3>grunt.option.init</h3>
+
+<p>初始化<code>grunt.option</code>. 如果<code>initObject</code>选项省略将初始化为一个空对象, 否则将设置为<code>initObject</code>.</p>
+
+<pre><code>grunt.option.init([initObject])
+</code></pre>
+
+<h3>grunt.options.flags</h3>
+
+<p>返回命令行参数的选项数组.</p>
+
+<pre><code>grunt.option.flags()    
+</code></pre></div>
+    </div>
+    <div class="footer">
+      <div class="wrap">
+        <p>Grunt.js 中文社区为开源项目，由网友创建并维护。</p>
+        <p>贡献: <a href="http://www.toobug.net">Toobug</a> <a href="http://www.basecss.net">Basecss</a></p>
+      </div>
+    </div>
+  </body>
+</html>
