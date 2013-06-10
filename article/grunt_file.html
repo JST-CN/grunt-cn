@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Grunt中文社区是由网友发起的Grunt.js中文交流社区，关注前端构建工具Grunt.js的应用推广。">
+    <meta name="keywords" content="Grunt.js,Grunt,web前端,前端,HTML,CSS,JavaScript,js,构建,压缩,合并,发布">
+    <title>grunt.file - Grunt中文社区</title>
+    <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <div class="header-mask"></div>
+    <div class="wrap">
+      <div class="header">
+        <h1>Grunt</h1>
+        <h2>The JavaScript Task Runner</h2>
+      </div>
+      <div class="nav"><a href="#" class="logo"><img src="../images/grunt-logo.png" alt="Grunt中文社区"></a>
+        <dl id="nav">
+          <dt>参考文档</dt>
+          <dd>
+            <ul>
+              <li><a href="#">新手上路</a></li>
+              <li><a href="#">配置任务</a></li>
+              <li><a href="#">Gruntfile范例</a></li>
+              <li><a href="#">创建任务</a></li>
+              <li><a href="#">创建插件</a></li>
+            </ul>
+          </dd>
+          <dt>高级应用</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">安装Grunt</a></li>
+              <li><a href="#">常见问题</a></li>
+              <li><a href="#">项目脚手架</a></li>
+            </ul>
+          </dd>
+          <dt>社区</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">参考资源</a></li>
+              <li><a href="#">Grunt用户</a></li>
+              <li><a href="#">参与贡献</a></li>
+            </ul>
+          </dd>
+          <dt>升级指南</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">从0.3升级到0.4</a></li>
+            </ul>
+          </dd>
+          <dt>Grunt插件</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">Grunt插件列表</a></li>
+            </ul>
+          </dd>
+          <dt>API参考</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">API列表</a></li>
+            </ul>
+          </dd>
+          <dt>其他</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">内置任务</a></li>
+              <li><a href="#">状态码</a></li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+      <div class="main"><p>提供了很多方法来读取或者编辑文件, 通过匹配模式遍历文件系统或者查找文件. 其中很多方法都包装了内置的Node.js文件功能, 但是标准化了额外的错误处理,日志记录和字符编码.</p>
+
+<p><em>注意: 文件路径相对于Gruntfile所在目录, 除非当前工作目录使用<code>grunt.file.setBase</code>或者<code>--base</code>命令行选项改变了.</em></p>
+
+<h2>字符编码</h2>
+
+<h3>grunt.file.defaultEncoding</h3>
+
+<p>用于通过所有的<code>grunt.file</code>方法设置这个属性来改变默认的字符编码. 默认为<code>'utf8'</code>. 如果你改变了这个值, 推荐你尽早在Gruntfile中来改变它.</p>
+
+<pre><code>grunt.file.defaultEncoding = 'utf8'
+</code></pre>
+
+<h2>读和写文件</h2>
+
+<h3>grunt.file.read</h3>
+
+<p>读取并返回文件内容. 返回一个字符串, 除非<code>options.encoding</code>为<code>null</code>, 这种情况下它返回一个<a href="http://nodejs.org/docs/latest/api/buffer.html">Buffer</a>缓冲区).</p>
+
+<pre><code>grunt.file.read(filepath [, options])
+</code></pre>
+
+<p><code>options</code>对象可能有这些属性</p>
+
+<pre><code>var options = {
+    // If an encoding is not specified, default to grunt.file.defaultEncoding.
+    // If specified as null, returns a non-decoded Buffer instead of a string.
+    encoding: encodingName
+};
+</code></pre>
+
+<h3>grunt.file.readJSON</h3>
+
+<p>读取文件内容, 解析YAML数据并返回结果. 请参阅<code>grunt.file.read</code>所支持的选项列表.</p>
+
+<pre><code>grunt.file.readYAML(filepath [, options]);
+</code></pre>
+
+<h3>grunt.file.write</h3>
+
+<p>给文件写入指定的内容, 必要时创建一个中间目录. 字符串将只用指定字符编码进行编码, <a href="http://nodejs.org/docs/latest/api/buffer.html">Buffters</a>将被写入指定的磁盘.</p>
+
+<p><em>如果指定了<code>--no-write</code>命令行选项, 实际上不会xieur文件</em>.</p>
+
+<pre><code>grunt.file.write(filepath, contents [, options])
+</code></pre>
+
+<p><code>options</code>对象可能有这些属性</p>
+
+<pre><code>var options = {
+    // If an encoding is not specified, default to grunt.file.defaultEncoding.
+    // If `contents` is a Buffer, encoding is ignored.
+    encoding: encodingName
+};
+</code></pre>
+
+<h3>grunt.file.copy</h3>
+
+<p>复制源文件到目标路径, 必要时创建一个中间目录.</p>
+
+<p><em>如果指定了<code>--no-write</code>命令行选项, 实际上不会xieur文件</em>.</p>
+
+<pre><code>grunt.file.copy(srcpath, destpath [, options]);
+</code></pre>
+
+<p><code>options</code>对象可能有这些属性</p>
+
+<pre><code>var options = {
+    // If an encoding is not specified, default to grunt.file.defaultEncoding.
+    // If null, the `process` function will receive a Buffer instead of String.
+    encoding: encodingName,
+    // The source file contents and file path are passed into this function,
+    // whose return value will be used as the destination file's contents. If
+    // this function returns `false`, the file copy will be aborted.
+    process: processFunction,
+    // These optional globbing patterns will be matched against the filepath
+    // (not the filename) using grunt.file.isMatch. If any specified globbing
+    // pattern matches, the file won't be processed via the `process` function.
+    // If `true` is specified, processing will be prevented.
+    noProcess: globbingPatterns
+};
+</code></pre>
+
+<h3>grunt.file.delete</h3>
+
+<p>删除指定文件路径. 将会递归的删除文件和目录.</p>
+
+<p><em>不会删除当前工作目录或者当前工作目录之外的文件, 除非指定<code>--force</code>命令行选项.</em></p>
+
+<p><em>如果指定<code>--no-write</code>命令行选项, 文件路径实际上不会删除.</em></p>
+
+<pre><code>grunt.file.delete(filepath [, options]);
+</code></pre>
+
+<p><code>options</code>对象可能有这些属性</p>
+
+<pre><code>var options = {
+    // Enable deleting outside the current working directory. This option may
+    // be overridden by the --force command-line option.
+    force: true
+};
+</code></pre>
+
+<h2>目录</h2>
+
+<h3>grunt.file.mkdir</h3>
+
+<p>类似<code>mkdir -p</code>工作. 使用任意中间目录创建一个目录. 如果没有指定<code>mode</code>, 默认为<code>0777 &amp; (~process.umask())</code>.</p>
+
+<p><em>如果指定<code>--no-write</code>命令行选项, 实际上不会创建目录.</em></p>
+
+<pre><code>grunt.file.mkdir(dirpath [, mode])
+</code></pre>
+
+<h3>grunt.file.recurse</h3>
+
+<p>在目录中递归, 为每个文件执行回调函数.</p>
+
+<pre><code>grunt.file.recurse(rootdir, callback)
+</code></pre>
+
+<p>回调函数接受以下参数:</p>
+
+<pre><code>function callback(abspath, rootdir, subdir, filename) {
+    // The full path to the current file, which is nothing more than
+    // the rootdir + subdir + filename arguments, joined.
+    abspath
+    // The root director, as originally specified.
+    rootdir
+    // The current file's directory, relative to rootdir.
+    subdir
+    // The filename of the current file, without any directory parts.
+    filename
+}
+</code></pre>
+
+<h2>匹配模式</h2>
+
+<p>单独指定所有的源文件路径往往是不切实际的, 因此Grunt通过内置的<a href="https://github.com/isaacs/node-glob">node-glob</a>库支持文件名扩展(也就通配符).</p>
+
+<p>在<a href="http://gruntjs.com/configuring-tasks/">配置任务</a>指南的"匹配模式"一节可以查看更多匹配模式的例子.</p>
+
+<h3>grunt.file.expand</h3>
+
+<p>返回匹配给定匹配模式的文件或者目录路径的特殊数组. 这个接受逗号分割的匹配模式或者匹配模式数组. 路径匹配模式以<code>!</code>开始将从返回的数组排除. 模式是按顺序处理的, 因此包含和排除文件的顺序是明显的.</p>
+
+<pre><code>grunt.file.expand([options, ] patterns)
+</code></pre>
+
+<p>文件路径相对于Gruntfile所在目录, 除非当前工作目录使用<code>grunt.file.setBase</code>或者<code>--base</code>命令行选项改变过.</p>
+
+<p><code>options</code>对象支持所有的<a href="https://github.com/isaacs/minimatch">minimatch库</a>的选项, 以及一些其他选项. 例如:</p>
+
+<ul>
+<li><code>filter</code>接受一个有效的[fs.Stats方法名](http://nodejs.org/docs/latest/api/fs.html#fs+ <code>nonull</code>表示<code>src</code>模式匹配文件失败. 结合Grunt的<code>-verbose</code>标志, 这个选项可以帮助调试文件路径问题.</li>
+<li><code>matchBase</code> 没有斜线的模式将只匹配基本的名称部分. 例如, 这使得<code>*.js</code>就像<code>**/*.js</code>.</li>
+<li><code>cwd</code> 模式将相对于当前路径进行匹配, 所有返回的文件路径也是相对于当前路径.</li>
+</ul>
+
+<h3>grunt.file.expandMapping</h3>
+
+<p>返回一个src-dest文件映射对象数组. 通过指定的模式匹配每一个源文件, 然后将匹配的文件路径加入指定的<code>dest</code>这个文件路径可能加工或者重命名过, 依据指定的选项. 查看<code>grunt.file.expand</code>方法文档可以了解如何指定<code>patterns</code>和<code>options</code>参数.</p>
+
+<pre><code>grunt.file.expandMapping(patterns, dest [,options])
+</code></pre>
+
+<p><em>注意这个方法可以用于编程的方式针对多任务生成一个<code>files</code>数组, 会优先使用描述在<a href="http://gruntjs.com/configuring-tasks/">配置任务</a>指南中"动态构建文件对象"一节描述的语法声明</em>.</p>
+
+<p>除了支持哪些<code>grunt.file.expand</code>方法, <code>options</code>对象也支持这些属性:</p>
+
+<pre><code>var options = {
+    // The directory from which patterns are matched. Any string specified as
+    // cwd is effectively stripped from the beginning of all matched paths.
+    cwd: String,
+    // Remove the path component from all matched src files. The src file path
+    // is still joined to the specified dest.
+    flatten: Boolean,
+    // Remove anything after (and including) the first "." in the destination
+    // path, then append this value.
+    ext: String,
+    // If specified, this function will be responsible for returning the final
+    // dest filepath. By default, it joins dest and matchedSrcPath like so:
+    rename: function(dest, matchedSrcPath, options) {
+        return path.join(dest, matchedSrcPath);
+    }
+};
+</code></pre>
+
+<h3>grunt.file.match</h3>
+
+<p>针对一个或者多个文件路径匹配一个或者多个匹配模式. 返回一个包含指定的匹配模式任意匹配的文件路径的特殊数组. <code>patterns</code>和<code>filepaths</code>参数可以时一个单一的字符串或者一个字符串数组. 匹配模式以<code>!</code>开始表示从返回的数组从排除路径. 模式按顺序处理, 因此包含和排除文件的顺序时明显的.</p>
+
+<pre><code>grunt.file.match([options, ] patterns, filepaths)
+</code></pre>
+
+<p><code>options</code>对象支持所有的<a href="https://github.com/isaacs/minimatch">minimatch库</a>的选项. 例如: 如果<code>options.matchBase</code>为true, 即使它不包含斜线模式也匹配不包含斜线部分的基本名称. 例子: <code>*.js</code>模式将匹配<code>path/to/file.js</code>文件路径.</p>
+
+<h3>grunt.file.isMatch</h3>
+
+<p>这个方法与<code>grunt.file.match</code>方法包含同样的签名和逻辑, 但是如果它匹配任何文件, 就简单的返回<code>ture</code>, 否则返回<code>false</code>.</p>
+
+<h2>文件类型</h2>
+
+<h3>grunt.file.exists</h3>
+
+<p>给定的路径是否存在? 返回一个布尔值.</p>
+
+<p>就像Node.js的<a href="http://nodejs.org/docs/latest/api/path.html#path_path_join_path1_path2">path.join</a>方法一样, 这个方法连接所有的参数并标准化返回的路径.</p>
+
+<pre><code>grunt.file.exusts(path1 [, path2 [, …]])
+</code></pre>
+
+<h3>grunt.file.isLink</h3>
+
+<p>给定的路径是否表示链接? 返回一个布尔值.</p>
+
+<p>就像Node.js的<a href="http://nodejs.org/docs/latest/api/path.html#path_path_join_path1_path2">path.join</a>方法一样, 这个方法连接所有的参数并标准化返回的路径.</p>
+
+<pre><code>grunt.file.isLink(path1 [, path2 [, …]])
+</code></pre>
+
+<p>如果路径不存在则返回false.</p>
+
+<h3>gruntfile.isDir</h3>
+
+<p>给定的路径是否时一个目录? 返回一个布尔值.</p>
+
+<p>就像Node.js的<a href="http://nodejs.org/docs/latest/api/path.html#path_path_join_path1_path2">path.join</a>方法一样, 这个方法连接所有的参数并标准化返回的路径.</p>
+
+<pre><code>grunt.file.isDir(path1 [, path2 [, …]])
+</code></pre>
+
+<p>如果路径不存在则返回false.</p>
+
+<h2>路径</h2>
+
+<h3>grunt.file.isPathAbsolute</h3>
+
+<p>给定文件路径是否是绝对路径? 返回一个布尔值.</p>
+
+<p>就像Node.js的<a href="http://nodejs.org/docs/latest/api/path.html#path_path_join_path1_path2">path.join</a>方法一样, 这个方法连接所有的参数并标准化返回的路径.</p>
+
+<pre><code>grunt.file.isPathAbsolute(path1 [, path2 [, …]])
+</code></pre>
+
+<h3>grunt.file.arePathsEquivalent</h3>
+
+<p>所有指定的路径是否引用同一路径? 返回布尔值.</p>
+
+<pre><code>grunt.file.arePathsEquivalent(path1 [, path2 [, …]])
+</code></pre>
+
+<h3>grunt.file.doesPathContain</h3>
+
+<p>所有的子路径都是否属于指定的父路径? 返回布尔值.</p>
+
+<p><em>注意: 它并不会检查路径是否真实存在</em>.</p>
+
+<pre><code>grunt.file.doesPathContain(ancestorPath, descendantPath1 [, descendantPath2 [, …]])
+</code></pre>
+
+<h3>grunt.file.isPathCwd</h3>
+
+<p>给定文件路径是否CWD[Current Working Directory -> 当前工作目录]? 返回一个布尔值.</p>
+
+<p>就像Node.js的<a href="http://nodejs.org/docs/latest/api/path.html#path_path_join_path1_path2">path.join</a>方法一样, 这个方法连接所有的参数并标准化返回的路径.</p>
+
+<pre><code>grunt.file.isPathCwd(path1 [, path2 [, …]])
+</code></pre>
+
+<h3>grunt.file.isPathInCwd</h3>
+
+<p>给定的文件路径是否是CWD中的? 注意: CWD并不在CWD中. 返回一个布尔值</p>
+
+<p>就像Node.js的<a href="http://nodejs.org/docs/latest/api/path.html#path_path_join_path1_path2">path.join</a>方法一样, 这个方法连接所有的参数并标准化返回的路径.</p>
+
+<pre><code>grunt.file.isPathInCwd(path1 [, path2 [, …]])
+</code></pre>
+
+<h3>grunt.file.setBase</h3>
+
+<p>改变Grunt的当前工作目录(CWD). 默认情况下, 所有的文件路径相对于Gruntfile所在目录. 这就像<code>--base</code>命令行选项.</p>
+
+<p>就像Node.js的<a href="http://nodejs.org/docs/latest/api/path.html#path_path_join_path1_path2">path.join</a>方法一样, 这个方法连接所有的参数并标准化返回的路径.</p>
+
+<h2>外部库</h2>
+
+<blockquote>
+  <p>来自第三方的库</p>
+</blockquote>
+
+<p>grunt.file.glob</p>
+
+<p><a href="https://github.com/isaacs/node-glob">glob</a> - 文件通配符工具</p>
+
+<p>grunt.file.minimatch</p>
+
+<p><a href="https://github.com/isaacs/minimatch">minimatch</a> - 文件匹配模式工具</p>
+
+<p>grunt.file.findup</p>
+
+<p><a href="https://github.com/cowboy/node-findup-sync">findup-sync</a> - 向上搜索文件匹配模式</p></div>
+    </div>
+    <div class="footer">
+      <div class="wrap">
+        <p>Grunt.js 中文社区为开源项目，由网友创建并维护。</p>
+        <p>贡献: <a href="http://www.toobug.net">Toobug</a> <a href="http://www.basecss.net">Basecss</a></p>
+      </div>
+    </div>
+  </body>
+</html>

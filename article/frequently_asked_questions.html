@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Grunt中文社区是由网友发起的Grunt.js中文交流社区，关注前端构建工具Grunt.js的应用推广。">
+    <meta name="keywords" content="Grunt.js,Grunt,web前端,前端,HTML,CSS,JavaScript,js,构建,压缩,合并,发布">
+    <title>常见问题 - Grunt中文社区</title>
+    <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <div class="header-mask"></div>
+    <div class="wrap">
+      <div class="header">
+        <h1>Grunt</h1>
+        <h2>The JavaScript Task Runner</h2>
+      </div>
+      <div class="nav"><a href="#" class="logo"><img src="../images/grunt-logo.png" alt="Grunt中文社区"></a>
+        <dl id="nav">
+          <dt>参考文档</dt>
+          <dd>
+            <ul>
+              <li><a href="#">新手上路</a></li>
+              <li><a href="#">配置任务</a></li>
+              <li><a href="#">Gruntfile范例</a></li>
+              <li><a href="#">创建任务</a></li>
+              <li><a href="#">创建插件</a></li>
+            </ul>
+          </dd>
+          <dt>高级应用</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">安装Grunt</a></li>
+              <li><a href="#">常见问题</a></li>
+              <li><a href="#">项目脚手架</a></li>
+            </ul>
+          </dd>
+          <dt>社区</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">参考资源</a></li>
+              <li><a href="#">Grunt用户</a></li>
+              <li><a href="#">参与贡献</a></li>
+            </ul>
+          </dd>
+          <dt>升级指南</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">从0.3升级到0.4</a></li>
+            </ul>
+          </dd>
+          <dt>Grunt插件</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">Grunt插件列表</a></li>
+            </ul>
+          </dd>
+          <dt>API参考</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">API列表</a></li>
+            </ul>
+          </dd>
+          <dt>其他</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">内置任务</a></li>
+              <li><a href="#">状态码</a></li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+      <div class="main"><h2>如何安装Grunt?</h2>
+
+<p>对于一般安装说明, 请阅读<a href="http://gruntjs.com/getting-started/">新手入门</a>指南. 如果你在阅读新手入门指南之后需要更多具体的信息, 请阅读详细的<a href="http://gruntjs.com/installing-grunt/">安装Grunt</a>指南.</p>
+
+<h2>我什么时候能够使用开发中的某个特性?</h2>
+
+<p>按照<a href="http://gruntjs.com/installing-grunt/">安装Grunt</a>指南中的说明同时安装发布的和未发布的开发版本的Grunt.</p>
+
+<h2>Grunt能在Windows上工作吗?</h2>
+
+<p>Grunt在Windows上工作得很好. 因为<a href="http://nodejs.org/">Node.js</a>和<a href="http://npmjs.org/">npm</a>在Windows上都工作得很好. 通常情况下问题在于<a href="http://www.cygwin.com/">Cygwin</a>, 因为它绑定了一个过时版本的Node.js.</p>
+
+<p>避免这个问题最好的方式是使用<a href="http://msysgit.github.com/">msysGit安装器</a>安装二进制的<code>git</code>, 使用<a href="http://nodejs.org/#download">Node.js安装器</a>安装二进制的<code>node</code>和<code>npm</code>, 并且使用内置的<a href="http://www.cs.princeton.edu/courses/archive/spr05/cos126/cmd-prompt.html">Window命令提示符</a>或者<a href="http://support.microsoft.com/kb/968929">PowerShell</a>替代Cygwin.</p>
+
+<h2>为什么我的异步任务不能完成?</h2>
+
+<p>可能发生这种情况, 由于你忘记调用<a href="http://gruntjs.com/grunt.task#wiki-this-async">this.async</a>方法来告诉Grunt你的任务是异步的. 为了简单起见, Grunt使用了同步编码的风格, 可以通过再任务体内调用<code>this.async()</code>方法将任务切换为异步的.</p>
+
+<p>注意, 传递<code>false</code>给<code>done()</code>函数就会告诉Grunt该任务失败.</p>
+
+<p>例子:</p>
+
+<pre><code>grunt.registerTask('asyncme', 'My asynchronous task.', function() {
+    var done = this.async();
+    doSomethingAsync(done);
+});
+</code></pre>
+
+<h2>如何启用tab命令来自动完成?</h2>
+
+<p>添加下面的代码到你的<code>~/.bashrc</code>文件中, 在grunt中来启用bash tab自动完成:</p>
+
+<pre><code>eval "$(grunt --completion=bash)"
+</code></pre>
+
+<p>假设已经使用<code>npm install -g grunt</code>在全局安装了Grunt. 目前仅仅支持bash命令.</p>
+
+<h2>如何跨多任务共享参数?</h2>
+
+<p>虽然每个任务都可以接受它自己的参数, 但是这里有几个可选项在多任间进行参数共享.</p>
+
+<h3>"动态"别名任务</h3>
+
+<p><strong>这是多任务共享参数的首选方法</strong></p>
+
+<p>而<a href="http://gruntjs.com/grunt#wiki-grunt-registertask">别名任务</a>是很简单的, 一个常规的任务可以使用<a href="http://gruntjs.com/grunt.task#wiki-grunt-task-run">grunt.task.run</a>使其作为一个有效的"动态"别名任务函数. 在下面的例子中, 在命令行运行<code>grunt build:001</code>的结果是运行<code>foo:001</code>,<code>bar:001</code>和<code>baz:001</code>中的任务.</p>
+
+<pre><code>grunt.registerTask('build', 'Run all my build task.', function(){
+    if(n == null){
+        grunt.warn('Build num must be specified, like build:001');
+    }
+})
+</code></pre>
+
+<h3>-- options</h3>
+
+<p>另一种跨多任务共享参数的方式就是使用<a href="http://gruntjs.com/grunt#wiki-grunt-option">grunt.option</a>. 在下面的例子中, 在命令行中运行<code>grunt deploy --target=staging</code>将导致<code>grunt.option('target')</code>返回<code>"staging"</code>.</p>
+
+<pre><code>grunt.registerTask('upload','Upload code to specified target.', function(n){
+    var target = grunt.option('target');
+    //在这里使用target做一些有用的事情
+});
+grunt.registerTask('deploy', ['validate', 'upload']);
+</code></pre>
+
+<p>注意布尔选项可以指定使用一个没有值的键. 例如, 在命行中运行<code>grunt deploy --staging</code>将导致<code>grunt.option('staging')</code>返回<code>true</code>.</p>
+
+<h3>全局和配置</h3>
+
+<p>在其他情况下, 你可能需要暴露一种方式来设置配置或者全局的值. 在这种情况下, 注册一个任务并设置其参数作为一个全局的或者配置值.</p>
+
+<p>在下面的例子中, 在命令行运行`grunt set
+    grunt.registerTask('set_global', 'Set a global variable.', function(name, val){
+        global[name] = val;
+    });</p>
+
+<pre><code>grunt.registerTask('set_config', 'Set a config property.', function(name, val){
+    grunt.config.set(name, val);
+});
+</code></pre>
+
+<h2>Grunt 0.3相关问题</h2>
+
+<h3>在Windows的Grunt 0.3中, 为什么当我尝试运行grunt时会打开我的JS编辑器</h3>
+
+<p>如果你在<a href="http://gruntjs.com/getting-started">Gruntfile</a>同一目录中, 当你输入grunt时, Windows中会尝试执行该文件. 因此你应该输入<code>grunt.cmd</code>来替代.</p>
+
+<p>另一种方式是使用<code>DOSKEY</code>命令创建一个Grunt宏, 以<a href="http://devblog.point2.com/2010/05/14/setup-persistent-aliases-macros-in-windows-command-prompt-cmd-exe-using-doskey/">这种方式</a>. 这样就会允许你使用<code>grunt</code>来替代<code>grunt.cmd</code>.</p>
+
+<p>下面是你可以使用的<code>DOSKEY</code>命令:</p>
+
+<pre><code>DOSKEY grunt=grunt.cmd $*
+</code></pre></div>
+    </div>
+    <div class="footer">
+      <div class="wrap">
+        <p>Grunt.js 中文社区为开源项目，由网友创建并维护。</p>
+        <p>贡献: <a href="http://www.toobug.net">Toobug</a> <a href="http://www.basecss.net">Basecss</a></p>
+      </div>
+    </div>
+  </body>
+</html>

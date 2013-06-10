@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Grunt中文社区是由网友发起的Grunt.js中文交流社区，关注前端构建工具Grunt.js的应用推广。">
+    <meta name="keywords" content="Grunt.js,Grunt,web前端,前端,HTML,CSS,JavaScript,js,构建,压缩,合并,发布">
+    <title>Gruntfile范例 - Grunt中文社区</title>
+    <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <div class="header-mask"></div>
+    <div class="wrap">
+      <div class="header">
+        <h1>Grunt</h1>
+        <h2>The JavaScript Task Runner</h2>
+      </div>
+      <div class="nav"><a href="#" class="logo"><img src="../images/grunt-logo.png" alt="Grunt中文社区"></a>
+        <dl id="nav">
+          <dt>参考文档</dt>
+          <dd>
+            <ul>
+              <li><a href="#">新手上路</a></li>
+              <li><a href="#">配置任务</a></li>
+              <li><a href="#">Gruntfile范例</a></li>
+              <li><a href="#">创建任务</a></li>
+              <li><a href="#">创建插件</a></li>
+            </ul>
+          </dd>
+          <dt>高级应用</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">安装Grunt</a></li>
+              <li><a href="#">常见问题</a></li>
+              <li><a href="#">项目脚手架</a></li>
+            </ul>
+          </dd>
+          <dt>社区</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">参考资源</a></li>
+              <li><a href="#">Grunt用户</a></li>
+              <li><a href="#">参与贡献</a></li>
+            </ul>
+          </dd>
+          <dt>升级指南</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">从0.3升级到0.4</a></li>
+            </ul>
+          </dd>
+          <dt>Grunt插件</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">Grunt插件列表</a></li>
+            </ul>
+          </dd>
+          <dt>API参考</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">API列表</a></li>
+            </ul>
+          </dd>
+          <dt>其他</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">内置任务</a></li>
+              <li><a href="#">状态码</a></li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+      <div class="main"><p>下面我们通过使用5个grunt插件来讨论一个gruntfile示例:</p>
+
+<ul>
+<li><a href="https://github.com/gruntjs/grunt-contrib-uglify">grunt-contrib-uglify</a></li>
+<li><a href="https://github.com/gruntjs/grunt-contrib-qunit">grunt-contrib-qunit</a></li>
+<li><a href="https://github.com/gruntjs/grunt-contrib-concat">grunt-contrib-concat</a></li>
+<li><a href="https://github.com/gruntjs/grunt-contrib-jshint">grunt-contrib-jshint</a></li>
+<li><a href="https://github.com/gruntjs/grunt-contrib-watch">grunt-contrib-watch</a></li>
+</ul>
+
+<p>在页面的底部有一个完整的Gruntfile, 但是如果你继续阅读, 我们将一步步来讨论它.</p>
+
+<p>第一部分是"wrapper"函数, 它用于封装你的Grunt配置.</p>
+
+<pre><code>module.exports = function(grunt){
+    //在这里配置你的grunt任务
+}
+</code></pre>
+
+<p>在这里面我们可以初始化我们的配置对象:</p>
+
+<pre><code>grunt.initConfig({
+});
+</code></pre>
+
+<p>接下来我们可以在里面使用<code>pkg</code>属性从<code>package.json</code>文件中读取我们的项目设置. 这允许我们引用我们的<code>package.json</code>文件中的属性值, 很快我们可以看到:</p>
+
+<pre><code>pkg: grunt.file.readJSON('package.json');
+</code></pre>
+
+<p>到目前位置我们可以看到如下信息:</p>
+
+<pre><code>module.exports = function(grunt){
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json');
+    });
+}
+</code></pre>
+
+<p>现在我们可以给我们的每个任务定义配置. 每个任务的配置对象都作为一个属性存在于整个配置对象中, 它们的命名与任务相同. 因此"concat"任务在我们配置对象的"concat"键下面. 下面是我的"concat"任务的配置对象.I</p>
+
+<pre><code>concat: {
+    options: {
+        //定义一个字符串插入没个文件之间用于连接输出
+        separator: ';'
+    },
+    dist: {
+        //用于连接的文件
+        src: ['src/**/*.js'],
+        //返回的js文件位置
+        dest: 'dist/&lt;%= pkg.name %&gt;.js'
+    }
+}
+</code></pre>
+
+<p>注意我是如何引用JSON文件中的<code>name</code>属性的. 我们使用<code>pkg.name</code>访问刚才定义在<code>pkg</code>属性中加载的<code>package.json</code>文件的结果, 它被解析为一个JavaScript对象. Grunt有一个简单的模板引擎用于输出配置对象中的属性值. 在这里我告诉concat任务来连接所有存在于<code>src/</code>中以<code>.js</code>结尾的文件.</p>
+
+<p>现在, 让我们来配置uglify插件, 用于压缩我们的JavaScript文件:</p>
+
+<pre><code>uglify: {
+    options: {
+        //标语插入到输出文件的顶部
+        banner: '/*! &lt;%= pkg.name %&gt; &lt;%= grunt.template.today("dd-mm-yyyy") %&gt; */\n'
+    },
+    dist: {
+        files: {
+            'dist/&lt;%= pkg.name %&gt;.min.js': ['&lt;%= concat.dist.dest %&gt;']
+        }
+    }
+}
+</code></pre>
+
+<p>这告诉uglify在<code>dist/</code>中创建一个包含压缩JavaScript文件结果的文件. 这里我使用了<code>&lt;%= concat.dist.dest&gt;</code>, 因此uglify将会压缩concat任务中生成的文件.</p>
+
+<p>QUnit插件实际上很容易设置. 你只需要给它提供用于测试运行的文件位置, 这里是在QUnit中运行HTML文件的例子:</p>
+
+<pre><code>qunit: {
+    files: ['test/**/*.html']
+}
+</code></pre>
+
+<p>JSHint插件的配置也很简单:</p>
+
+<pre><code>jshint: {
+    //定义用于检测的文件
+    files: ['gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+    //配置JSHint (参考文档:http://www.jshint.com/docs)
+    options: {
+        //你可以在这里重写jshint的默认配置选项
+        globals: {
+            jQuery: true,
+            console: true,
+            module: true
+        }
+    }
+}
+</code></pre>
+
+<p>JSHint只需要一个文件数组, 然后是一个选项配置对象.  这里是<a href="http://www.jshint.com/docs/">JSHint官方文档</a>. 如果你对JSHint的默认配置很满意, 那么在Gruntfile中就不需要重定义它们.</p>
+
+<p>最后我们还有一个watch插件:</p>
+
+<pre><code>watch: {
+    files: ['&lt;%= jshint.files %&gt;'],
+    tasks: ['jshint', 'qunit']
+}
+</code></pre>
+
+<p>这样你可以在命令行运行<code>grunt watch</code>. 当它检测到任何指定的文件有改变时(这里,我只是使用了用于JSHint检查的文件), 它将运行指定的任务, 按照它们出现的顺序.</p>
+
+<p>最后, 我们要加载所需要的Grunt插件. 它们应该已经全部通过npm安装好了.</p>
+
+<pre><code>grunt.loadNpmTasks('grunt-contrib-uglify');
+grunt.loadNpmTasks('grunt-contrib-jshint');
+grunt.loadNpmTasks('grunt-contrib-qunit');
+grunt.loadNpmTasks('grunt-contrib-watch');
+grunt.loadNpmTasks('grunt-contrib-concat');
+</code></pre>
+
+<p>最终我么需要设置一些任务, 最重要的是默认任务:</p>
+
+<pre><code>//在命令行可以通过`grunt test`运行
+grunt.registerTask('test', ['jshint', 'qunit']);
+
+//可以在命令行中通过'grunt'来运行默认任务
+grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+</code></pre>
+
+<p>下面是最终完成的<code>Gruntfile.js</code>.</p>
+
+<pre><code>module.exports = function(grunt){
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+        concat: {
+            options: {
+                separator: ';'
+            },
+            dist: {
+                src: ['src/**/*.js'],
+                dest: 'dist/&lt;%= pkg.name %&gt;.js'
+            }
+        },
+        uglify: {
+            options: {
+                banner: '/*! &lt;%= pkg.name %&gt; &lt;%= grunt.template.today("dd-mm-yyyy") %&gt; */\n'
+            },
+            dist: {
+                files: {
+                    'dist/&lt;%= pkg.name %&gt;.min.js': ['&lt;%= concat.dist.dest %&gt;']
+                }
+            }
+        },
+        qunit: {
+            files: ['test/**/*.html']
+        },
+        jshint: {
+            files: ['gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+            options: {
+                //这里是覆盖JSHint默认配置的选项
+                globals: {
+                    jQuery: true,
+                    console: true,
+                    module: true,
+                    document: true
+                }
+            }
+        },
+        watch: {
+            files: ['&lt;%= jshint.files %&gt;'],
+            tasks: ['jshint', 'qunit']
+        }
+    });
+
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-qunit');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+
+    grunt.registerTask('test', ['jshint', 'qunit']);
+    grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+};
+</code></pre></div>
+    </div>
+    <div class="footer">
+      <div class="wrap">
+        <p>Grunt.js 中文社区为开源项目，由网友创建并维护。</p>
+        <p>贡献: <a href="http://www.toobug.net">Toobug</a> <a href="http://www.basecss.net">Basecss</a></p>
+      </div>
+    </div>
+  </body>
+</html>

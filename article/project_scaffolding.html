@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Grunt中文社区是由网友发起的Grunt.js中文交流社区，关注前端构建工具Grunt.js的应用推广。">
+    <meta name="keywords" content="Grunt.js,Grunt,web前端,前端,HTML,CSS,JavaScript,js,构建,压缩,合并,发布">
+    <title>项目脚手架 - Grunt中文社区</title>
+    <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <div class="header-mask"></div>
+    <div class="wrap">
+      <div class="header">
+        <h1>Grunt</h1>
+        <h2>The JavaScript Task Runner</h2>
+      </div>
+      <div class="nav"><a href="#" class="logo"><img src="../images/grunt-logo.png" alt="Grunt中文社区"></a>
+        <dl id="nav">
+          <dt>参考文档</dt>
+          <dd>
+            <ul>
+              <li><a href="#">新手上路</a></li>
+              <li><a href="#">配置任务</a></li>
+              <li><a href="#">Gruntfile范例</a></li>
+              <li><a href="#">创建任务</a></li>
+              <li><a href="#">创建插件</a></li>
+            </ul>
+          </dd>
+          <dt>高级应用</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">安装Grunt</a></li>
+              <li><a href="#">常见问题</a></li>
+              <li><a href="#">项目脚手架</a></li>
+            </ul>
+          </dd>
+          <dt>社区</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">参考资源</a></li>
+              <li><a href="#">Grunt用户</a></li>
+              <li><a href="#">参与贡献</a></li>
+            </ul>
+          </dd>
+          <dt>升级指南</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">从0.3升级到0.4</a></li>
+            </ul>
+          </dd>
+          <dt>Grunt插件</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">Grunt插件列表</a></li>
+            </ul>
+          </dd>
+          <dt>API参考</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">API列表</a></li>
+            </ul>
+          </dd>
+          <dt>其他</dt>
+          <dd class="hide">
+            <ul>
+              <li><a href="#">内置任务</a></li>
+              <li><a href="#">状态码</a></li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+      <div class="main"><h2>grunt-init</h2>
+
+<p>Grunt-init是一个被用于自动创建项目的脚手架工具. 它将基于当前环境构建一个完整的目录结构并解决一些问题. 依赖于模板的选择以及解决所遇到的问题来创建确切的文件和内容.</p>
+
+<p>注意: 这个独立实用的程序用于Grunt内置'init'任务. 在<a href="https://github.com/gruntjs/grunt/wiki/Upgrading-from-0.3-to-0.4">从0.3升级到0.4</a>指南中可以查看更多关于它变化的信息.</p>
+
+<h2>安装</h2>
+
+<p>以便使用grunt-init, 你应该在全局安装它</p>
+
+<pre><code>npm install -g grunt-init
+</code></pre>
+
+<p>这将把<code>grunt-init</code>命令安置到你的系统路径, 并允许从任何地方运行它.</p>
+
+<p><em>注意: 你可能需要使用sudo或者作为超级管理员运行shell命令执行此操作.</em> </p>
+
+<h2>用法</h2>
+
+<ul>
+<li>使用<code>grunt-init --help</code>来获取程序帮助以及列出可用模板清单.   </li>
+<li>使用<code>grunt-init TEMPLATE</code>基于可用模板创建一个项目</li>
+<li>使用<code>grunt-init /path/to/TEMPLATE</code>基于任意位置的模板创建一个项目</li>
+</ul>
+
+<p>注意大多数的模板都在当前目录中生成它们的文件, 因此,如果你不想覆盖现有的文件, 那么一定要定改变到一个新目录中.</p>
+
+<h2>安装模板</h2>
+
+<p>一旦模板被安装到你的<code>~/.grunt-init/</code>目录中(在Window上是<code>%USERPROFILE%\.grunt-init\</code>), 那么它们将可以通过grunt-init使用. 建议你使用git将模板克隆到目录中. 例如, <a href="https://github.com/gruntjs/grunt-init-jquery">grunt-init-jquery</a>模板可以这样安装:</p>
+
+<pre><code>git clone git@github.com:gruntjs/grunt-init-jquery.git ~/.grunt-init/jquery
+</code></pre>
+
+<p><em>注意: 如果你向往是模板在本地像"foobarbaz"这样使用, 你应该指定<code>~/.grunt-init/foobarbaz</code>之后再克隆. Grunt-init将使用实际的模板目录名存在于它的<code>~/.grunt-init/</code>目录中.</em></p>
+
+<p>一些Grunt官方维护的模板:</p>
+
+<ul>
+<li><p><a href="https://github.com/gruntjs/grunt-init-commonjs">grunt-init-commonjs</a> - 创建一个包含Nodeunit单元测试的commonjs模块. (<a href="https://github.com/gruntjs/grunt-init-commonjs-sample/tree/generated">sample "generated" repo</a> | <a href="https://github.com/gruntjs/grunt-init-commonjs-sample#project-creation-transcript">creation transcript</a>)</p></li>
+<li><p><a href="https://github.com/gruntjs/grunt-init-gruntfile">grunt-init-gruntfile</a> - 创建一个基础的Gruntfile. (<a href="https://github.com/gruntjs/grunt-init-gruntfile-sample/tree/generated">sample "generated" repo</a> | <a href="https://github.com/gruntjs/grunt-init-gruntfile-sample#project-creation-transcript">creation transcript</a>)</p></li>
+<li><p><a href="https://github.com/gruntjs/grunt-init-gruntplugin">grunt-init-gruntplugin</a> - 创建一个包含Nodeunit单元测试的Grunt插件. (<a href="https://github.com/gruntjs/grunt-init-gruntplugin-sample/tree/generated">sample "generated" repo</a> | <a href="https://github.com/gruntjs/grunt-init-gruntplugin-sample#project-creation-transcript">creation transcript</a>)</p></li>
+<li><p><a href="https://github.com/gruntjs/grunt-init-jquery">grunt-init-jquery</a> - 创建一个包含QUnit单元测试的jQuery插件. (<a href="https://github.com/gruntjs/grunt-init-jquery-sample/tree/generated">sample "generated" repo</a> | <a href="https://github.com/gruntjs/grunt-init-jquery-sample#project-creation-transcript">creation transcript</a>)</p></li>
+<li><p><a href="https://github.com/gruntjs/grunt-init-node">grunt-init-node</a> - 创建一个包含Nodeunit单元测试的Node.js模块. (<a href="https://github.com/gruntjs/grunt-init-node-sample/tree/generated">sample "generated" repo</a> | <a href="https://github.com/gruntjs/grunt-init-node-sample#project-creation-transcript">creation transcript</a>)</p></li>
+</ul>
+
+<h2>自定义模板</h2>
+
+<p>你可以创建和使用自定义模板. 你的模板必须遵循上述模板相同的结构.</p>
+
+<p>一个名为<code>my-template</code>的模板样本要遵循一下常规文件结构:</p>
+
+<ul>
+<li><code>my-template/template.js</code> - 主模板文件.</li>
+<li><code>my-template/rename.json</code> - 用于处理模板的, 模板特定重命名规则.</li>
+<li><code>my-template/root/</code> - 复制文件的目标位置.</li>
+</ul>
+
+<p>假设这些文件存在于<code>/path/to/my-template</code>中, 那么命令<code>grunt-init /path/to/my-template</code>将用于处理模板. 这个目录中应该存在多个命名唯一的模板.</p>
+
+<p>此外, 如果你把这个自定义模板放在你的<code>~/.grunt-init/</code>目录中(在Windows上是<code>%USERPROFILE%\.grunt-init\</code>), 那么只使用<code>grunt-init my-template</code>命令它将自动可用.</p>
+
+<h3>复制文件</h3>
+
+<p>运行初始化模板时, 只要模板使用<code>init.filesToCopy</code>和<code>init.copyAndProcess</code>方法, 任何位于<code>root/</code>子目录中的文件都将被复制到当前目录.</p>
+
+<p>注意所有被复制的文件都将被处理为模板, 任何<code>{% %}</code>模板都会被处理为<code>props</code>数据对象集, 除非设置了<code>noProcess</code>选项. 来看看<a href="https://github.com/gruntjs/grunt-init-jquery">jquery template</a>的例子.</p>
+
+<h3>重命名或者排除模板文件</h3>
+
+<p><code>rename.json</code>用于描述<code>sourcepath</code>到<code>destpath</code>的重命名映射. <code>sourcepath</code>必须是相对于<code>root/</code>目录的文件要被复制的路径, 但是<code>destpath</code>值可以包含<code>{% %}</code>模板, 用于描述目标路径是什么.</p>
+
+<p>如果<code>destpath</code>被指定为<code>false</code>, 那么文件将不会被复制. 此外, <code>srcpath</code>还支持模式匹配.</p>
+
+<h2>指定默认提示信息</h2>
+
+<p>每个初始化提示都有一个硬编码的默认值或者查找当前环境以尝试确定该缺省值. 如果你想覆盖一个特定提示信息的默认值, 你可以在OS X或者Linux的<code>~/.grunt-init/defaults.json</code>或者Windows的<code>%USERPROFILE%\.grunt-init\defaults.json</code>文件中选择性的做到这些.</p>
+
+<p>例如, 由于我希望使用一个与众不同的名字来替代默认的名字, 并希望排除我的邮箱地址, 同时我还希望自动指定一个作者的url, 我的<code>defaults.json</code>看起来是这样的.</p>
+
+<pre><code>{
+    "author        "author_email": "none",
+    "author_url": "http://benalman.com/"
+}    
+</code></pre>
+
+<p><em>注意: 即使记录了所有的内置提示信息, 你可以在<a href="https://github.com/gruntjs/grunt-init/blob/master/tasks/init.js">源代码</a>中找到他们的名字和默认值.</em></p>
+
+<h2>定义一个初始化模板</h2>
+
+<h3>exports.description</h3>
+
+<p>当用户运行<code>grunt init</code>或者<code>grunt-init</code>来显示所有的有效初始化模板时, 这个剪短的模板描述的模板名称也会随着一起显示.</p>
+
+<pre><code>exports.description = descriptionString;
+</code></pre>
+
+<h3>exports.notes</h3>
+
+<p>如果指定了, 这个可选的扩展描述将会在任何提示信息显示之前显示出来. 这是给用户提供一些解释命名约定帮助的很好的位置, 这些提示可能时必选的也可能是可选的, 等等.</p>
+
+<pre><code>exports.notes = noteString;
+</code></pre>
+
+<h3>exports.warnOn</h3>
+
+<p>如果这个(推荐指定)可选的通配模式或者通配模式数组匹配了, Grunt将终止并导致一个警告信息, 用户可以使用<code>--force</code>来覆盖这个默认行为. 这对于初始化模板可能覆盖现有文件的情况来说是非常有用的.</p>
+
+<pre><code>exports.warnOn = wildcardPattern;
+</code></pre>
+
+<p>然而最常见的值是<code>'*'</code>, 匹配任意文件或者目录. 使用<a href="https://github.com/isaacs/minimatch">minimatch</a>通配符模式具有很大的灵活性. 例如:</p>
+
+<pre><code>exports.warnOn = 'Gruntfile.js'; // 警告Gruntfile.js文件.
+exports.warnOn = '*.js'; //警告任意.js文件
+exports.warnOn = '*'; //警告任意非点文件或目录
+exports.warnOn = '.*'; //警告任意点文件或目录
+exports.warnOn = '{.*, *}'; //警告任意文件或目录
+exports.warnOn = '!*/**'; //警告任意目录中的文件
+exports.warnOn = '*.{png,gif,jpg}'; //警告任意图片文件
+//最后一个例子的另一种形式
+exports.warnOn = ['*.png','*.gif','*.jpg'];
+</code></pre>
+
+<h3>exports.template</h3>
+
+<p>虽然<code>exports</code>属性定义在该函数的外面, 而所实际的初始化代码指定在内部. 这个函数接收传递三个参数, <code>grunt</code>参数是一个grunt的引用, 包含所有的<a href="http://gruntjs.com/api/grunt">grunt方法和库</a>. <code>init</code>参数是一个包含指定给初始化模板的方法和属性的对象. <code>done</code>参数是当初始化模板执行完成时必须调用的函数.</p>
+
+<pre><code>exports.template = function(grunt, init, done){
+    //查看"Inside an init template"一节
+};
+</code></pre>
+
+<h2>初始化模板的内部</h2>
+
+<h3>init.addLicenseFiles</h3>
+
+<p>给files对象添加适当命名的许可协议证书文件</p>
+
+<pre><code>var files = {};
+var licenses = ['MIT'];
+init.addLicenseFiles(files, licenses);
+// files === {'LICENSE-MIT': 'licenses/LICENSE-MIT'}    
+</code></pre>
+
+<h3>init.availableLicenses</h3>
+
+<p>返回一个可用许可协议证书的数组</p>
+
+<pre><code>var licenses = init.availableLicenses();
+// licenses = ['Apache-2.0', 'GPL-2.0', 'MIT', 'MPL-2.0']    
+</code></pre>
+
+<h3>init.copy</h3>
+
+<p>给定的绝对或者相对源文件路径, 和一个可选的相对目标文件路径, 复制一个文件时, 通过传递的回调函数可选的处理它.</p>
+
+<pre><code>init.copy(srcpath[, destpath], options);
+</code></pre>
+
+<h3>init.copyAndProcess</h3>
+
+<p>遍历所传递对象中的所有文件, 将源文件复制到目标路径, 并处理内容.</p>
+
+<pre><code>init.copyAndProcess(files, props[, options]);
+</code></pre>
+
+<h3>init.defaults</h3>
+
+<p>用户在<code>defaults.json</code>中指定的默认初始值.</p>
+
+<pre><code>init.defaults    
+</code></pre>
+
+<h3>init.destpath</h3>
+
+<p>目标文件绝对路径.</p>
+
+<pre><code>init.destpath();    
+</code></pre>
+
+<h3>init.expand</h3>
+
+<p>与<a href="https://github.com/gruntjs/grunt/wiki/grunt.file#wiki-grunt-file-expand">grunt.file.expand</a>相同.</p>
+
+<p>返回一个独一无二的给定通配模式所匹配的所有文件或目录路径数组. 这个方法接收都好分割的通配符模式或者数组形式的通配符模式. 如果路径匹配模式以<code>!</code>开始, 将被排除在返回数组之外. 模式是按顺序处理的, 所以包含和排除的顺序是很明显的.</p>
+
+<pre><code>init.expand([options, ] patterns);
+</code></pre>
+
+<h3>init.filesToCopy</h3>
+
+<p>返回一个包含要复制文件的源文件绝对路径和相对的目标路径的对象, 并按照<code>rename.json</code>(如果存在)中的规则重命名(或者省略).</p>
+
+<pre><code>var files = init.filesToCopy(props);
+/* files === { '.gitignore': 'template/root/.gitignore,
+   'jshintrc': 'template/root/.jshintrc',
+   'Gruntfile.js': 'template/root/Gruntfile.js',
+   'README.md': 'template/root/README.md',
+   'test/test_test.js': 'template/root/test/name_test.js'
+   } */    
+</code></pre>
+
+<h3>init.getFile</h3>
+
+<p>获取单一的任务文件路径.</p>
+
+<pre><code>init.getFile(filepath[, ...]);
+</code></pre>
+
+<h3>init.getTemplates</h3>
+
+<p>返回一个包含所有可用模板的对象.</p>
+
+<pre><code>init.getTemplates()
+</code></pre>
+
+<h3>init.initSearchDirs</h3>
+
+<p>在初始化目录中搜索初始化模板. <code>template</code>是模板的地址. 还将包括<code>~/.grunt-init</code>和grunt-init中的核心初始化任务.</p>
+
+<pre><code>init.initSearchDirs([filename]);
+</code></pre>
+
+<h3>init.process</h3>
+
+<p>启动程序, 提示开始输入.</p>
+
+<pre><code>init.process(options, prompts, done);
+
+init.process({}, [
+    //Prompt for these values
+    init.prompt('name'),
+    init.prompt('description'),
+    init.prompt('version')
+], function(err, props){
+    // All finished, do something with the properties
+});
+</code></pre>
+
+<h3>init.prompt</h3>
+
+<p>给用户一个提示值</p>
+
+<pre><code>init.prompt(name[, default])
+</code></pre>
+
+<h3>init.prompts</h3>
+
+<p>所有提示信息对象</p>
+
+<pre><code>var prompts = init.prompts();
+</code></pre>
+
+<h3>init.readDefaults</h3>
+
+<p>读取任务文件(如果存在)中JSON默认值, 并将它们合并到一个数据对象.</p>
+
+<pre><code>init.readDefaults(filepath[, ...])
+</code></pre>
+
+<h3>init.renames</h3>
+
+<p>模板的重命名规则</p>
+
+<pre><code>var renames = init.renames;
+//renames = {'test/name_test.js': 'test/{%= name%}_test.js' }
+</code></pre>
+
+<h3>init.searchDirs</h3>
+
+<p>搜索模板的目录数组</p>
+
+<pre><code>var dirs = init.searchDirs;
+/* dirs = ['/Users/shama/.grunt-init',
+'/usr/local/lib/node_modules/grunt-init/templates' ] */
+</code></pre>
+
+<h3>init.srcpath</h3>
+
+<p>根据文件名搜索初始化模板路径并返回一个绝对路径</p>
+
+<pre><code>init.srcpath(filepath[, ...]);
+</code></pre>
+
+<h3>init.userDir</h3>
+
+<p>返回用户模板目录的绝对路径</p>
+
+<pre><code>var dir = init.userDir();
+//dir === '/Users/shama/.grunt-init'
+</code></pre>
+
+<h3>init.writePackageJSON</h3>
+
+<p>在目标目录保存一个<code>package.json</code>文件. 回调函数可以用于后置处理属性的添加/移除/其他操作.</p>
+
+<pre><code>init.writePackageJSON(filename, props[, callback]);
+</code></pre>
+
+<h2>内置提示</h2>
+
+<h3>author_email</h3>
+
+<p>用于<code>package.json</code>中的作者邮箱地址. 会尝试从用户的git配置中找到一个默认值.</p>
+
+<h3>author_name</h3>
+
+<p>用于<code>package.json</code>中的作者全名和版权信息. 会尝试从用户的git配置中找到一个默认值.</p>
+
+<h3>author_url</h3>
+
+<p>用于<code>package.json</code>中公开作者网站的URL.</p>
+
+<h3>bin</h3>
+
+<p>项目跟目录中cli脚本的相对路径.</p>
+
+<h3>bugs</h3>
+
+<p>用于项目问题跟踪的公开URL. 如果项目有一个Github仓库, 将自动指向项目Github的问题跟踪模块.</p>
+
+<h3>description</h3>
+
+<p>项目的描述. 用于<code>package.json</code>或者README文件中.</p>
+
+<h3>grunt_version</h3>
+
+<p>项目必需的有效Grunt版本范围描述符.</p>
+
+<h3>homepage</h3>
+
+<p>指向项目首页的公开URL. 如果是Github仓库将默认指向Github的url.</p>
+
+<h3>jquery_version</h3>
+
+<p>如果是jQuery项目, 项目必须的jQuery版本. 必须是一个有效的版本范围描述器.</p>
+
+<h3>licenses</h3>
+
+<p>项目许可协议证书. 多个许可协议证书使用空格分割. 内置的许可协议有: <code>MIT</code>, <code>MPL-2.0</code>, <code>GPL-2.0</code>和<code>Apache-2.0</code>. 可以使用<a href="http://gruntjs.com/#initaddlicensefiles">init.addLicenseFiles</a>添加自定义许可协议证书.</p>
+
+<h3>main</h3>
+
+<p>项目主入口点. 默认是<code>lib</code>目录中的项目名称.</p>
+
+<h3>name</h3>
+
+<p>项目名称. 在项目模版中将会大量使用, 默认指向当前工作目录.</p>
+
+<h3>node_version</h3>
+
+<p>项目必需的Node.js版本. 必须是一个有效的版本范围描述符.</p>
+
+<h3>npm_test</h3>
+
+<p>项目中运行测试的命令. 默认是<code>grunt</code>.</p>
+
+<h3>repository</h3>
+
+<p>项目的git仓库. 默认猜测为一个github上的url.</p>
+
+<h3>title</h3>
+
+<p>一个人类可读的项目名称. 默认是改变过的更多人可读的实际项目名称.</p>
+
+<h3>version</h3>
+
+<p>项目的版本. 默认是第一个有效的版本, <code>0.1.0</code>.</p></div>
+    </div>
+    <div class="footer">
+      <div class="wrap">
+        <p>Grunt.js 中文社区为开源项目，由网友创建并维护。</p>
+        <p>贡献: <a href="http://www.toobug.net">Toobug</a> <a href="http://www.basecss.net">Basecss</a></p>
+      </div>
+    </div>
+  </body>
+</html>
