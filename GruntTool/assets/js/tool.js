@@ -1,197 +1,126 @@
-//package.json && Gruntfile.js
-$(function(){
+(function(window){
 
-	// package.json
-	var	package = {};
-		package.devDependencies = {};
-		//grunt依赖
-		package.devDependencies['grunt'] = '~0.4.0';
-	
-	//载入任务插件
-	var loadTask = 'grunt.loadNpmTasks("grunt-contrib-copy");\n';
+	// 支持的插件列表
+	var pluginList = [{
 
-	var taskPlugin = [];
-		
-	//插件版本
-	var pluginVersion = {
-		jshint: '~0.1.1',
-		uglify: '~0.5.0',
-		csslint: '~0.1.1',
-		cssmin: '~0.1.2'
+		_name:'grunt-contrib-copy',
+		_taskName:'copy',
+		_version:'',
+		getDependency:function(){
+
+			// Copy是内置任务，不需要依赖
+			// return {};
+
+			return {
+				test:'0.0.1'
+			}
+
+		},
+		getTaskConfig:function(){
+
+			var $sourceInput = $('#staticSource');
+			var $destInput = $('#destPath');
+
+			var ret = {
+				copy:{
+					default:{
+						files:[{
+							src:$sourceInput.val().split('\n'),
+							dest:$destInput.val()
+						}]
+					}
+				}
+			}
+
+			return ret;
+
+		},
+		getTaskRegistration:function(){
+			return 'grunt.loadNpmTasks("'+this._name+'");';
+		},
+		getTaskComponent:function(){
+			return this._taskName;
+		}
+
+	}];
+
+	// package.json默认值
+	var package = {
+
+		name:'unnamed project',
+		version:'alpha',
+		devDependencies:{
+			grunt:"~0.4.0"
+		}
+
 	};
 
-	//package.json
-	$('#packageForm').on('change', 'input', function(){
 
-		var $this = $(this);
+	window.gruntFileGeneration = {};
 
-		//插件选择
-		if($this.is('[type=checkbox]')){
+	gruntFileGeneration.pluginList = pluginList;
+	gruntFileGeneration.package = package;
 
-			if($this.prop('checked')){
-
-				package.devDependencies['grunt-contrib-'+$this.val()] = pluginVersion[$this.val()];
-				taskPlugin.push($this.val());
-
-				$('#'+$this.val()).removeClass('hide');
-
-			}else{
-
-				package.devDependencies['grunt-contrib-' + $this.val()] = undefined;
-				taskPlugin.splice(taskPlugin.indexOf($this.val()), 1);
-
-				console.log(package.devDependencies);
-
-				$('#'+$this.val()).addClass('hide');
-
-			}
-
-		}
-
-		//项目信息
-		if($this.is('[type=text]')){
-
-			if($this.val()){
-
-				package[$this.prop('name')] = $this.val();
-
-			}else{
-
-				package[$this.prop('name')] = undefined;
-
-			}
-
-		}
-
-	});
-
-	$('#packageBtn').on('click', function(){
-		alert(JSON.stringify(package, null, 4));
-	});
-
-	//Gruntfile.js
-	var staticSource = [],
-		destPath = '',
-		jshintSourcePath = [],
-		csslintSourcePath = [],
-		uglifyDestPath = [],
-		uglifySourcePath = [],
-		cssminDestPath = [],
-		cssminSourcePath = [];
-
-	var gruntStr = 'module.exports = function(grunt){\n' +
-				   '\tgrunt.initConfig({\n' +
-				   '\t\tpkg: grunt.file.readJSON("package.json"),\n';
-    var gruntConfigStr = '';
-
-	$('#gruntForm').on('change', function(){
-		var $form = $(this);
-
-		if($('#staticSource').val()){
-			staticSource.push($('#staticSource').val());
-		}
-
-		if($('#destPath').val()){
-			destPath = $('#destPath').val();
-		}
-
-		if($('#jshintSourcePath').val()){
-			jshintSourcePath = $('#jshintSourcePath').val();
-		}
-
-		if($('#cssSourcePath').val()){
-			cssSourcePath = $('#cssSourcePath').val();
-		}
-
-		$form.find('[name=jsdest]').each(function(){
-			var _parents = $(this).parents('.controls');
-			if(_parents.find('[name=jsdest]').val()){
-				uglifyDestPath.push(_parents.find('[name=jsdest]').val());
-			}
-
-			if(_parents.find('[name=jssrc]').val()){
-			uglifySourcePath.push(_parents.find('[name=jssrc]').val());
-			}
-		});
-
-		$form.find('[name=cssdest]').each(function(){
-			var _parents = $(this).parents('.controls');
-			if(_parents.find('[name=cssdest]').val()){
-				uglifyDestPath.push(_parents.find('[name=cssdest]').val());
-			}
-
-			if(_parents.find('[name=csssrc]').val()){
-			uglifySourcePath.push(_parents.find('[name=csssrc]').val());
-			}
-		});
-
-	});
-
-	$('#gruntfileBtn').on('click', function(e){
-		e.preventDefault();
-
-		var registerTask = 'grunt.registerTask("grunt", [copy,' + taskPlugin +']);\n' +
-					   '};';
-
-		taskPlugin.forEach(function(item){
-			loadTask += '\tgrunt.loadNpmTasks("grunt-contrib-"' + item + ');\n';
-		});
-
-		//if($('#staticSource').val() && $('#destPath').val()){
-			gruntStr += '\t\tcopy:{\n' +
-						'\t\t\tmain: [\n' +
-						'\t\t\t\t{src: [' + staticSource + '],\n' +
-						'\t\t\t\tdest: ' + destPath + '\n' +
-						'\t\t\t]\n' +
-						'\t\t}' + gruntConfigStr + '\n' +
-						'\t};\n' +
-						'\t' + loadTask + '\n' +
-						'\n' +
-						'\t' + registerTask;
-		//}//else{
-			//alert('此项必填');
-		//}
-
-		console.log(gruntStr);
-	});
+})(window);
 
 
-
-});
-
-//DOM
 $(function(){
 
-	$('.plus-uglify').on('click',function(e){
-		$(this).parent().clone(true).insertAfter($(this).parent());
-		$(this).parents('#uglify').find('.del-uglify').removeClass('hide');
-		$(this).parents('#uglify').find('.del-uglify').first().addClass('hide');
+	// 获取package.json
+	$('#packageBtn').click(function(){
 
-		e.preventDefault();
+		// 填充基本信息
+		var projectName = $('#projectname').val();
+		var projectVersion = $('#projectVersion').val();
+		var projectDescription = $('#projectDescription').val();
+
+		if(projectName){
+			gruntFileGeneration.package.name = projectName;
+		}
+		if(projectVersion){
+			gruntFileGeneration.package.version = projectVersion;
+		}
+		gruntFileGeneration.package.description = projectDescription;
+
+		// 获取依赖
+		gruntFileGeneration.pluginList.forEach(function(plugin){
+
+			var thisDependency = plugin.getDependency();
+			$.extend(gruntFileGeneration.package.devDependencies,thisDependency);
+
+		});
+		console.log(gruntFileGeneration.package);
+
+		return false;
 	});
 
-	$('.del-uglify').on('click',function(e){
-		var $this = $(this),
-			$parent = $this.parent();
+	// 获取Gruntfile
+	$('#gruntfileBtn').click(function(){
 
-		$parent.remove();
-		e.preventDefault();
-	});
+		var preText = '';
+		var tasks = {};
+		var taskRegistration = '';
+		var taskComponents = [];
 
-	$('.plus-cssmin').on('click',function(e){
-		$(this).parent().clone(true).insertAfter($(this).parent());
-		$(this).parents('#cssmin').find('.del-cssmin').removeClass('hide');
-		$(this).parents('#cssmin').find('.del-cssmin').first().addClass('hide');
+		// 获取任务配置和任务注册
+		gruntFileGeneration.pluginList.forEach(function(plugin){
 
-		e.preventDefault();
-	});
+			// 任务配置
+			var thisTask = plugin.getTaskConfig();
+			$.extend(tasks,thisTask);
 
-	$('.del-cssmin').on('click',function(e){
-		var $this = $(this),
-			$parent = $this.parent();
+			// 注册插件
+			taskRegistration += plugin.getTaskRegistration();
 
-		$parent.remove();
-		e.preventDefault();
+			// 任务组成
+			taskComponents.push(plugin.getTaskComponent());
+
+		});
+
+		console.log(preText);
+		console.log(tasks);
+		console.log(taskComponents)
+
 	});
 
 });
