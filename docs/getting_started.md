@@ -1,8 +1,8 @@
 #新手上路
 
-Grunt和Grunt插件都是通过[Node.js](http://nodejs.org/)包管理器[npm](https://npmjs.org/)来安装和管理的.
+Grunt和Grunt插件都是通过[Node.js](http://nodejs.org/)包管理器[npm](https://npmjs.org/)来安装和管理的。
 
-*这些说明文档是针对0.4.x版本的Grunt所编写的, 但是对于0.3.x版本的Grunt也是有效的. 你需要注意的只是, 在0.3.x版本的Grunt中, 插件名称和任务配置选项可能不同于"The Gruntfile"一节中所展示的那样*.
+*这些说明文档是针对0.4.x版本的Grunt所编写的, 但是对于0.3.x版本的Grunt也是有效的. 你需要注意的只是, 在0.3.x版本的Grunt中, 插件名称和任务配置选项可能不同于"The Gruntfile"一节中所展示的那样*。
 
 0.4.x版本的Grunt必须要`0.8.0`及以上版本的Node.js来支持.
 
@@ -12,7 +12,7 @@ Grunt和Grunt插件都是通过[Node.js](http://nodejs.org/)包管理器[npm](ht
 
 	npm uninstall -g grunt
 
-为了方便开始使用Grunt, 你会希望在全局安装Grunt的命令行接口(CLI). 你可能需要使用sudo(OSX, *nix, BSD等平台)或者作为超级管理员(Windows平台)运行shell命令来做到这一点.  
+为了方便开始使用Grunt, 你会希望在全局安装Grunt的命令行接口(CLI). 你可能需要使用sudo(OSX, *nix, BSD等平台)或者作为超级管理员(Windows平台)运行shell命令来做到这一点。 
 
 	npm install -g grunt-cli
 	
