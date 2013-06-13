@@ -1,4 +1,4 @@
-##首页
+# 首页
 
 > 说明: 粗略翻译,如有错误还烦请不吝纠正. 
 
@@ -20,10 +20,6 @@
 
 1.  [贡献](http://www.gruntjs.org/article/contributing.html)
 
-###迁移指南
-
 ###API
 
 1.  [grunt](http://www.gruntjs.org/article/grunt.html)
-
-###其他
