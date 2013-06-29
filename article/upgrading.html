@@ -133,9 +133,10 @@
 <ul>
 <li><code>'&lt;config:prop.subprop&gt;'</code> → <code>'&lt;%= prop.subprop %&gt;'</code></li>
 <li><code>'&lt;json:file.json&gt;'</code> → <code>grunt.file.readJSON('file.json')</code></li>
-<li><code>'&lt;file
-使用</code><banner><code>或者</code><banner:prop.subprop><code>替代在文件列表中指定banner信息, [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat)和[grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify)插件都有一个</code>banner`选项.</li>
+<li><code>'&lt;file_template:file.js&gt;'</code> → <code>grunt.template.process(grunt.file.read('file.js'))</code></li>
 </ul>
+
+<p>使用<code>&lt;banner&gt;</code>或者<code>&lt;banner:prop.subprop&gt;</code>替代在文件列表中指定banner信息, <a href="https://github.com/gruntjs/grunt-contrib-concat">grunt-contrib-concat</a>和<a href="https://github.com/gruntjs/grunt-contrib-uglify">grunt-contrib-uglify</a>插件都有一个<code>banner</code>选项.</p>
 
 <p>使用<code>&lt;file_strip_banner:file.js&gt;</code>替代从文件中单独剥离banners, <a href="https://github.com/gruntjs/grunt-contrib-concat">grunt-contrib-concat</a>和<a href="https://github.com/gruntjs/grunt-contrib-uglify">grunt-contrib-uglify</a>插件都有一个选项用于剥离/保存banners.</p>
 
