@@ -224,7 +224,8 @@
 <p><code>options</code>对象支持所有的<a href="https://github.com/isaacs/minimatch">minimatch库</a>的选项, 以及一些其他选项. 例如:</p>
 
 <ul>
-<li><code>filter</code>接受一个有效的[fs.Stats方法名](http://nodejs.org/docs/latest/api/fs.html#fs+ <code>nonull</code>表示<code>src</code>模式匹配文件失败. 结合Grunt的<code>-verbose</code>标志, 这个选项可以帮助调试文件路径问题.</li>
+<li><code>filter</code>接受一个有效的<a href="http://nodejs.org/docs/latest/api/fs.html#fs_class_fs_stats">fs.Stats方法名</a>或者已经通过匹配的<code>src</code>文件路径的函数并返回<code>true</code>或者<code>false</code>.</li>
+<li><code>nonull</code>表示<code>src</code>模式匹配文件失败. 结合Grunt的<code>-verbose</code>标志, 这个选项可以帮助调试文件路径问题.</li>
 <li><code>matchBase</code> 没有斜线的模式将只匹配基本的名称部分. 例如, 这使得<code>*.js</code>就像<code>**/*.js</code>.</li>
 <li><code>cwd</code> 模式将相对于当前路径进行匹配, 所有返回的文件路径也是相对于当前路径.</li>
 </ul>

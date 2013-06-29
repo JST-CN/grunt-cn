@@ -141,12 +141,13 @@ grunt.registerTask('deploy', ['validate', 'upload']);
 
 <p>在其他情况下, 你可能需要暴露一种方式来设置配置或者全局的值. 在这种情况下, 注册一个任务并设置其参数作为一个全局的或者配置值.</p>
 
-<p>在下面的例子中, 在命令行运行`grunt set
-    grunt.registerTask('set_global', 'Set a global variable.', function(name, val){
-        global[name] = val;
-    });</p>
+<p>在下面的例子中, 在命令行运行<code>grunt set_global:name:peter set_config:target:staging deploy</code>将导致<code>global.name</code>为<code>"peter"</code>以及<code>grunt.config('target')</code>将会返回<code>"staging"</code>. 由此推断, <code>deploy</code>任务将使用这些值.</p>
 
-<pre><code>grunt.registerTask('set_config', 'Set a config property.', function(name, val){
+<pre><code>grunt.registerTask('set_global', 'Set a global variable.', function(name, val){
+    global[name] = val;
+});
+
+grunt.registerTask('set_config', 'Set a config property.', function(name, val){
     grunt.config.set(name, val);
 });
 </code></pre>

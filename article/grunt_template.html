@@ -95,8 +95,9 @@ grunt.template.process('&lt;%= baz %&gt;', {data: obj}) // 'abcde'
 
 <h3>grunt.template.setDelimiters</h3>
 
-<p>设置<a href="http://lodash.com/docs/#template">Lo-Dash模板</a>分隔符为预定义的, 以便你的<code>grunt.util.
-*你或许不需要使用这个方法, 因为你将使用</code>grunt.template.process`在内部使用这个方法*.</p>
+<p>设置<a href="http://lodash.com/docs/#template">Lo-Dash模板</a>分隔符为预定义的, 以便你的<code>grunt.util._.template</code>需要手动的调用. <code>config</code>分隔符<code>&lt;% %&gt;</code>是默认包含的.</p>
+
+<p><em>你或许不需要使用这个方法, 因为你将使用<code>grunt.template.process</code>在内部使用这个方法</em>.</p>
 
 <pre><code>grunt.template.setDelimiters(name)
 </code></pre>
