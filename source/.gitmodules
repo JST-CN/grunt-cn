@@ -1,0 +1,3 @@
+[submodule "grunt-cn"]
+	path = grunt-cn
+	url = https://github.com/basestyle/grunt-cn
