@@ -1,49 +1,5 @@
 (function(window){
 
-	// 支持的插件列表
-	var pluginList = [{
-
-		_name:'grunt-contrib-copy',
-		_taskName:'copy',
-		_version:'',
-		getDependency:function(){
-
-			// Copy是内置任务，不需要依赖
-			// return {};
-
-			return {
-				test:'0.0.1'
-			}
-
-		},
-		getTaskConfig:function(){
-
-			var $sourceInput = $('#staticSource');
-			var $destInput = $('#destPath');
-
-			var ret = {
-				copy:{
-					default:{
-						files:[{
-							src:$sourceInput.val().split('\n'),
-							dest:$destInput.val()
-						}]
-					}
-				}
-			}
-
-			return ret;
-
-		},
-		getTaskRegistration:function(){
-			return 'grunt.loadNpmTasks("'+this._name+'");';
-		},
-		getTaskComponent:function(){
-			return this._taskName;
-		}
-
-	}];
-
 	// package.json默认值
 	var package = {
 
@@ -58,7 +14,6 @@
 
 	window.gruntFileGeneration = {};
 
-	gruntFileGeneration.pluginList = pluginList;
 	gruntFileGeneration.package = package;
 
 })(window);
@@ -120,6 +75,15 @@ $(function(){
 		console.log(preText);
 		console.log(tasks);
 		console.log(taskComponents)
+
+	});
+
+
+	// 控制表单显隐
+	$('#packageForm').on('change','input[type=checkbox]',function(){
+
+		var $this = $(this);
+		$('#'+this.id.replace('-checkbox','')).toggle($this.is(':checked'));
 
 	});
 
