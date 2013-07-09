@@ -22,7 +22,7 @@
 $(function(){
 
 	// 获取package.json
-	$('#packageBtn').click(function(){
+	$('#packageBtn').mousedown(function(){
 
 		// 填充基本信息
 		var projectName = $('#projectname').val();
@@ -44,15 +44,18 @@ $(function(){
 			$.extend(gruntFileGeneration.package.devDependencies,thisDependency);
 
 		});
-		console.log(gruntFileGeneration.package);
+
+		$(this).attr('href',"data:text/octet-stream," + encodeURIComponent(JSON.stringify(gruntFileGeneration.package,null,'\t')));
 
 		return false;
 	});
 
 	// 获取Gruntfile
-	$('#gruntfileBtn').click(function(){
+	$('#gruntfileBtn').mousedown(function(){
 
-		var preText = '';
+		var preText = 'module.exports = function(grunt){\n' +
+				   'grunt.initConfig(';
+		var afterTaskText = ');\n\n'
 		var tasks = {};
 		var taskRegistration = '';
 		var taskComponents = [];
@@ -66,16 +69,25 @@ $(function(){
 			$.extend(tasks,thisTask);
 
 			// 注册插件
-			taskRegistration += plugin.getTaskRegistration();
+			taskRegistration += '\t'+plugin.getTaskRegistration()+'\n';
 
 			// 任务组成
 			taskComponents.push(plugin.getTaskComponent());
 
 		});
 
-		console.log(preText);
+		$(this).attr('href',"data:text/octet-stream," + encodeURIComponent(preText+
+				JSON.stringify(tasks,null,'\t') +
+				afterTaskText +
+				taskRegistration +
+				'\tgrunt.registerTask("default",' +
+				JSON.stringify(taskComponents)) +
+				');'
+				);
+		
+		/*console.log(preText);
 		console.log(tasks);
-		console.log(taskComponents)
+		console.log(taskComponents)*/
 
 	});
 
