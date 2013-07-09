@@ -3,21 +3,16 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<!--ico-->
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="assets/ico/favicon.png">
 <!--css-->
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-responsive.css" />
 <link rel="stylesheet" type="text/css" href="assets/css/docs.css" />
-<link rel="stylesheet" type="text/css" href="assets/css/prettify.css">
+<!-- <link rel="stylesheet" type="text/css" href="assets/css/prettify.css"> -->
 <!--js-->
 <script type="text/javascript" src="assets/js/jquery-1.8.2.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap.js"></script>
 <script type="text/javascript" src="assets/js/tool.js"></script>
+<script type="text/javascript" src="assets/js/plugins.js"></script>
 <title>Grunt-Tools</title>
 <style type="text/css">
 h1, h2, h3, .masthead p, .subhead p, .marketing h2, .lead {
@@ -81,13 +76,13 @@ h1, h2, h3, .masthead p, .subhead p, .marketing h2, .lead {
 						<div class="control-group">
 							<label for="projectName" class="control-label">项目名称</label>
 							<div class="controls">
-								<input type="text" id="projectname" name="name" class="input-block-level" placeholder="name">
+								<input type="text" id="projectname" name="name" class="input-block-level" value="unnamed project">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="projectVersion" class="control-label">项目版本</label>
 							<div class="controls">
-								<input type="text" id="projectVersion" name="version" class="input-block-level" placeholder="version">
+								<input type="text" id="projectVersion" name="version" class="input-block-level" value="0.0.1">
 							</div>
 						</div>
 						<div class="control-group">
@@ -97,25 +92,34 @@ h1, h2, h3, .masthead p, .subhead p, .marketing h2, .lead {
 							</div>
 						</div>
 						<div class="control-group">
+							<label for="projectDist" class="control-label">项目构建目录</label>
+							<div class="controls">
+								<input type="text" id="projectDist" name="dist" class="input-block-level" value="./dist">
+							</div>
+						</div>
+						<div class="control-group">
 							<label for="" class="control-label">项目依赖</label>
 							<div class="controls">
-								<label for="jshint-checkbox" class="checkbox inline">
-									<input type="checkbox" name="" id="jshint-checkbox" value="jshint"> jshint
+								<!-- <label for="concat-checkbox" class="checkbox inline">
+									<input type="checkbox" name="" id="concat-checkbox" value="concat"> concat(代码合并)
+								</label> -->
+								<label for="grunt-contrib-jshint-checkbox" class="checkbox inline">
+									<input type="checkbox" name="" id="grunt-contrib-jshint-checkbox" value="jshint"> jshint(js代码检查)
 								</label>
-								<label for="uglify-checkbox" class="checkbox inline">
-									<input type="checkbox" name="" id="uglify-checkbox" value="uglify"> uglify
+								<label for="grunt-contrib-uglify-checkbox" class="checkbox inline">
+									<input type="checkbox" name="" id="grunt-contrib-uglify-checkbox" value="uglify"> uglify(js代码压缩)
 								</label>
-								<label for="csslint-checkbox" class="checkbox inline">
-									<input type="checkbox" name="" id="csslint-checkbox" value="csslint"> csslint
-								</label>
-								<label for="cssmin-checkbox" class="checkbox inline">
-									<input type="checkbox" name="" id="cssmin-checkbox" value="cssmin"> cssmin
+								<!-- <label for="grunt-contrib-csslint-checkbox" class="checkbox inline">
+									<input type="checkbox" name="" id="grunt-contrib-csslint-checkbox" value="csslint"> csslint
+								</label> -->
+								<label for="grunt-contrib-cssmin-checkbox" class="checkbox inline">
+									<input type="checkbox" name="" id="grunt-contrib-cssmin-checkbox" value="cssmin"> cssmin(css代码压缩)
 								</label>
 							</div>
 						</div>
 						<div class="control-group">
 							<div class="controls">
-								<button type="button" class="btn btn-success" id="packageBtn">下载package.json</button>
+								<a class="btn btn-success" download="package.json" id="packageBtn">下载package.json</a>
 							</div>
 						</div>
 					</fieldset>
@@ -129,34 +133,18 @@ h1, h2, h3, .masthead p, .subhead p, .marketing h2, .lead {
 				<form id="gruntForm" class="form-horizontal">
 					<fieldset>
 						<legend>Gruntfile.js</legend>
-						<div id="copy" class="">
-							<h4>复制项目静态资源</h4>
-							<div class="control-group">
-								<label for="staticSource" class="control-label">静态资源文件</label>
-								<div class="controls">
-									<textarea name="" id="staticSource" class="input-xxlarge" rows="5" placeholder="静态资源文件"></textarea>
-								</div>
-							</div>
-							<div class="control-group">
-								<label for="destPath" class="control-label">静态资源目标路径</label>
-								<div class="controls">
-									<input type="text" id="destPath" class="input-block-level" placeholder="destPath">
-								</div>
-							</div>
-						</div>
-						
-						<div id="jshint" class="hide">
-							<h4>jshint任务配置</h4>
+						<div id="grunt-contrib-jshint" class="hide">
+							<h4>jshint（JS代码检查）</h4>
 							<div class="control-group">
 								<label for="jshintSourcePath" class="control-label">jshint资源文件</label>
 								<div class="controls">
-									<input type="text" id="jshintSourcePath" class="input-block-level" placeholder="jshintSourcePath">
+								<textarea name="" id="jshintSourcePath" class="input-xxlarge" rows="5"></textarea>
 								</div>
 							</div>
 						</div>
 						
-						<div id="csslint" class="hide">
-							<h4>csslint任务配置</h4>
+						<div id="grunt-contrib-csslint" class="hide">
+							<h4>csslint（CSS代码检查）</h4>
 							<div class="control-group">
 								<label for="csslintSourcePath" class="control-label">css资源文件</label>
 								<div class="controls">
@@ -165,34 +153,51 @@ h1, h2, h3, .masthead p, .subhead p, .marketing h2, .lead {
 							</div>
 						</div>
 						
-						<div id="uglify" class="hide">
-							<h4>uglify任务配置</h4>
+						<div id="grunt-contrib-uglify" class="hide">
+							<h4>uglify（JS代码压缩）</h4>
 							<div class="control-group">
 								<label for="" class="control-label"></label>
 								<div class="controls">
-									<input type="text" class="jsdest" name="jsdest" placeholder="目标文件"> - 
-									<input type="text" class="jssrc" name-"jssrc" placeholder="源文件">
-									<a href="#" class="btn plus-uglify"><i class="icon-plus"></i></a>
-									<a href="#" class="btn hide del-uglify"><i class="icon-trash"></i></a>
+									<input type="text" class="jssrc source" name-"jssrc" placeholder="源文件"> - 
+									<input type="text" class="jsdest dist" name="jsdest" placeholder="目标文件">
+									<a href="#" class="btn addline"><i class="icon-plus"></i></a>
+									<a href="#" class="btn hide removeline"><i class="icon-trash"></i></a>
 								</div>
 							</div>
 						</div>
 						
-						<div id="cssmin" class="hide">
-							<h4>cssmin任务配置</h4>
+						<div id="grunt-contrib-cssmin" class="hide">
+							<h4>cssmin（CSS代码压缩）</h4>
 							<div class="control-group">
 								<label for="" class="control-label"></label>
 								<div class="controls">
-									<input type="text" class="cssdest" name="cssdest" placeholder="目标文件"> - 
-									<input type="text" class="csssrc" name="csssrc" placeholder="源文件">
-									<a href="#" class="btn plus-cssmin"><i class="icon-plus"></i></a>
-									<a href="#" class="btn hide del-cssmin"><i class="icon-trash"></i></a>
+									<input type="text" class="csssrc source" name="csssrc" placeholder="源文件"> - 
+									<input type="text" class="cssdest dist" name="cssdest" placeholder="目标文件">
+									<a href="#" class="btn addline"><i class="icon-plus"></i></a>
+									<a href="#" class="btn hide removeline"><i class="icon-trash"></i></a>
 								</div>
 							</div>
 						</div>
+
+						<div id="grunt-contrib-copy" class="">
+							<h4>复制项目静态资源</h4>
+							<div class="control-group">
+								<label for="staticSource" class="control-label">静态资源文件</label>
+								<div class="controls">
+									<textarea name="" id="staticSource" class="input-xxlarge" rows="5" placeholder="静态资源文件"></textarea>
+								</div>
+							</div>
+							<!-- <div class="control-group">
+								<label for="destPath" class="control-label">静态资源目标路径</label>
+								<div class="controls">
+									<input type="text" id="destPath" class="input-block-level" placeholder="destPath">
+								</div>
+							</div> -->
+						</div>
+						
 						<div class="control-group">
 							<div class="controls">
-								<button type="button" class="btn btn-success" id="gruntfileBtn">下载Gruntfile.js</button>
+								<a class="btn btn-success" download="Gruntfile.js" id="gruntfileBtn">下载Gruntfile.js</a>
 							</div>
 						</div>
 					</fieldset>
