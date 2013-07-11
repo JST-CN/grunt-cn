@@ -76,14 +76,14 @@ $(function(){
 
 		});
 
-		$(this).attr('href',"data:text/octet-stream," + encodeURIComponent(preText+
+		$(this).attr('href','data:text/octet-stream,' + encodeURIComponent(preText+
 				JSON.stringify(tasks,null,'\t').replace(/\n/g,'\n\t') +
 				afterTaskText +
 				taskRegistration +
 				'\tgrunt.registerTask("default",' +
-				JSON.stringify(taskComponents)) +
+				JSON.stringify(taskComponents) +
 				');\n' +
-				'});');
+				'});'));
 		
 		/*console.log(preText);
 		console.log(tasks);
