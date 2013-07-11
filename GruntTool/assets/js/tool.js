@@ -54,7 +54,7 @@ $(function(){
 	$('#gruntfileBtn').mousedown(function(){
 
 		var preText = 'module.exports = function(grunt){\n' +
-				   'grunt.initConfig(';
+				   '\tgrunt.initConfig(';
 		var afterTaskText = ');\n\n'
 		var tasks = {};
 		var taskRegistration = '';
@@ -77,13 +77,13 @@ $(function(){
 		});
 
 		$(this).attr('href',"data:text/octet-stream," + encodeURIComponent(preText+
-				JSON.stringify(tasks,null,'\t') +
+				JSON.stringify(tasks,null,'\t').replace(/\n/g,'\n\t') +
 				afterTaskText +
 				taskRegistration +
 				'\tgrunt.registerTask("default",' +
 				JSON.stringify(taskComponents)) +
-				');'
-				);
+				');\n' +
+				'});');
 		
 		/*console.log(preText);
 		console.log(tasks);
@@ -112,7 +112,7 @@ $(function(){
 		if(isChecked){
 			gruntFileGeneration.usedPlugins.push(id);
 		}else{
-			gruntFileGeneration.usedPlugins.splice(gruntFileGeneration.indexOf(id),1);
+			gruntFileGeneration.usedPlugins.splice(gruntFileGeneration.usedPlugins.indexOf(id),1);
 		}
 
 	});
