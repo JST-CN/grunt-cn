@@ -9,7 +9,7 @@
     "blogPath":"./docs",
     "globalPath":"./assets",
     "skinPath":"./skin",
-    "distPath": "../",
+    "distPath": "./dist",
     "disabledParsePlugins":[
         "parsePages"
     ],
