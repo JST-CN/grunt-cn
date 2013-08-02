@@ -23,8 +23,8 @@ a:hover {
 }
 body {
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    line-height: 180%;
+    font-size: 12px;
+    line-height: 150%;
     color: #6F5A40;
     background-color: #F5F6F6;
 }
@@ -84,14 +84,14 @@ img {
 }
 .nav dl {
     border-top: 1px solid rgba(0,0,0,.1);
-    line-height: 28px;
+    line-height: 24px;
     margin-top: 5px;
     padding: 0 0 20px 0;
 }
 .nav dl dt {
-    height: 34px;
-    line-height: 34px;
-    font-size: 16px;
+    height: 26px;
+    line-height: 26px;
+    font-size: 12px;
     font-weight: 700;
     background-color: #F5F6F6;
     border-bottom: 1px solid rgba(0,0,0,.1);
@@ -106,8 +106,8 @@ img {
 }
 .nav dl dd a {
     display: block;
-    height: 30px;
-    line-height: 30px;
+    height: 24px;
+    line-height: 24px;
     text-indent: 20px;
 }
 .main {
