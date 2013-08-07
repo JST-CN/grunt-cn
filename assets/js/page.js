@@ -1,8 +1,6 @@
 $(function(){
+	//语法高亮
 
-	$('#nav').on('click', 'dt', function(){
-		$('#nav dd').hide();
-		$(this).next('dd').show();
-	});
+	hljs.initHighlightingOnLoad();
 
 });
