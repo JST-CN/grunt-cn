@@ -4,110 +4,142 @@
     <meta charset="utf-8">
     <meta name="description" content="Grunt中文社区是由网友发起的Grunt.js中文交流社区，关注前端构建工具Grunt.js的应用推广。">
     <meta name="keywords" content="Grunt.js,Grunt,web前端,前端,HTML,CSS,JavaScript,js,构建,压缩,合并,发布">
-    <title>首页 - Grunt中文社区</title>
+    <title>#为什么使用Grunt的任务运行器? - Grunt中文社区</title>
     <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/googlecode.css">
   </head>
   <body>
-    <div class="header-mask"></div>
-    <div class="wrap">
-      <div class="header">
-        <h1>Grunt</h1>
-        <h2>The JavaScript Task Runner</h2>
+    <header>
+      <div class="wrapper inner">
+        <h1 class="logo"><a href="http://www.gruntjs.org">Gruntjs</a></h1>
+        <nav>
+          <ul class="clearfix">
+            <li><a href="#documention">Documention</a></li>
+            <li><a href="#api">API</a></li>
+          </ul>
+        </nav>
       </div>
-      <div class="nav"><a href="/" class="logo"><img src="../images/grunt-logo.png" alt="Grunt中文社区"></a>
-        <dl id="nav">
-          <dt>参考文档</dt>
-          <dd>
-            <ul>
-              <li><a href="getting_started.html">新手上路</a></li>
-              <li><a href="configuring_tasks.html">配置任务</a></li>
-              <li><a href="sample_gruntfile.html">Gruntfile范例</a></li>
-              <li><a href="creating_tasks.html">创建任务</a></li>
-              <li><a href="creating_plugins.html">创建插件</a></li>
-            </ul>
-          </dd>
-          <dt>高级应用</dt>
-          <dd class="hide">
-            <ul>
-              <li><a href="installing_grunt.html">安装Grunt</a></li>
-              <li><a href="frequently_asked_questions.html">常见问题</a></li>
-              <li><a href="project_scaffolding.html">项目脚手架</a></li>
-            </ul>
-          </dd>
-          <dt>社区</dt>
-          <dd class="hide">
-            <ul>
-              <li><a href="help_resources.html">参考资源</a></li>
-              <li><a href="who_use_grunt.html">Grunt用户</a></li>
-              <li><a href="contributing.html">参与贡献</a></li>
-            </ul>
-          </dd>
-          <dt>升级指南</dt>
-          <dd class="hide">
-            <ul>
-              <li><a href="upgrading.html">从0.3升级到0.4</a></li>
-            </ul>
-          </dd>
-          <dt>API参考</dt>
-          <dd class="hide">
-            <ul>
-              <li><a href="grunt.html">grunt</a></li>
-              <li><a href="grunt_config.html">grunt config</a></li>
-              <li><a href="grunt_event.html">grunt event</a></li>
-              <li><a href="grunt_fail.html">grunt fail</a></li>
-              <li><a href="grunt_file.html">grunt file</a></li>
-              <li><a href="grunt_log.html">grunt log</a></li>
-              <li><a href="grunt_option.html">grunt option</a></li>
-              <li><a href="grunt_task.html">grunt task</a></li>
-              <li><a href="grunt_template.html">grunt template</a></li>
-              <li><a href="grunt_util.html">grunt_util</a></li>
-            </ul>
-          </dd>
+    </header>
+    <section class="wrapper content clearfix">
+      <div class="post_wrapper">
+        <article class="post"><p>Grunt是一个自动化的项目构建工具. 如果你需要重复的执行像压缩, 编译, 单元测试, 代码检查以及打包发布的任务. 那么你可以使用Grunt来处理这些任务, 你所需要做的只是配置好Grunt, 这样能很大程度的简化你的工作. </p>
+
+<p>如果在团队中使用Grunt, 你只需要与其他人员约定好使用Grunt应该规避的问题, 就能够很方便的自动化的处理大部分的常见工作任务, 你所付出的努力几乎为0.</p>
+
+<h2>为什么要使用Grunt?</h2>
+
+<p>Grunt是一个庞大的生态系统, 每天都在成长. 你可以自由的选择数以百计的插件以帮助你自动化的处理任务.</p>
+
+<p>如果你所需要的插件还被有人创建, 那么你可以自己创建插件并通过npm很方便的发布以供更多人使用并一起完善. </p>
+
+<h2>Grunt都有哪些插件?</h2>
+
+<p>大多数的任务Grunt都提供了可用的Grunt插件, 并且每天都有插件诞生并发布到社区中. 我想你所熟悉的有:</p>
+
+<ul>
+<li>JSHint</li>
+<li>Uglify</li>
+<li>Less</li>
+<li>Sass</li>
+<li>CoffeeScript</li>
+<li>CSSLint</li>
+</ul>
+
+<p>等等. 更多的插件可以在Grunt官方的<a href="http://gruntjs.com/plugins">插件清单</a>中查看.</p>
+
+<h2>哪些人都在使用Grunt?</h2>
+
+<p>众所周知的有:</p>
+
+<ul>
+<li>jQuery</li>
+<li>Modernizr</li>
+<li>Twitter</li>
+<li>Adobe</li>
+</ul>
+
+<p>等等. 还有更多的人在使用Grunt, 比如: 你.</p>
+
+<h2>如何开始使用Grunt?</h2>
+
+<ul>
+<li><a href="http://www.gruntjs.com/">GruntJS官方</a></li>
+<li><a href="http://www.gruntjs.org/">GruntJS中文</a></li>
+</ul>
+
+<h2>关于中文社区的说明.</h2>
+
+<p>Grunt.js中文社区是一个开源项目, 由网友创建并维护.</p>
+
+<p>贡献者:</p>
+
+<ul>
+<li><a href="http://www.toobug.net/">Toobug</a> - <a href="https://github.com/TooooBug">Github</a></li>
+<li><a href="http://weibo.com/html5mm">Basecss</a> - <a href="https://github.com/basestyle">Github</a></li>
+</ul>
+
+<p><strong>欢迎你的加入.</strong></p>
+
+<blockquote>
+  <p>说明: 文档还需要校对.</p>
+</blockquote></article>
+      </div>
+      <aside class="sidebar">
+        <dl>
+          <dt id="documention">文档</dt>
+          <dd><a href="getting_started.html">新手上路</a></dd>
+          <dd><a href="configuring_tasks.html">配置任务</a></dd>
+          <dd><a href="sample_gruntfile.html">Gruntfile范例</a></dd>
+          <dd><a href="creating_tasks.html">创建任务</a></dd>
+          <dd><a href="creating_plugins.html">创建插件</a></dd>
         </dl>
-      </div>
-      <div class="main"><blockquote>
-  <p>说明: 粗略翻译,如有错误还烦请不吝纠正. </p>
-</blockquote>
-
-<h3>文档(documention)</h3>
-
-<ol>
-<li><a href="http://www.gruntjs.org/article/getting_started.html">Grunt入门</a></li>
-<li><a href="http://www.gruntjs.org/article/configuring_tasks.html">配置任务</a></li>
-<li><a href="http://www.gruntjs.org/article/sample_gruntfile.html">Gruntfile范例</a></li>
-<li><a href="http://www.gruntjs.org/article/creating_tasks.html">创建任务</a></li>
-<li><a href="http://www.gruntjs.org/article/creating_plugins.html">创建插件</a></li>
-</ol>
-
-<h3>进阶</h3>
-
-<ol>
-<li><a href="http://www.gruntjs.org/article/installing_grunt.html">安装Grunt</a></li>
-<li><a href="http://www.gruntjs.org/article/frequently_asked_questions.html">常见问题</a></li>
-<li><a href="http://www.gruntjs.org/article/project_scaffolding.html">项目脚手架</a></li>
-</ol>
-
-<h3>社区</h3>
-
-<ol>
-<li><a href="http://www.gruntjs.org/article/contributing.html">贡献</a></li>
-</ol>
-
-<h3>API</h3>
-
-<ol>
-<li><a href="http://www.gruntjs.org/article/grunt.html">grunt</a></li>
-</ol></div>
-    </div>
-    <div class="footer">
-      <div class="wrap">
+        <dl>
+          <dt>高级</dt>
+          <dd><a href="installing_grunt.html">安装Grunt</a></dd>
+          <dd><a href="frequently_asked_questions.html">常见问题</a></dd>
+          <dd><a href="project_scaffolding.html">项目脚手架</a></dd>
+        </dl>
+        <dl>
+          <dt>社区</dt>
+          <dd><a href="help_resources.html">参考资源</a></dd>
+          <dd><a href="who_use_grunt.html">Grunt用户</a></dd>
+          <dd><a href="contributing.html">参与贡献</a></dd>
+        </dl>
+        <dl>
+          <dt>迁移指南</dt>
+          <dd><a href="grunt.html">从0.3升级到0.4</a></dd>
+        </dl>
+        <dl>
+          <dt id="api">API</dt>
+          <dd><a href="grunt.html">grunt</a></dd>
+          <dd><a href="grunt_config.html">grunt config</a></dd>
+          <dd><a href="grunt_event.html">grunt event</a></dd>
+          <dd><a href="grunt_fail.html">grunt fail</a></dd>
+          <dd><a href="grunt_file.html">grunt file</a></dd>
+          <dd><a href="grunt_log.html">grunt log</a></dd>
+          <dd><a href="grunt_option.html">grunt option</a></dd>
+          <dd><a href="grunt_task.html">grunt task</a></dd>
+          <dd><a href="grunt_template.html">grunt template</a></dd>
+          <dd><a href="grunt_util.html">grunt util</a></dd>
+        </dl>
+        <dl>
+          <dt>其他</dt>
+          <dd><a href="#">内置任务</a></dd>
+          <dd><a href="#">出口代码</a></dd>
+        </dl>
+        <p><a href="https://github.com/basestyle/grunt-cn" class="btn">Github</a></p>
+      </aside>
+    </section>
+    <footer class="clearfix">
+      <div class="wrapper">
         <p>Grunt.js 中文社区为开源项目，由网友创建并维护。</p>
         <p>贡献: <a href="http://www.toobug.net">Toobug</a> <a href="http://www.basecss.net">Basecss</a></p>
       </div>
       <script type="text/javascript" src="http://tajs.qq.com/stats?sId=23584984" charset="UTF-8"></script>
-    </div>
+    </footer>
     <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../js/highlight.min.js"></script>
     <script type="text/javascript" src="../js/page.js"></script>
   </body>
 </html>
