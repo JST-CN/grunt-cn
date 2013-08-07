@@ -1,8 +1,8 @@
-#配置任务
+# 配置任务
 
 这个指南解释了如何使用一个Gruntfile给你的项目配置任务. 如果你不知道Gruntfile是什么, 请先阅读[入门](http://gruntjs.com/getting-started/)文档并检出一个[简单的Gruntfile](http://gruntjs.com/sample-gruntfile/).
 
-##Grunt配置
+## Grunt配置
 
 任务配置通过`grunt.initConfig`方法被指定在你的Gruntfile中. 这个配置主要是依据任务命名属性, 也可以包含任意的数据. 但这些属性不能与你的任务所需要的属性想冲突, 否则它将被忽略.
 
@@ -20,7 +20,7 @@
         my_src_file: ['foo/*.js', 'bar/*.js']
     });
     
-##任务配置和目标
+## 任务配置和目标
 
 当运行一个任务时, Grunt会依据同名属性来查找它的配置. 多个任务可以拥有多个配置, 可以使用任意的命名'目标'来定义. 在下面的例子中, `concat`任务有`foo`和`bar`两个目标, 而`uglify`任务仅仅只有一个`bar`目标.
 
@@ -42,7 +42,7 @@
     
 指定像`grunt concat:foo`或者`grunt concat:bar`的任务和目标将只处理指定的目标配置, 而运行`grunt concat`将遍历所有的目标并分别处理它们. 注意, 如果一个任务使用[grunt.renameTask](https://github.com/gruntjs/grunt/wiki/grunt#wiki-grunt-renameTask)重命名过, Grunt将在配置对象中查找新的任务名称属性.
 
-##options
+## options
 
 在任务配置中, `options`属性可以用来指定覆盖内置属性默认的值. 此外, 每一个目标中更具体的目标都可以拥有一个`options`属性. 目标级的选项将会覆盖任务级的选项.
 
@@ -64,7 +64,7 @@
         }
     });
     
-##文件
+## 文件
 
 由于大多的任务都是执行文件操作, Grunt有一个强大的抽象声明说明任务应该操作哪些文件. 这里有好几种定义**src-dest**(源文件-目标文件)文件映射的方式, 都提供了不同程度的描述和控制操作. 任何多任务都能理解下面的格式, 所以你只需要选择满足你需求的格式.
 
@@ -82,7 +82,7 @@
 
 + 其他的属性将以匹配项的形式传递给底层的库. 在[node-glob](https://github.com/isaacs/node-glob)和[minimatch](https://github.com/isaacs/minimatch)文档中可以查看更多的属性选项.
 
-###简洁格式
+### 简洁格式
 
 这种形式允许每个目标对应一个单独的**src-dest**文件映射. 通常情况下它被用于只读任务, 比如[grunt-contrib-jshint](https://github.com/gruntjs/grunt-contrib-jshint), 它只需要一个独立的`src`属性, 并没有相关的`dest`键. 这种格式还支持给每个文件映射附加其他属性.
 
@@ -100,7 +100,7 @@
         }
     });
     
-###文件对象格式
+### 文件对象格式
 
 这种形式支持每个任务目标对应多个文件映射, 属性名就是目标文件, 源文件就是它的值. 可以使用这种方式指定数个src-dest文件映射, 但是不能够给每个映射指定附加的属性.
 
@@ -121,7 +121,7 @@
         }
     });
     
-###文件数组格式
+### 文件数组格式
 
 这种形式支持每个任务目标对应多个src-dest文件映射, 同时也允许每个映射拥有附加副属性:
 
@@ -142,7 +142,7 @@
         }
     });
     
-###旧格式
+### 旧格式
 
 **dest-as-target**文件格式在存在多任务和目标形式之前是一个过渡形式, 目标文件路径实际上就是目标名称. 遗憾的是, 目标名称就是文件路径, 运行`grunt task:target`可能是不合适的. 此外, 你不能指定一个目标级的options或者附加属性给每个src-dest文件映射.
 
@@ -153,7 +153,7 @@
         }
     });
     
-###自定义过滤函数
+### 自定义过滤函数
 
 `filter`属性可以给你的目标文件提供一个更高级别的详细帮助. 只需要使用一个有效的[fs.Stats方法名](http://nodejs.org/docs/latest/api/fs.html#fs_class_fs_stats). 下面的配置仅仅清理一个与模式匹配的真实文件:
 
@@ -179,7 +179,7 @@
         }
     });
     
-###匹配模式
+### 匹配模式
 
 通常分别指定所有源文件路径的是不切实际的, 因此Grunt支持通过内置的[node-glob](https://github.com/isaacs/node-glob)和[minimatch](https://github.com/isaacs/minimatch)库来展开文件名(众所周知的匹配模式).
 
@@ -226,7 +226,7 @@
     
 可以在[node-glob](https://github.com/isaacs/node-glob)和[minimatch](https://github.com/isaacs/minimatch)文档中查看更多的关于匹配模式的语法.
 
-###构建动态文件对象
+### 构建动态文件对象
 
 当你希望处理一些单数的文件时, 这里有一些附加的属性可以用来构建一个动态的文件. 这些属性可能可以同时制定在`Compact`和`Files Array`映射格式中.
 
@@ -268,7 +268,7 @@
         }
     });
     
-###模板
+### 模板
 
 使用`<% %>`分隔符指定的模板在任务从它们的配置中读取到时将自动展开. 模板被递归的展开直到配置中不再存在遗留的模板信息.
 
@@ -296,7 +296,7 @@
         qux: ['foo/*.js', 'bar/*.js']
     });
     
-##引入外部数据
+## 引入外部数据
 
 在接下来的Gruntfile中, 项目的元数据从`package.json`文件中引入到Grunt配置中, [grunt-contrib-uglify插件](http://github.com/gruntjs/grunt-contrib-uglify)的`uglify`任务被配置用于压缩一个源文件以及使用该元数据动态的生成一个banner注释.
 
