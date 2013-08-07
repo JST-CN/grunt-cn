@@ -52,6 +52,8 @@ Grunt和Grunt插件都是通过[npm](https://npmjs.org/), [Node.js](http://nodej
 + [npm init](https://npmjs.org/doc/init.html)命令将创建一个基础的`package.json`文件.
 + 从下面的例子开始并按需扩展, 根据[规范](https://npmjs.org/doc/json.html).
 
+&nbsp;
+
 	{
 		"name": "my-project-name", // 项目名称
 		"version": "0.1.0", // 项目版本
