@@ -1,8 +1,8 @@
-#grunt.template
+# grunt.template
 
 模板字符串可以使用提供的模板函数手动的处理. 此外, config.get方法自动解析Gruntfile里面指定的配置数据中的`<% %>`风格的模板字符串.
 
-###grunt.template.process
+### grunt.template.process
 
 处理一个[Lo-Dash模板](http://lodash.com/docs/#template)字符串. `template`参数将递归的处理直到没有更多的模板需要处理.
 
@@ -21,7 +21,7 @@
 	};
 	grunt.template.process('<%= baz %>', {data: obj}) // 'abcde'
 
-###grunt.template.setDelimiters
+### grunt.template.setDelimiters
 
 设置[Lo-Dash模板](http://lodash.com/docs/#template)分隔符为预定义的, 以便你的`grunt.util._.template`需要手动的调用. `config`分隔符`<% %>`是默认包含的.
 
@@ -29,15 +29,15 @@
 	
 	grunt.template.setDelimiters(name)
 
-###grunt.template.addDelimiters
+### grunt.template.addDelimiters
 
 添加一组命名[Lo-Dash模板](http://lodash.com/docs/#template)分隔符. 你或许不需要使用这个方法, 因为内置的分割符应该足以使用, 但是你可以随时添加`<% %>`或者`[% %]`风格的分隔符.
 
 	grunt.template.addDelimiters(name, opener, closer)
 
-##帮助
+## 帮助
 
-###grunt.template.date
+### grunt.template.date
 
 使用[dateformat库](https://github.com/felixge/node-dateformat)格式化一个日期.
 
@@ -47,7 +47,7 @@
 
 	grunt.template.date(847602000000, 'yyyy-mm-dd') // '1996-11-10'
 
-###grunt.template.today
+### grunt.template.today
 
 使用[dateformat库](https://github.com/felixge/node-dateformat)格式化今天的日期.
 

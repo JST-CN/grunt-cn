@@ -1,4 +1,4 @@
-#grunt.option
+# grunt.option
 
 Grunt option API用于跨多任务共参数以及在命令行中访问参数设置.
 
@@ -37,7 +37,7 @@ Grunt option API用于跨多任务共参数以及在命令行中访问参数设�
 
 *注意: 布尔值选项可以用于只指定一个没有值的键. 例如, 在命令行中运行`grunt deploy --staging`将导致`grunt.option('staging')`返回`true`*.
 
-###grunt.option ☃
+### grunt.option ☃
 
 获取或者设置一个选项.
 	
@@ -49,13 +49,13 @@ Grunt option API用于跨多任务共参数以及在命令行中访问参数设�
 	var isDev = grunt.option('no-staging');
 	// isDev === true
 
-###grunt.option.init
+### grunt.option.init
 
 初始化`grunt.option`. 如果`initObject`选项省略将初始化为一个空对象, 否则将设置为`initObject`.
 
 	grunt.option.init([initObject])
 
-###grunt.options.flags
+### grunt.options.flags
 
 返回命令行参数的选项数组.
 

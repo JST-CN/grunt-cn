@@ -1,4 +1,4 @@
-#Gruntfile范例
+# Gruntfile范例
 
 下面我们通过使用5个grunt插件来讨论一个gruntfile示例:
 

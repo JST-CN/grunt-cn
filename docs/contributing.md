@@ -1,4 +1,4 @@
-#贡献
+# 贡献
 
 这里有一些Grunt项目
 
@@ -9,7 +9,7 @@
 
 此外，每个单独的grunt-contrib插件都是一个独立的仓库被列在[gruntjs](https://github.com/gruntjs)主页上。
 
-##问题反馈
+## 问题反馈
 
 如果有些事情不是像你想象的那样工作的，请阅读[文档](https://github.com/gruntjs/grunt/wiki)，尤其是[入门](http://gruntjs.com/getting-started/)指南。如果你想和别人聊聊grunt，请加入到grunt社区[IRC](http://gruntjs.com/contributing#discussing-grunt)并提出你的问题。
 
@@ -24,21 +24,21 @@
 +  **如果遇到以上描述之外的问题**
 +  +  请提交问题文件到[grunt问题跟踪](https://github.com/gruntjs/grunt/issues)站点中并让我们知道你为什么提交它。
 
-###简化问题
+### 简化问题
 
 尽量[减少你的代码](http://www.webkit.org/quality/reduction.html)保证最低限度的重现问题。这使得它更容易(及早)避免或解决问题。
 
-###解释问题
+### 解释问题
 
 如果我们不能重现问题，我们就不能解决它。请列出重现该问题的步骤，包括你的系统版本，Node.js版本，grunt版本等等。包括相关的日志或示例代码。
 
-##Grunt讨论
+## Grunt讨论
 
 加入[freenode](http://freenode.net/) IRC的#grunt频道。我们有一个机器人和所有信息。
 
 *请不要发私人的信息*。
 
-##修改grunt
+## 修改grunt
 
 首先，确保你安装了最新版本的[Node.js](http://nodejs.org/)和[npm](http://npmjs.org/)。
 
@@ -50,7 +50,7 @@
 
 假设你没有看到红色的部分，那说明你准备好了。在所有更改完成之后运行`grunt`，以确保不会被中断。
 
-###提交pull requests
+### 提交pull requests
 
 1.  创建一个新的分支，请不要直接在`master`上工作。
 2.  给你想要的改变添加失败测试，运行`grunt`查看失败测试。
@@ -59,7 +59,7 @@
 5.  更新文档以反应任何改变。
 6.  推送到你的分支并提交pull request。
 
-###语法
+### 语法
 
 +  使用两个空格缩进而不要在任何位置使用tab键。如果字符传中需要一个tab字符则使用`\t`。
 +  不要使用多余的空格，除了在markdown文件必须使用它来强制换行。

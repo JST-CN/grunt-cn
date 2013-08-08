@@ -1,20 +1,20 @@
-#常见问题
+# 常见问题
 
-##如何安装Grunt?
+## 如何安装Grunt?
 
 对于一般安装说明, 请阅读[新手入门](http://gruntjs.com/getting-started/)指南. 如果你在阅读新手入门指南之后需要更多具体的信息, 请阅读详细的[安装Grunt](http://gruntjs.com/installing-grunt/)指南.
 
-##我什么时候能够使用开发中的某个特性?
+## 我什么时候能够使用开发中的某个特性?
 
 按照[安装Grunt](http://gruntjs.com/installing-grunt/)指南中的说明同时安装发布的和未发布的开发版本的Grunt.
 
-##Grunt能在Windows上工作吗?
+## Grunt能在Windows上工作吗?
 
 Grunt在Windows上工作得很好. 因为[Node.js](http://nodejs.org/)和[npm](http://npmjs.org/)在Windows上都工作得很好. 通常情况下问题在于[Cygwin](http://www.cygwin.com/), 因为它绑定了一个过时版本的Node.js.
 
 避免这个问题最好的方式是使用[msysGit安装器](http://msysgit.github.com/)安装二进制的`git`, 使用[Node.js安装器](http://nodejs.org/#download)安装二进制的`node`和`npm`, 并且使用内置的[Window命令提示符](http://www.cs.princeton.edu/courses/archive/spr05/cos126/cmd-prompt.html)或者[PowerShell](http://support.microsoft.com/kb/968929)替代Cygwin.
 
-##为什么我的异步任务不能完成?
+## 为什么我的异步任务不能完成?
 
 可能发生这种情况, 由于你忘记调用[this.async](http://gruntjs.com/grunt.task#wiki-this-async)方法来告诉Grunt你的任务是异步的. 为了简单起见, Grunt使用了同步编码的风格, 可以通过再任务体内调用`this.async()`方法将任务切换为异步的.
 
@@ -27,7 +27,7 @@ Grunt在Windows上工作得很好. 因为[Node.js](http://nodejs.org/)和[npm](h
         doSomethingAsync(done);
     });
 
-##如何启用tab命令来自动完成?
+## 如何启用tab命令来自动完成?
 
 添加下面的代码到你的`~/.bashrc`文件中, 在grunt中来启用bash tab自动完成:
 
@@ -35,11 +35,11 @@ Grunt在Windows上工作得很好. 因为[Node.js](http://nodejs.org/)和[npm](h
     
 假设已经使用`npm install -g grunt`在全局安装了Grunt. 目前仅仅支持bash命令.
 
-##如何跨多任务共享参数?
+## 如何跨多任务共享参数?
 
 虽然每个任务都可以接受它自己的参数, 但是这里有几个可选项在多任间进行参数共享.
 
-###"动态"别名任务
+### "动态"别名任务
 
 **这是多任务共享参数的首选方法**
 
@@ -63,7 +63,7 @@ Grunt在Windows上工作得很好. 因为[Node.js](http://nodejs.org/)和[npm](h
 
 注意布尔选项可以指定使用一个没有值的键. 例如, 在命行中运行`grunt deploy --staging`将导致`grunt.option('staging')`返回`true`.
 
-###全局和配置
+### 全局和配置
 
 在其他情况下, 你可能需要暴露一种方式来设置配置或者全局的值. 在这种情况下, 注册一个任务并设置其参数作为一个全局的或者配置值.
 
@@ -77,9 +77,9 @@ Grunt在Windows上工作得很好. 因为[Node.js](http://nodejs.org/)和[npm](h
         grunt.config.set(name, val);
     });
     
-##Grunt 0.3相关问题
+## Grunt 0.3相关问题
 
-###在Windows的Grunt 0.3中, 为什么当我尝试运行grunt时会打开我的JS编辑器
+### 在Windows的Grunt 0.3中, 为什么当我尝试运行grunt时会打开我的JS编辑器
 
 如果你在[Gruntfile](http://gruntjs.com/getting-started)同一目录中, 当你输入grunt时, Windows中会尝试执行该文件. 因此你应该输入`grunt.cmd`来替代.
 
