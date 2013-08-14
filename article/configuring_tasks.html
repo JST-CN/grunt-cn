@@ -98,7 +98,7 @@
 
 <ul>
 <li><p><code>filter</code> 它通过接受任意一个有效的<a href="http://nodejs.org/docs/latest/api/fs.html#fs_class_fs_stats">fs.Stats方法名</a>或者一个函数来匹配<code>src</code>文件路径并返回<code>true</code>或者<code>false</code>.</p></li>
-<li><p><code>nonull</code> 当一个匹配没有被检测到时, 它返回一个包含模式自身的列表. 否则, 如果没有任何匹配项时它返回一个空列表. 结合Grunt的<code>--verbore</code>标志, 这个选项可以帮助用来调试文件路径的问题.</p></li>
+<li><p><code>nonul</code> 当一个匹配没有被检测到时, 它返回一个包含模式自身的列表. 否则, 如果没有任何匹配项时它返回一个空列表. 结合Grunt的<code>--verbore</code>标志, 这个选项可以帮助用来调试文件路径的问题.</p></li>
 <li><p><code>dot</code> 它允许模式使用句点匹配文件名的开始部分, 即使模式并不明确文件名开头部分是否有句点.</p></li>
 <li><p><code>matchBase</code> 如果设置这个属性, 缺少斜线的模式(意味着模式中不能使用斜线进行文件路径的匹配)将不会匹配包含在斜线中的文件名. 例如, a?b将匹配<code>/xyz/123/acb</code>但不匹配<code>/xyz/acb/123</code>. </p></li>
 <li><p><code>expand</code> 处理动态的src-dest文件映射, 更多的信息请查看"构建动态的文件对象".</p></li>
@@ -125,7 +125,7 @@
 </code></pre>
 
 <h3>文件对象格式</h3>
-non
+
 <p>这种形式支持每个任务目标对应多个文件映射, 属性名就是目标文件, 源文件就是它的值. 可以使用这种方式指定数个src-dest文件映射, 但是不能够给每个映射指定附加的属性.</p>
 
 <pre><code>grunt.initConfig({
