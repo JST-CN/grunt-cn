@@ -1,12 +1,12 @@
 # 配置任务
 
-这个指南解释了如何使用一个Gruntfile给你的项目配置任务. 如果你不知道Gruntfile是什么, 请先阅读[入门](http://gruntjs.com/getting-started/)文档并检出一个[简单的Gruntfile](http://gruntjs.com/sample-gruntfile/).
+这个指南说明了如何使用一个Gruntfile给你的项目配置任务. 如果你不知道Gruntfile是什么, 请先阅读[入门](getting_started.html)文档并查看这个[Gruntfile范例](http://gruntjs.com/sample-gruntfile/).
 
 ## Grunt配置
 
-任务配置通过`grunt.initConfig`方法被指定在你的Gruntfile中. 这个配置主要是依据任务命名属性, 也可以包含任意的数据. 但这些属性不能与你的任务所需要的属性想冲突, 否则它将被忽略.
+任务配置通过`grunt.initConfig`方法被指定在你的Gruntfile中. 这个配置主要是依据任务命名属性, 也可以包含任意的数据. 但这些属性不能与你的任务所需要的属性相冲突, 否则它将被忽略.
 
-此外, 由于这本质上就是JavaScript, 因此你不仅限于使用JSON; 你可以在这里使用任何有效的JavaScript. 必要的情况下, 你甚至可以以编程的方式生成配置.
+此外, 由于这本质上就是JavaScript, 因此你不限于使用JSON; 你可以在这里使用任何有效的JavaScript. 必要的情况下, 你甚至可以以编程的方式生成配置.
 
     grunt.initConfig({
         concat: {
@@ -72,7 +72,7 @@
 
 + `filter` 它通过接受任意一个有效的[fs.Stats方法名](http://nodejs.org/docs/latest/api/fs.html#fs_class_fs_stats)或者一个函数来匹配`src`文件路径并返回`true`或者`false`.
 
-+ `nonul` 当一个匹配没有被检测到时, 它返回一个包含模式自身的列表. 否则, 如果没有任何匹配项时它返回一个空列表. 结合Grunt的`--verbore`标志, 这个选项可以帮助用来调试文件路径的问题.
++ `nonull` 当一个匹配没有被检测到时, 它返回一个包含模式自身的列表. 否则, 如果没有任何匹配项时它返回一个空列表. 结合Grunt的`--verbore`标志, 这个选项可以帮助用来调试文件路径的问题.
 
 + `dot` 它允许模式使用句点匹配文件名的开始部分, 即使模式并不明确文件名开头部分是否有句点.
 
@@ -183,7 +183,7 @@
 
 通常分别指定所有源文件路径的是不切实际的, 因此Grunt支持通过内置的[node-glob](https://github.com/isaacs/node-glob)和[minimatch](https://github.com/isaacs/minimatch)库来展开文件名(众所周知的匹配模式).
 
-当然这并不是一个综合的匹配模式教程, 你只需要直到文它们在文件路径中如何使用:
+当然这并不是一个综合的匹配模式教程, 你只需要知道它们在文件路径中如何使用:
 
 + `*`匹配任意数量的字符, 但不匹配`/`
 + `?`匹配单个字符, 但不匹配`/`
