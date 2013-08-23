@@ -24,33 +24,33 @@
     <section class="wrapper content clearfix">
       <div class="post_wrapper">
         <article class="post"><ol>
-<li>运行<code>npm install -g grunt-init</code>安装<a href="https://github.com/gruntjs/grunt-init">grunt-init</a></li>
-<li>运行<code>git clone git://github.com/gruntjs/grunt-init-gruntplugin.git ~/.grunt-init/gruntplugin</code>安装grunt插件模板</li>
-<li>在一个空目录运行<code>grunt-init gruntplugin</code></li>
-<li>运行<code>npm install</code>准备开发环境</li>
-<li>编写你的插件</li>
-<li>运行<code>npm publish</code>发布你的Grunt插件到npm</li>
+<li>首先运行<code>npm install -g grunt-init</code>安装<a href="https://github.com/gruntjs/grunt-init">grunt-init</a>(这是一个Grunt插件构建模块)；</li>
+<li>运行<code>git clone git://github.com/gruntjs/grunt-init-gruntplugin.git ~/.grunt-init/gruntplugin</code>安装grunt插件模板；</li>
+<li>在一个空目录运行<code>grunt-init gruntplugin</code>(这样就会将该目录初始化为Grunt插件构建目录，构建插件的文件最终存储在这个目录中，<code>grunt-init</code>会自动生成相关配置文件)；</li>
+<li>运行<code>npm install</code>准备开发环境(自动安装插件构建所需的依赖)；</li>
+<li>编写你的插件(插件开发)；</li>
+<li>运行<code>npm publish</code>发布你的Grunt插件到npm(发布插件)；</li>
 </ol>
 
 <h2>注意</h2>
 
 <h3>给你的任务命名</h3>
 
-<p>'grunt-contrib'命名空间是保留给Grunt团队维护的任务, 请适当的给你的任务命名以避免命名冲突.</p>
+<p>'grunt-contrib'命名空间是保留给Grunt团队[官方]维护的任务，请适当的给你的任务命名以避免命名冲突。</p>
 
 <h3>调试</h3>
 
-<p>Grunt在默认情况下隐藏了错误堆栈信息, 但是它们可以使用<code>--stack</code>选项很方便的启用任务调试功能. 如果你总是希望记录Grunt的错误堆栈信息, 那么你需要在你的shell中创建一个别名. 比如, 在bash中你可以这样做<code>alias grunt="grunt ---stack"</code>.</p>
+<p>默认情况下Grunt隐藏了错误堆栈跟踪信息，但是可以启用<code>--stack</code>选项以方便任务调试。 如果你希望Grunt始终都记录错误堆栈跟踪信息， 那么你就需要在你的shell中创建一个别名。 比如，在bash中你可以通过<code>alias grunt="grunt ---stack"</code>命令做到。</p>
 
 <h3>存储任务文件</h3>
 
-<p>只能在项目根目录中的.grunt/[npm-module-name]目录中存储数据, 并且在适当的时候你可以清除它. 对于临时文件这并不是一个好的解决方案, 在这种情况下可以使用一个常用的npm模块(如:temporary, tmp)来启用操作系统的临时目录.</p>
+<p>只要在项目根目录的.grunt/[npm-module-name]目录中存储数据，并且可以在适当的时候清除它。对于临时文件这并不是一个好的解决方案，在这种情况下可以使用常用的npm模块(如:<a href="https://npmjs.org/package/temporary">temporary</a>，<a href="https://npmjs.org/package/tmp">tmp</a>)来启用操作系统(系统级)的临时目录。</p>
 
-<h3>避免改变当前工作目录: <code>process.cwd()</code></h3>
+<h3>避免改变当前工作目录：<code>process.cwd()</code></h3>
 
-<p>默认情况下, 当前工作目录被设置为包含Gruntfile的目录. 用户可以在它们的Gruntfile中使用<code>grunt.file.setBase</code>去改变它(改变当前工作目录), 但是要注意不要改变插件.</p>
+<p>默认情况下，当前工作目录被设置为包含Gruntfile的目录。用户可以在它们的Gruntfile中使用<code>grunt.file.setBase</code>去改变它(改变当前工作目录)，但是当心插件会改变它。</p>
 
-<p><code>path.resolve('foo')</code>可以被用来获取foo相对于Gruntfile所在目录的绝对路径.</p></article>
+<p><code>path.resolve('foo')</code>可以用于获取相对于<code>Gruntfile</code>所在目录的<code>foo</code>文件路径的绝对路径。</p></article>
       </div>
       <aside class="sidebar">
         <dl>
@@ -96,6 +96,7 @@
           <dd><a href="#">出口代码</a></dd>
         </dl>
         <p><a href="https://github.com/basestyle/grunt-cn" class="btn">Github</a></p>
+        <p><a href="https://github.com/basestyle/grunt-cn/issues">讨论组</a></p>
       </aside>
     </section>
     <footer class="clearfix">

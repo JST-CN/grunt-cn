@@ -23,39 +23,39 @@
     </header>
     <section class="wrapper content clearfix">
       <div class="post_wrapper">
-        <article class="post"><p>任务是Grunt的面包和奶油. 例如你常用的东西: <code>jshint</code>和<code>nodeunit</code>. 当你每次运行Grunt时, 你可以指定运行一个或者多个任务, 这些任务用于告诉Grunt你想要它做什么事情.</p>
+        <article class="post"><p>任务是Grunt的面包和奶油。例如你常用的工具：<code>jshint</code>和<code>nodeunit</code>.。当你每次运行Grunt时，你可以指定它(Grunt)运行一个或者多个任务，通过这些任务来告诉Grunt你想要它做什么事情。</p>
 
-<p>如果你不指定一个任务, 那么Grunt会自动定义一个名为'default'的任务, 该任务将默认运行(不要惊讶).</p>
+<p>如果你没有指定任务，但是定义了一个名为"default"的任务，那么该任务(default任务)将默认运行(不要惊讶，顾名思义它代表默认会运行哪些定义好的任务)。</p>
 
 <h2>别名任务</h2>
 
-<p>如果指定了一个任务列表, 新任务将是一个或多个其他任务的别名. 当运行'别名任务'时, 每个指定在<code>taskList</code>中的任务都会运行, 按照它们指定的顺序. <code>taskList</code>参数必须时一个任务数组.</p>
+<p>如果指定了一个任务列表，新任务(名)便是其他一个或多个任务的别名。每当运行'别名任务'时，指定在<code>taskList</code>中的每个任务(指在<code>grunt.initConfig()</code>中定义的任务)都会按照指定它们的顺序运行。<code>taskList</code>参数必须是一个任务数组。其语法如下：</p>
 
 <pre><code>grunt.registerTask(taskName, [description, ], taskList);
 </code></pre>
 
-<p>这里有一个示例, 它定义了一个'default'别名任务, 如果运行Grunt时没有指定任何任务, 它将自动运行'jshint', 'qunit', 'concat'和'uglify'任务.</p>
+<p>这里有一个例子，它定义了一个名为'default'别名任务，如果运行Grunt时没有指定任何任务，它将自动运行'jshint'，'qunit'，'concat'和'uglify'任务。</p>
 
 <pre><code>grunt.registerTask('default', ['jshint','qunit','concat','uglify']);
 </code></pre>
 
-<p>最好是给任务指定参数. 在下面的示例中, 别名'dist'将运行'concat'和'min'两个任务, 并且它们都带有一个'dist'参数:</p>
+<p>可以给任务指定参数。在下面的例子中，别名任务'dist'会运行'concat'和'uglify'这两个任务，并且每个任务都带有一个'dist'参数：</p>
 
 <pre><code>grunt.registerTask('dist', ['concat:dist', 'uglify:dist']);
 </code></pre>
 
 <h2>多任务</h2>
 
-<p>当运行一个多任务时, Grunt会项目的Grunt配置中查找同名属性. 多任务可以拥有多个配置, 可以使用任意的'targets'命名.</p>
+<p>当运行一个多任务时，Grunt会自动从项目的配置对象中查找同名属性。多任务可以有多个配置，并且可以使用任意命名的'targets'。</p>
 
-<p>同时指定像<code>grunt concat:foo</code>或者<code>grunt concat:bar</code>这样的任务和目标, 将只处理指定目标的配置, 然而运行<code>grunt concat</code>将遍历所有的目标, 并按顺序处理每个目标. 注意如果一个任务已经使用<a href="https://github.com/gruntjs/grunt/wiki/grunt#wiki-grunt-renameTask">grunt.renameTask</a>重命名过, Grunt将会配置对象中查找新任务的名称属性.</p>
+<p>同时指定像<code>grunt concat:foo</code>或者<code>grunt concat:bar</code>这样的任务和目标，在运行时Grunt只会处理指定目标的配置；然而如果运行<code>grunt concat</code>，将会遍历所有的目标, 并按任务指定的顺序处理每个目标。注意，如果一个任务已经使用<a href="https://github.com/gruntjs/grunt/wiki/grunt#wiki-grunt-renameTask">grunt.renameTask</a>重命名过，Grunt将会自动在配置对象中查找新任务名称属性。</p>
 
-<p>大部分的扩展任务, 包括<a href="https://github.com/gruntjs/grunt-contrib-jshint">grunt-contrib-jshint插件的jshint任务</a>, 以及<a href="https://github.com/gruntjs/grunt-contrib-concat">grunt-contrib-concat插件的concat任务</a>都是多任务的.</p>
+<p>大部分的contrib任务(主要是指官方提供的任务)，包括<a href="https://github.com/gruntjs/grunt-contrib-jshint">grunt-contrib-jshint插件的jshint任务</a>，以及<a href="https://github.com/gruntjs/grunt-contrib-concat">grunt-contrib-concat插件的concat任务</a>都是多任务形式的。</p>
 
 <pre><code>grunt.registerTask(taskName, [description, ], taskFunction);
 </code></pre>
 
-<p>鉴于指定的配置, 这里有一个示例演示了如果通过<code>grunt log:foo</code>运行Grunt, 它应该记录日志信息<code>foo: 1,2,3</code>, 如果通过<code>grunt log:bar</code>来运行Grunt, 它应该记录日志信息<code>bar: hello world</code>. 然而如果通过<code>grunt log</code>运行Grunt, 它应该记录日志信息<code>foo: 1,2,3</code>, 然后是<code>bar: hello world</code>, 最后是<code>baz: false</code>.</p>
+<p>鉴于指定的配置，这里有一个示例演示了如果通过<code>grunt log:foo</code>运行Grunt，它会输出<code>foo: 1,2,3</code>；如果通过<code>grunt log:bar</code>来运行Grunt， 它会输出<code>bar: hello world</code>。然而如果通过<code>grunt log</code>运行Grunt, 它会输出<code>foo: 1,2,3</code>，然后是<code>bar: hello world</code>，最后是<code>baz: false</code>(任务目标会按照指定的顺序进行处理)。</p>
 
 <pre><code>grunt.initConfig({
     log: {
@@ -72,12 +72,12 @@ grunt.registerTask('log','log stuff.', function(){
 
 <h2>'基本'任务</h2>
 
-<p>当运行一个基本任务时, Grunt并不会查找配置和环境, 它仅仅运行指定的任务函数, 可以传递任意使用冒号分割的参数作为函数的参数.</p>
+<p>当运行一个基本任务时，Grunt并不会查找配置和检查运行环境--它仅仅运行指定的任务函数，可以传递任意使用冒号分割的参数作为任务函数的参数(注意多任务中的冒号并不是传递参数，而是指定具体任务的目标)。</p>
 
 <pre><code>grunt.registerTask(taskName, [description, ], taskFunction);
 </code></pre>
 
-<p>这里有一个例子演示了如果通过<code>grunt foo:testing:123</code>运行Grunt将记录日志信息<code>foo, testing 123</code>. 如果运行这个任务时不传递参数, 只运行<code>grunt foo</code>, 那么这个任务将记录日志信息<code>foo, no args</code>.</p>
+<p>这里有一个例子演示了如果通过<code>grunt foo:testing:123</code>运行Grunt将输出<code>foo, testing 123</code>。如果运行这个任务时不传递参数，只运行<code>grunt foo</code>，那么这个任务会输出<code>foo, no args</code>。</p>
 
 <pre><code>grunt.registerTask('foo', 'A sample task that logs stuff.', function(arg1, arg2) {
     if (arguments.length === 0) {
@@ -90,14 +90,14 @@ grunt.registerTask('log','log stuff.', function(){
 
 <h2>自定义任务</h2>
 
-<p>你可能会着迷于任务. 如果你的任务并没有遵循多任务结构, 那么你可以使用自定义任务.</p>
+<p>你可能会着迷于任务。但是如果你的任务并没有遵循多任务结构，那么你可以使用自定义任务。</p>
 
 <pre><code>grunt.registerTask('default', 'My "default" task description.', function(){
     grunt.log.writeln('Currently running the "default" task.');
 });
 </code></pre>
 
-<p>在一个任务的内部, 你可以运行其他的任务.</p>
+<p>在任务的内部，你还可以运行其他的任务。</p>
 
 <pre><code>grunt.registerTask('foo', 'My "foo" task.', function() {
     //在foo任务完成之后一次运行队列中的bar和baz任务
@@ -107,14 +107,14 @@ grunt.registerTask('log','log stuff.', function(){
 });
 </code></pre>
 
-<p>任务可以是异步的.</p>
+<p>任务还可以是异步的.</p>
 
 <pre><code>grunt.registerTask('asyncfoo', 'My "asyncfoo" task.', function() {
     //将任务转变为异步模式并交给done函数处理
     var done = this.async();
-    //同步阻塞
+    //同步任务
     grunt.log.writeln('Processing task...');
-    //异步阻塞.
+    //异步任务
     setTimeout(function() {
         grunt.log.writeln('All done!');
         done();
@@ -138,7 +138,7 @@ grunt.log.writeln(this.name, a, b);
 //   logs: "foo", "bar", "baz"
 </code></pre>
 
-<p>如果任务记录到错误信息, 则任务可能会失败.</p>
+<p>如果任务记录到错误信息，还可以终止任务执行(通过标记任务失败的方式)。</p>
 
 <pre><code>grunt.registerTask('foo', 'My "foo" task.', function() {
     if (failureOfSomeKind) {
@@ -152,30 +152,30 @@ grunt.log.writeln(this.name, a, b);
 });
 </code></pre>
 
-<p>当任务失败时, 所有后续的除了指定<code>--force</code>标志的任务都会终止.</p>
+<p>当任务失败时，所有后续的除了指定<code>--force</code>标志的任务都会终止。</p>
 
 <pre><code>grunt.registerTask('foo', 'My "foo" task.', function() {
-    //同步失败
+    // Fail synchronously.
     return false;
 });
 
 grunt.registerTask('bar', 'My "bar" task.', function() {
     var done = this.async();
     setTimeout(function() {
-        //异步失败
+        // Fail asynchronously
         done(false);
     }, 1000);
 });
 </code></pre>
 
-<p>任务还可以依赖其他成功执行的任务. 注意<code>grunt.task.requires</code>并不会运行其他任务. 它仅仅检查那些任务(其他任务)的运行, 并没有失败(其他任务运行成功).</p>
+<p>任务还可以依赖于其他任务的成功执行。注意<code>grunt.task.requires</code>并不会运行其他任务(比如参数中指定的任务)。它仅仅检查那些任务(其他任务)的运行并没有失败(即其他任务，也就是所依赖的任务是否失败)。</p>
 
 <pre><code>grunt.registerTask('foo', 'My "foo" task.', function() {
     return false;
 });
 
 grunt.registerTask('bar', 'My "bar" task.', function() {
-    //如果foo任务运行失败或者没有运行
+    //如果foo任务运行失败或者没有运行则任务失败
     grunt.task.requires('foo');
     //如果foo任务运行成功则执行这里的代码
     grunt.log.writeln('Hello, world.');
@@ -183,12 +183,12 @@ grunt.registerTask('bar', 'My "bar" task.', function() {
 
 // 用法
 // grunt foo bar
-// 不记录，因为foo失败
+// 没有输出，因为foo失败
 // grunt bar
-// 不记录，因为foo从未运行
+// 没有输出，因为foo从未运行
 </code></pre>
 
-<p>如果需要的配置属性不存在, 任务也可能失败。</p>
+<p>如果任务需要的配置属性不存在，任务也可能失败。</p>
 
 <pre><code>grunt.registerTask('foo', 'My "foo" task', function(){
     //如果缺省"meta.name"配置属性则任务失败
@@ -200,7 +200,7 @@ grunt.registerTask('bar', 'My "bar" task.', function() {
 });
 </code></pre>
 
-<p>任务可以访问配置属性。</p>
+<p>任务还可以访问配置属性。</p>
 
 <pre><code>grunt.registerTask('foo', 'My "foo" task.', function(){
     // 记录属性值，如果属性未定义则返回null
@@ -218,7 +218,7 @@ grunt.registerTask('bar', 'My "bar" task.', function() {
 
 <h2>为什么我的异步任务没有完成？</h2>
 
-<p>可能会发生这种情况，由于你可能忘记调用<a href="http://gruntjs.com/api/grunt.task#wiki-this-async">this.async</a>方法来告诉Grunt你的任务是异步的。为了简单起见，Grunt使用同步的编码风格，可以在任务体中通过调用<code>this.async</code>将任务转换为异步的。</p>
+<p>可能由于你忘记调用<a href="http://gruntjs.com/api/grunt.task#wiki-this-async">this.async</a>方法来告诉Grunt你的任务是异步的，那么就可能会发生这种情况(异步任务失败)。为了简单起见，Grunt使用同步的编码风格，可以在任务体中通过调用<code>this.async</code>将该任务(调用这个方法的任务)转换为异步的。</p>
 
 <p>注意传递<code>false</code>给<code>done</code>函数就会告诉Grunt任务已经失败。</p>
 
@@ -274,6 +274,7 @@ grunt.registerTask('bar', 'My "bar" task.', function() {
           <dd><a href="#">出口代码</a></dd>
         </dl>
         <p><a href="https://github.com/basestyle/grunt-cn" class="btn">Github</a></p>
+        <p><a href="https://github.com/basestyle/grunt-cn/issues">讨论组</a></p>
       </aside>
     </section>
     <footer class="clearfix">
