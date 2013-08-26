@@ -1,8 +1,8 @@
 # grunt
 
-Grunt中所有的方法和属性都通过传递到你的[Gruntfile](http://gruntjs.com/getting-started), Grunt插件或者[任务文件](http://gruntjs.com/creating-tasks)的`module.exports`出口函数中而暴露在`grunt`对象上.
+Grunt中所有的方法和属性都是通过传递到你的[Gruntfile](http://gruntjs.com/getting-started)、Grunt插件或者[任务文件](http://gruntjs.com/creating-tasks)的`module.exports`出口函数中来暴露在`grunt`对象上的。
 
-下面几乎所有的方法都是在别处定义的，但是能够很方面的提供给`grunt`对象。详细的解释和例子请参阅独立的API文档部分。
+下面几乎所有的方法都是在别处定义的，但是也能够很方便的提供给`grunt`对象来使用。更详细的解释和例子请参阅它们所对应单独的API文档部分。
 
 ### Config
 
@@ -48,7 +48,7 @@ Grunt中所有的方法和属性都通过传递到你的[Gruntfile](http://grunt
 
 #### grunt.option
 
-检索命令行选项的值，例如`debug`。注意对于每个命令行选项，都有相反的测试，例如`no-debug`。
+检索命令行选项的值，例如`debug`。注意对于每个命令行选项，都有反例选项，例如`no-debug`。
 
 	grunt.options(optionName)
 	
@@ -56,7 +56,7 @@ Grunt中所有的方法和属性都通过传递到你的[Gruntfile](http://grunt
 
 #### grunt.package
 
-当前grunt的`package.json`元数据，一个对象。
+当前Grunt的`package.json`元数据，它是一个对象。
 
 	grunt.package
 	
