@@ -23,38 +23,42 @@
     </header>
     <section class="wrapper content clearfix">
       <div class="post_wrapper">
-        <article class="post"><p><em>注意即使你能熟练的使用grunt，新的<a href="http://gruntjs.com/getting-started/">Getting start</a>指南都是值得一读的.</em></p>
+        <article class="post"><p><em>注意，即使你能熟练的使用grunt，新的<a href="http://gruntjs.com/getting-started/">Getting start</a>指南都是值得一读的。</em></p>
 
-<p>Grunt现在被分割为三部分：<code>grunt</code>, <code>grunt-li</code>和<code>grunt-init</code>。</p>
+<p>Grunt现在被分割为三部分：<code>grunt</code>, <code>grunt-cli</code>和<code>grunt-init</code>。</p>
 
 <ol>
-<li><p>npm模块的<code>grunt</code>应该安装到你本地的项目中。它包含运行任务的代码和逻辑，插件加载等等。</p></li>
-<li><p>npm模块的<code>grunt-cli</code>应该被安装在全局环境中。它会把<code>grunt</code>命令推送到你所有的路径中，因此你可以在任何位置执行它。对于它自身而言，它不会做任何事情; 它的工作就是在你已经安装的本地项目中加载和运行Grunt，不管是什么版本。想要了解更多关于这个改变的信息，请阅读: <a href="http://blog.nodejs.org/2011/03/23/npm-1-0-global-vs-local-installation">npm 1.0:Global vc Local installation</a>。</p></li>
-<li><p><code>init</code>任务已经被分解为其自身的npm模块:<code>grunt-init</code>。它可应该使用<code>npm install -g gruntp-init</code>全局安装，并使用<code>grunt-init</code>命令来运行。在未来几个月中，<a href="http://yeoman.io/">Yeoman</a>将完完全取代grunt-init。查看<a href="https://github.com/gruntjs/grunt-init">grunt-init项目主页</a>, 里面有更多的信息。</p></li>
+<li><p>npm模块<code>grunt</code>应该安装到你本地的项目中。它包含运行任务，插件加载的代码和逻等等。</p></li>
+<li><p>npm模块<code>grunt-cli</code>应该被安装在全局环境中。它会把<code>grunt</code>命令植入到你所有的路径中，因此你可以在任意位置执行grunt命令。对于它自身而言，它不会做任何事情; 它的工作就是在你已经安装的本地项目中加载和运行Grunt，无论是哪个版本的Grunt。想要了解更多关于它演变的信息，请阅读: <a href="http://blog.nodejs.org/2011/03/23/npm-1-0-global-vs-local-installation">npm 1.0:Global vc Local installation</a>。</p></li>
+<li><p><code>init</code>任务已经被分解为其自身的npm模块：<code>grunt-init</code>。它可应该使用<code>npm install -g gruntp-init</code>在全局安装，然后就可以使用<code>grunt-init</code>命令来执行。在未来几个月中，<a href="http://yeoman.io/">Yeoman</a>将完完全取代grunt-init。查看<a href="https://github.com/gruntjs/grunt-init">grunt-init项目主页</a>，里面有更多更详细的信息。</p></li>
 </ol>
+
+<blockquote>
+  <p>Yeoman的门槛比较高，目前Grunt并没有使用Yeoman完全替代grunt-init.</p>
+</blockquote>
 
 <h2>预装的任务和插件</h2>
 
-<p>所有的<code>grunt-contrib-*</code>系列的插件都是Grunt0.4才有的。然而，极有可能第三方给Grunt0.3编写的插件继续在Grunt0.4中工作直到它们被更新。我们也在积极的与插件作者一起确保它尽快更新。</p>
+<p>所有的<code>grunt-contrib-*</code>系列的插件都是Grunt0.4才有的。然而，极有可能第三方为Grunt0.3所编写的插件还继续在Grunt0.4中工作直到它们被更新。我们也在积极的与插件作者一起努力确保尽快更新它们。</p>
 
-<p><em>一个致力于脱离grunt架构的Grunt即将发布，因此插件不会受到未来更新的影响.</em></p>
+<p><em>一个致力于脱离grunt架构的Grunt即将发布，这样就可以保证插件不会受到未来更新的影响。</em></p>
 
 <h2>要求</h2>
 
-<p>Grunt现在需要<code>&gt;=0.8.0</code>版本的Node.js支持。</p>
+<p>Grunt现在需要<code>0.8.0</code>及以上版本的Node.js支持。</p>
 
 <h2>Gruntfile</h2>
 
 <ul>
 <li>"Gruntfile"已经从<code>grunt.js</code>改变为<code>gruntfile.js</code>。</li>
-<li>在你项目的<code>Gruntfile.coffee</code>gruntfile中和<code>*.coffe</code>任务文件中已经支持CoffeeScript了(会自动解析为JS)。</li>
+<li>在你项目中名为<code>Gruntfile.coffee</code>的gruntfile以及<code>*.coffe</code>任务文件中已经支持CoffeeScript了(会自动解析为JS)。</li>
 </ul>
 
-<p>查看"Gruntfile"部分的<a href="http://gruntjs.com/getting-started/">入门</a>指南可以获取更多信息。</p>
+<p>可以查看"Gruntfile"部分的<a href="http://gruntjs.com/getting-started/">入门</a>指南以获取更多详细信息。</p>
 
 <h2>核心任务就是现在的Grunt插件</h2>
 
-<p>Grunt0.3中所包含的8个核心任务现在都变成了独立的Grunt插件. 每个都是独立的npm模块, 必须被作为一个插件安装. 对应的信息在<a href="http://gruntjs.com/getting-started/">Grunt入门</a>指南的"加载Grunt插件和任务"一节.</p>
+<p>Grunt0.3中所包含的8个核心任务现在都变成了独立的Grunt插件。 其中每个插件都变成了独立的npm模块，而且必须被作为一个插件安装使用。对应的信息在<a href="http://gruntjs.com/getting-started/">Grunt入门</a>指南的"加载Grunt插件和任务"一节。</p>
 
 <ul>
 <li>concat → <a href="https://github.com/gruntjs/grunt-contrib-concat">grunt-contrib-concat</a>插件</li>
@@ -67,21 +71,21 @@
 <li>watch → <a href="https://github.com/gruntjs/grunt-contrib-watch">grunt-contrib-watch</a>插件</li>
 </ul>
 
-<p>有些任务名称选项都已经改变了. 可以通过上面的链接查看每个插件文档中的最新配置信息.</p>
+<p>有些任务名称和选项都已经发生了变化。 可以通过上面的链接查看每个插件文档中的最新配置信息。</p>
 
 <h2>配置</h2>
 
-<p>Grunt0.4的任务配置格式已经被标准化并大大提高了. 可以查看<a href="http://gruntjs.com/configuring-tasks/">配置任务</a>指南, 也可以查看单独的插件文档了解更多信息.</p>
+<p>Grunt0.4的任务配置格式已经被标准化并大大提高了质量。可以查看<a href="http://gruntjs.com/configuring-tasks/">配置任务</a>指南，也可以查看单独的插件文档了解更多详细信息。</p>
 
 <ul>
-<li>文件匹配(通配符)模式现在可以排除文件匹配来否定</li>
-<li>任务现在支持一个标准的<code>options</code>对象</li>
-<li>任务现在支持一个标准的<code>files</code>对象</li>
+<li>文件匹配(通配符)模式现在可以排除文件匹配来反选匹配项，</li>
+<li>任务现在支持一个标准的<code>options</code>对象，</li>
+<li>任务现在支持一个标准的<code>files</code>对象；</li>
 </ul>
 
-<p>Gruntfile内作为配置数据指定的<code>&lt;% %&gt;</code>风格的字符串模板将自动解析,查看<a href="http://gruntjs.com/grunt.template/">grunt.template</a>文档可以了解更多信息.</p>
+<p>Gruntfile内作为配置数据指定的<code>&lt;% %&gt;</code>风格的字符串模板会自动解析，查看<a href="http://gruntjs.com/grunt.template/">grunt.template</a>文档可以了解更多信息。</p>
 
-<p><strong>移除了指令</strong>, 但是它们的功能仍然保留着. 可以使用下面的替代方式:</p>
+<p><strong>移除了指令</strong>，但是它们的功能仍然保留着。可以使用下面的替代方式：</p>
 
 <ul>
 <li><code>'&lt;config:prop.subprop&gt;'</code> → <code>'&lt;%= prop.subprop %&gt;'</code></li>
@@ -89,13 +93,13 @@
 <li><code>'&lt;file_template:file.js&gt;'</code> → <code>grunt.template.process(grunt.file.read('file.js'))</code></li>
 </ul>
 
-<p>使用<code>&lt;banner&gt;</code>或者<code>&lt;banner:prop.subprop&gt;</code>替代在文件列表中指定banner信息, <a href="https://github.com/gruntjs/grunt-contrib-concat">grunt-contrib-concat</a>和<a href="https://github.com/gruntjs/grunt-contrib-uglify">grunt-contrib-uglify</a>插件都有一个<code>banner</code>选项.</p>
+<p>现在使用<code>&lt;banner&gt;</code>或者<code>&lt;banner:prop.subprop&gt;</code>替代在文件列表中指定banner信息，<a href="https://github.com/gruntjs/grunt-contrib-concat">grunt-contrib-concat</a>和<a href="https://github.com/gruntjs/grunt-contrib-uglify">grunt-contrib-uglify</a>插件都有一个<code>banner</code>选项.</p>
 
-<p>使用<code>&lt;file_strip_banner:file.js&gt;</code>替代从文件中单独剥离banners, <a href="https://github.com/gruntjs/grunt-contrib-concat">grunt-contrib-concat</a>和<a href="https://github.com/gruntjs/grunt-contrib-uglify">grunt-contrib-uglify</a>插件都有一个选项用于剥离/保存banners.</p>
+<p>现在使用<code>&lt;file_strip_banner:file.js&gt;</code>替代从文件中单独剥离banners，<a href="https://github.com/gruntjs/grunt-contrib-concat">grunt-contrib-concat</a>和<a href="https://github.com/gruntjs/grunt-contrib-uglify">grunt-contrib-uglify</a>插件都有一个选项用于剥离/保留banners选项。</p>
 
 <h2>别名任务变化</h2>
 
-<p>当指定一个别名任务时, 现在必须将运行的任务列表指定为一个数组:</p>
+<p>当指定一个别名任务时，现在必须将运行的任务列表指定为一个数组：</p>
 
 <pre><code>//v0.3.x(老格式)
 grunt.registerTask('default', 'jshint nodeunit concat');
@@ -105,18 +109,22 @@ grunt.registerTask('default', ['jshint','nodeunit','concat']);
 
 <h2>任务参数现在可以包含空格</h2>
 
-<p>上述别名任务的变化(任务列表必须指定为一个数组)使得这个成为可能. 挡在命令行中指定它们时, 只要确保环绕任务的参数在引号中包含空格, 这样它们就可以正确的解析.</p>
+<p>上述别名任务的变化(任务列表必须指定为一个数组)使得参数包含空格变得可能。当在命令行中指定它们时，只需要确保传递给任务的参数是在引号中包含空格，这样它们才可以正确的解析。</p>
+
+<blockquote>
+  <p>正如你所了解的，在JS对象的属性中，字符串形式的属性可以包含空格。</p>
+</blockquote>
 
 <pre><code>grunt my-task:argument-without-spaces "other-task:argument with spaces"
 </code></pre>
 
 <h2>字符编码</h2>
 
-<p><a href="http://gruntjs.com/grunt.file#wiki-grunt-file-defaultencoding">file.defaultEncoding</a>方法被加入默认的字符编码中, 所有的<code>grunt.file</code>的方法都已经更新以支持指定编码.</p>
+<p><a href="http://gruntjs.com/grunt.file#wiki-grunt-file-defaultencoding">file.defaultEncoding</a>方法被加入到默认的字符编码中，所有的<code>grunt.file</code>的方法都已经更新以支持指定编码。</p>
 
 <h2>帮助</h2>
 
-<p>Grunt的帮助系统遵循node的<code>require</code>已经被移除. 对于在简洁的例子和Grunt插件之间如何共享功能, 请查看<a href="https://github.com/gruntjs/grunt-lib-legacyhelpers">grunt-lib-legacyhelpers</a>. 插件的作者也积极的更新他们的插件.</p>
+<p>Grunt的帮助系统所遵循的node<code>require</code>机制已经被移除了。对于在简单的例子和Grunt插件之间如何共享功能，请查看<a href="https://github.com/gruntjs/grunt-lib-legacyhelpers">grunt-lib-legacyhelpers</a>。插件的作者也在积极的更新他们的插件。</p>
 
 <h2>API</h2>
 
@@ -126,69 +134,68 @@ grunt.registerTask('default', ['jshint','nodeunit','concat']);
 <li><a href="http://gruntjs.com/grunt">grunt</a>
 <ul><li>移除了<code>grunt.registerHelper</code>和<code>grunt.renameHelper</code>方法.</li></ul></li>
 <li><a href="http://gruntjs.com/grunt.config">grunt.config</a>
-<ul><li>改变<a href="http://gruntjs.com/grunt.config#wiki-grunt-config-get">grunt.get</a>方法为自动递归解析<code>&lt;% %&gt;</code>模板.</li>
-<li>添加了<a href="http://gruntjs.com/grunt.config#wiki-grunt-config-getraw">grunt.getRaw</a>方法用于检索原始(未加工的)配置数据.</li>
-<li>改变<a href="http://gruntjs.com/grunt.config#wiki-grunt-config-process">grunt.process</a>方法为现在的值加工, 如果它已经从配置中检索到, 递归的解析模板. 这个方法在<code>grunt.get</code>内部调用, 但是不能在<code>config.getRaw</code>内部调用.</li></ul></li>
+<ul><li>改变<a href="http://gruntjs.com/grunt.config#wiki-grunt-config-get">grunt.get</a>方法为自动以递归的方式解析<code>&lt;% %&gt;</code>形式的模板。</li>
+<li>添加了<a href="http://gruntjs.com/grunt.config#wiki-grunt-config-getraw">grunt.getRaw</a>方法用于检索原始(未加工的)配置数据。</li>
+<li>改变<a href="http://gruntjs.com/grunt.config#wiki-grunt-config-process">grunt.process</a>方法为现在的值加工，如果它已经从配置中检索到，就会递归的解析模板。这个方法要在<code>grunt.get</code>内部调用，但是不能在<code>config.getRaw</code>内部调用。</li></ul></li>
 <li><a href="http://gruntjs.com/grunt.file">grunt.file</a>
-<ul><li>任务不再从<code>~/.grunt/tasks/</code>目录中自动加载(请在本地项目中安装).</li>
-<li>给所有的<code>grunt.file</code>方法添加了<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-defaultencoding">file.defaultEncoding</a>方法用于处理默认编码.</li>
+<ul><li>任务不再从<code>~/.grunt/tasks/</code>目录中自动加载(请在本地项目中安装)。</li>
+<li>给所有的<code>grunt.file</code>方法添加了<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-defaultencoding">file.defaultEncoding</a>方法用于处理默认编码。</li>
 <li>添加了<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-delete">file.delete</a>方法</li>
-<li>添加了顾名思义的 <a href="http://gruntjs.com/grunt.file#wiki-grunt-file-exists">file.exists</a>, <a href="http://gruntjs.com/grunt.file#wiki-grunt-file-isdir">file.isDir</a>, <a href="http://gruntjs.com/grunt.file#wiki-grunt-file-isfile">file.isFile</a>, <a href="http://gruntjs.com/grunt.file#wiki-grunt-file-islink">file.isLink</a>, <a href="http://gruntjs.com/grunt.file#wiki-grunt-file-ispathcwd">file.isPathCwd</a>, <a href="http://gruntjs.com/grunt.file#wiki-grunt-file-ispathincwd">file.isPathInCwd</a>, <a href="http://gruntjs.com/grunt.file#wiki-grunt-file-doespathcontain">file.doesPathContain</a>, <a href="http://gruntjs.com/grunt.file#wiki-grunt-file-arepathsequivalent">file.arePathsEquivalent</a>测试方法.</li>
-<li>添加了<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-match">file.match</a>和<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-ismatch">file.isMatch</a>方法用于方便匹配文件的通配符模式</li>
-<li>添加了<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-expandmapping">file.expandMapping</a>方法用于生成1对1的src-dest文件映射</li>
-<li>添加了<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-readyaml">file.readYAML</a>方法</li>
-<li>改变<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-findup">file.findup</a>为使用<a href="https://github.com/cowboy/node-findup-sync">findup-sync</a>模块</li>
-<li>改变<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-glob">file.glob</a>为使用<a href="https://github.com/isaacs/node-glob">glob</a>模块</li>
-<li>添加了<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-minimatch">file.miniatch</a>来暴露<a href="https://github.com/isaacs/minimatch">minimatch</a>模块</li>
-<li>移除了<code>file.userDir</code>方法(移进<a href="https://github.com/gruntjs/grunt-init">grunt-init</a>中了)</li>
-<li>移除了<code>file.clearRequireCache</code>方法</li>
-<li>移除了<code>file.expandFiles</code>和<code>file.expandDirs</code>方法, 使用<code>filter</code>选项<code>file.expand</code>替代</li>
-<li>移除了<code>file.expandFileURLs</code>方法. 不要指定URLs, 而应该指定文件(例如. qunit任务现在支持一个<code>urls</code>选项).</li></ul></li>
+<li>添加了顾名思义的 <a href="http://gruntjs.com/grunt.file#wiki-grunt-file-exists">file.exists</a>，<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-isdir">file.isDir</a>，<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-isfile">file.isFile</a>，<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-islink">file.isLink</a>，<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-ispathcwd">file.isPathCwd</a>，<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-ispathincwd">file.isPathInCwd</a>, <a href="http://gruntjs.com/grunt.file#wiki-grunt-file-doespathcontain">file.doesPathContain</a>，<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-arepathsequivalent">file.arePathsEquivalent</a>等测试方法。</li>
+<li>添加了<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-match">file.match</a>和<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-ismatch">file.isMatch</a>方法便于匹配文件时使用通配符模式。</li>
+<li>添加了<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-expandmapping">file.expandMapping</a>方法用于生成1对1的src-dest文件映射。</li>
+<li>添加了<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-readyaml">file.readYAML</a>方法。</li>
+<li>改变<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-findup">file.findup</a>为使用<a href="https://github.com/cowboy/node-findup-sync">findup-sync</a>模块。</li>
+<li>改变<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-glob">file.glob</a>为使用<a href="https://github.com/isaacs/node-glob">glob</a>模块。</li>
+<li>添加了<a href="http://gruntjs.com/grunt.file#wiki-grunt-file-minimatch">file.miniatch</a>来暴露<a href="https://github.com/isaacs/minimatch">minimatch</a>模块。</li>
+<li>移除了<code>file.userDir</code>方法(移到<a href="https://github.com/gruntjs/grunt-init">grunt-init</a>中了)</li>
+<li>移除了<code>file.clearRequireCache</code>方法。</li>
+<li>移除了<code>file.expandFiles</code>和<code>file.expandDirs</code>方法，现在使用<code>filter</code>选项的<code>file.expand</code>替代。</li>
+<li>移除了<code>file.expandFileURLs</code>方法。不应该指定URLs，应该指定文件(例如：qunit任务现在支持一个<code>urls</code>选项)。</li></ul></li>
 <li><a href="http://gruntjs.com/grunt#wiki-grunt-task">grunt.task</a>
-<ul><li>使用<a href="http://gruntjs.com/grunt.task#wiki-grunt-task-registertask">task.registerTask</a>和<a href="http://gruntjs.com/grunt.task#wiki-grunt-task-registermultitask">task.registerMultiTask</a>获取一个<code>this.options</code>方法注册任务.</li>
-<li>添加了<a href="http://gruntjs.com/grunt.task#wiki-grunt-task-normalizemultitaskfiles">task.normalizeMultiTaskFiles</a>方法便于标准化多任务<code>files</code>对象到<code>this.file</code>属性</li>
+<ul><li>使用<a href="http://gruntjs.com/grunt.task#wiki-grunt-task-registertask">task.registerTask</a>和<a href="http://gruntjs.com/grunt.task#wiki-grunt-task-registermultitask">task.registerMultiTask</a>获取一个<code>this.options</code>方法来注册任务。</li>
+<li>添加了<a href="http://gruntjs.com/grunt.task#wiki-grunt-task-normalizemultitaskfiles">task.normalizeMultiTaskFiles</a>方法便于标准化多任务<code>files</code>对象到<code>this.file</code>属性。</li>
 <li>移除了<code>task.registerHelper</code>和<code>task.renameHelper</code>方法</li>
 <li>移除了<code>task.searchDirs</code>属性</li>
-<li>移除了<code>task.expand</code> <code>task.expandDirs</code> task.expandFiles<code><code>task.getFile&lt;/code&gt; task.readDefaults</code>方法(移进<a href="https://github.com/gruntjs/grunt-init">grunt-init</a>中了)</li></ul></li>
-<li><a href="http://gruntjs.com/grunt#wiki-grunt-package">grunt.package</a>标志着存储在grunt的<code>package.json</code>中的元数据</li>
-<li><a href="http://gruntjs.com/grunt#wiki-grunt-versions">grunt.version</a>是Grunt的当前版本, 作为一个字符串</li>
+<li>移除了<code>task.expand</code> <code>task.expandDirs</code> task.expandFiles<code><code>task.getFile&lt;/code&gt; task.readDefaults</code>方法(移到<a href="https://github.com/gruntjs/grunt-init">grunt-init</a>中了)</li></ul></li>
+<li><a href="http://gruntjs.com/grunt#wiki-grunt-package">grunt.package</a>表示存储在grunt的<code>package.json</code>中的元数据。</li>
+<li><a href="http://gruntjs.com/grunt#wiki-grunt-versions">grunt.version</a>是Grunt的当前版本，是一个字符串。</li>
 <li><a href="http://gruntjs.com/grunt.template">grunt.template</a>
-<ul><li>添加了<a href="http://gruntjs.com/grunt.template#wiki-grunt-template-adddelimiters">template.addDelimiters</a>方法用于添加新模板分隔符</li>
-<li>添加了<a href="http://gruntjs.com/grunt.template#wiki-grunt-template-setdelimiters">template.setDelimiters</a>方法用于选取模板分隔符</li>
-<li>移除了<code>init</code>和<code>user</code>模板分隔符, 如果需要你可以使用<code>template.addDelimiters</code>再次添加它们(<a href="https://github.com/gruntjs/grunt-init">grunt-init</a>使用这个启用<code>{% %}</code>模板分隔符)</li></ul></li>
+<ul><li>添加了<a href="http://gruntjs.com/grunt.template#wiki-grunt-template-adddelimiters">template.addDelimiters</a>方法用于添加新模板分隔符。</li>
+<li>添加了<a href="http://gruntjs.com/grunt.template#wiki-grunt-template-setdelimiters">template.setDelimiters</a>方法用于选取模板分隔符。</li>
+<li>移除了<code>init</code>和<code>user</code>模板分隔符，如果有需要你可以使用<code>template.addDelimiters</code>再次添加它们(<a href="https://github.com/gruntjs/grunt-init">grunt-init</a>使用这个启用<code>{% %}</code>模板分隔符)。</li></ul></li>
 <li><a href="http://gruntjs.com/grunt.util">grunt.util</a>替换了现在已经移除的<code>grunt.utils</code>
-<ul><li>改变<code>util._</code>为使用<a href="http://lodash.com/">Lo-Dash</a></li>
-<li>添加了<a href="http://gruntjs.com/grunt.util#wiki-grunt-util-callbackify">util.callbackify</a>方法</li>
-<li>改变<a href="http://gruntjs.com/grunt.util#wiki-grunt-util-spawn">util.spawn</a>为更好的行为和回调函数中传递更一致的参数</li></ul></li>
+<ul><li>改变<code>util._</code>为使用<a href="http://lodash.com/">Lo-Dash</a>。</li>
+<li>添加了<a href="http://gruntjs.com/grunt.util#wiki-grunt-util-callbackify">util.callbackify</a>方法，确保与回调函数中传递更一致的参数。</li></ul></li>
 </ul>
 
 <h2>任务/插件作者</h2>
 
-<p><strong>插件作者, 请在你仓库的README中清晰的表明你的Grunt插件的版本数字以避免与Grunt 0.3的兼容性问题</strong></p>
+<p><strong>插件作者，请在你仓库中的README文件中清晰的表明你的Grunt插件的数字版本以避免与Grunt 0.3的兼容性问题。</strong></p>
 
 <h3>任务</h3>
 
 <ul>
 <li>多任务
-<ul><li>多个src-dest文件映射现在可以给每个目标指定一个<code>files</code>对象(这是可选的)</li></ul></li>
+<ul><li>多个<code>src-dest</code>文件映射形式现在可以给每个目标指定一个<code>files</code>对象(这是可选的)。</li></ul></li>
 <li><a href="http://gruntjs.com/grunt.task#wiki-this-files">this.files / grunt.task.current.files
 </a>
-<ul><li><code>this.files</code>属性是一个数组, 要在你的多任务中遍历src-dest文件映射对象. 它总是是一个数组, 你总是应该遍历它, 通常情况下即使是指定一个单一的文件.</li>
-<li>每个src-dest文件映射对象都有一个<code>src</code>和<code>dest</code>属性(对于其他情况, 取决于用于的指定). <code>src</code>属性可能早已从用户以任何方式指定的glob模式中展开.</li></ul></li>
+<ul><li><code>this.files</code>属性是一个遍历你的多任务得到一个<code>src-dest</code>文件映射对象数组。它一直都是一个数组， 即使通常只时指定一个单一的文件，它也会遍历返回一个数组。</li>
+<li>每个<code>src-dest</code>文件映射对象都有一个<code>src</code>和<code>dest</code>属性(对于其他情况, 取决于用户是否指定)。<code>src</code>属性可能早已从用户以任何方式指定的glob模式中解析了。</li></ul></li>
 <li><a href="http://gruntjs.com/grunt.task#wiki-this-filessrc">this.filesSrc / grunt.task.current.filesSrc</a>
-<ul><li><code>this.filesSrc</code>属性是简化的, 通过指定所有的<code>src</code>属性匹配的所有文件的特殊数组. 对支付任务非常有用.</li></ul></li>
+<ul><li><code>this.filesSrc</code>属性是一个与所有指定的<code>src</code>属性所匹配归并的，uniqued文件数组。这对只读任务非常有用.</li></ul></li>
 <li><a href="http://gruntjs.com/grunt.task#wiki-this-options">this.options / grunt.task.current.options</a>
-<ul><li><code>this.options</code>可以用在任务中用于标准化options. 在一个任务里面, 你可能会指定默认的options就像: <code>var options = this.options({option: 'defaultvalue', ...});</code></li></ul></li>
+<ul><li><code>this.options</code>可以用在任务中用于标准化options。在任务内部，你可能会指定默认的options就像：<code>var options = this.options({option: 'defaultvalue', ...});</code>。</li></ul></li>
 </ul>
 
 <h3>插件</h3>
 
-<p>一个更新的<code>gruntplugin</code>模板已经被创建, 为了兼容Grunt 0.4的插件, 并且独立的<a href="https://github.com/gruntjs/grunt-init">grunt-init</a>中是有效的</p>
+<p>Grunt 0.4中创建了一个兼容Grunt 0.4插件的<code>gruntplugin</code>模板，并且在独立的<a href="https://github.com/gruntjs/grunt-init">grunt-init</a>中是有效的。</p>
 
 <h2>故障排除</h2>
 
 <ul>
-<li>如果你之前已经安装了开发版本的Grunt 0.4或者grunt-contrib插件, 务必首先使用<code>npm cache clean</code>清空你的npm缓存以确保提取最终版本的Grunt和grunt-contrib插件</li>
+<li>如果你之前已经安装了开发版本的Grunt 0.4或者grunt-contrib插件，务必首先使用<code>npm cache clean</code>清空你的npm缓存以确保提取最终版本的Grunt和grunt-contrib插件。</li>
 </ul></article>
       </div>
       <aside class="sidebar">

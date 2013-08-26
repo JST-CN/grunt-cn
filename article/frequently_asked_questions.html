@@ -25,23 +25,23 @@
       <div class="post_wrapper">
         <article class="post"><h2>如何安装Grunt?</h2>
 
-<p>对于一般安装说明, 请阅读<a href="http://gruntjs.com/getting-started/">新手入门</a>指南. 如果你在阅读新手入门指南之后需要更多具体的信息, 请阅读详细的<a href="http://gruntjs.com/installing-grunt/">安装Grunt</a>指南.</p>
+<p>对于一般安装说明，请阅读<a href="http://gruntjs.com/getting-started/">新手入门</a>指南。如果你在阅完读新手入门指南之后想要了解更多具体的信息，请阅读详细的<a href="http://gruntjs.com/installing-grunt/">安装Grunt</a>指南。</p>
 
-<h2>我什么时候能够使用开发中的某个特性?</h2>
+<h2>我什么时候能够使用开发中的某个特性？</h2>
 
-<p>按照<a href="http://gruntjs.com/installing-grunt/">安装Grunt</a>指南中的说明同时安装发布的和未发布的开发版本的Grunt.</p>
+<p>依据<a href="http://gruntjs.com/installing-grunt/">安装Grunt</a>指南中的说明可以了解如何安装发布的和未发布的开发版本的Grunt(对于插件，你也可以使用npm安装并添加到依赖中使用；对于新的特性可以查阅相关说明安装使用)。</p>
 
-<h2>Grunt能在Windows上工作吗?</h2>
+<h2>Grunt能在Windows上工作吗？</h2>
 
-<p>Grunt在Windows上工作得很好. 因为<a href="http://nodejs.org/">Node.js</a>和<a href="http://npmjs.org/">npm</a>在Windows上都工作得很好. 通常情况下问题在于<a href="http://www.cygwin.com/">Cygwin</a>, 因为它绑定了一个过时版本的Node.js.</p>
+<p>Grunt可以很好的工作在Windows平台，因为<a href="http://nodejs.org/">Node.js</a>和<a href="http://npmjs.org/">npm</a>在Windows上都工作得很好(Grunt是基于Node.js的，因而子在工作平台上是能够跨平台工作的，对于对于特定平台不支持的特性一般都会有相关说明或者有兼容性的选择来支持)。通常情况下问题在于<a href="http://www.cygwin.com/">Cygwin</a>，因为它捆绑了一个过时版本的Node.js。</p>
 
-<p>避免这个问题最好的方式是使用<a href="http://msysgit.github.com/">msysGit安装器</a>安装二进制的<code>git</code>, 使用<a href="http://nodejs.org/#download">Node.js安装器</a>安装二进制的<code>node</code>和<code>npm</code>, 并且使用内置的<a href="http://www.cs.princeton.edu/courses/archive/spr05/cos126/cmd-prompt.html">Window命令提示符</a>或者<a href="http://support.microsoft.com/kb/968929">PowerShell</a>替代Cygwin.</p>
+<p>避免这个问题最好的方式是使用<a href="http://msysgit.github.com/">msysGit安装器</a>安装二进制的<code>git</code>，然后使用<a href="http://nodejs.org/#download">Node.js安装器</a>安装二进制的<code>node</code>和<code>npm</code>，并且使用内置的<a href="http://www.cs.princeton.edu/courses/archive/spr05/cos126/cmd-prompt.html">Window命令提示符</a>或者<a href="http://support.microsoft.com/kb/968929">PowerShell</a>替代Cygwin(或者说我们首可以先安装好Git环境，然后将托管在Github上的Grunt库克隆到本地来安装使用Grunt，在工具方面Windows对Node.js的支持或许有欠缺，但是在对Node.js本身的支持上已经做得很好了)。</p>
 
-<h2>为什么我的异步任务不能完成?</h2>
+<h2>为什么我的异步任务不能完成？</h2>
 
-<p>可能发生这种情况, 由于你忘记调用<a href="http://gruntjs.com/grunt.task#wiki-this-async">this.async</a>方法来告诉Grunt你的任务是异步的. 为了简单起见, Grunt使用了同步编码的风格, 可以通过再任务体内调用<code>this.async()</code>方法将任务切换为异步的.</p>
+<p>如果发生这种情况可能是由于你忘记调用<a href="http://gruntjs.com/grunt.task#wiki-this-async">this.async</a>方法来告诉Grunt，你的任务是异步的。为了简单起见，Grunt使用了同步编码的风格，可以通过在任务体内调用<code>this.async()</code>方法将该任务转换为异步任务。</p>
 
-<p>注意, 传递<code>false</code>给<code>done()</code>函数就会告诉Grunt该任务失败.</p>
+<p>注意，可以传递<code>false</code>给<code>done()</code>函数来告诉Grunt该任务失败。</p>
 
 <p>例子:</p>
 
@@ -51,24 +51,24 @@
 });
 </code></pre>
 
-<h2>如何启用tab命令来自动完成?</h2>
+<h2>如何启用tab命令来自动补全？</h2>
 
-<p>添加下面的代码到你的<code>~/.bashrc</code>文件中, 在grunt中来启用bash tab自动完成:</p>
+<p>添加下面的代码到你的<code>~/.bashrc</code>文件中来在Grunt中来启用bash tab自动补全功能：</p>
 
 <pre><code>eval "$(grunt --completion=bash)"
 </code></pre>
 
-<p>假设已经使用<code>npm install -g grunt</code>在全局安装了Grunt. 目前仅仅支持bash命令.</p>
+<p>当然，假设你已经使用<code>npm install -g grunt</code>在全局安装好了Grunt。因为Grunt目前仅仅支持bash命令。</p>
 
-<h2>如何跨多任务共享参数?</h2>
+<h2>如何跨多任务共享参数？</h2>
 
-<p>虽然每个任务都可以接受它自己的参数, 但是这里有几个可选项在多任间进行参数共享.</p>
+<p>虽然每个任务都可以接受它自己的参数，但是这里有几个选项可以在多个任务之间进行参数共享。</p>
 
 <h3>"动态"别名任务</h3>
 
-<p><strong>这是多任务共享参数的首选方法</strong></p>
+<p><strong>这是在多任务间共享参数的首选方法。</strong></p>
 
-<p>而<a href="http://gruntjs.com/grunt#wiki-grunt-registertask">别名任务</a>是很简单的, 一个常规的任务可以使用<a href="http://gruntjs.com/grunt.task#wiki-grunt-task-run">grunt.task.run</a>使其作为一个有效的"动态"别名任务函数. 在下面的例子中, 在命令行运行<code>grunt build:001</code>的结果是运行<code>foo:001</code>,<code>bar:001</code>和<code>baz:001</code>中的任务.</p>
+<p><a href="http://gruntjs.com/grunt#wiki-grunt-registertask">别名任务</a>是非常简单的，一个常规的任务可以使用<a href="http://gruntjs.com/grunt.task#wiki-grunt-task-run">grunt.task.run</a>方法让它编程一个有效的"动态的"别名任务函数。在下面的例子中，在命令行运行<code>grunt build:001</code>的结果就是执行<code>foo:001</code>,<code>bar:001</code>和<code>baz:001</code>这三个任务。</p>
 
 <pre><code>grunt.registerTask('build', 'Run all my build task.', function(){
     if(n == null){
@@ -79,7 +79,7 @@
 
 <h3>-- options</h3>
 
-<p>另一种跨多任务共享参数的方式就是使用<a href="http://gruntjs.com/grunt#wiki-grunt-option">grunt.option</a>. 在下面的例子中, 在命令行中运行<code>grunt deploy --target=staging</code>将导致<code>grunt.option('target')</code>返回<code>"staging"</code>.</p>
+<p>另一种跨多任务共享参数的方式就是使用<a href="http://gruntjs.com/grunt#wiki-grunt-option">grunt.option</a>。在下面的例子中，在命令行中运行<code>grunt deploy --target=staging</code>将导致<code>grunt.option('target')</code>返回<code>"staging"</code>。</p>
 
 <pre><code>grunt.registerTask('upload','Upload code to specified target.', function(n){
     var target = grunt.option('target');
@@ -88,13 +88,13 @@
 grunt.registerTask('deploy', ['validate', 'upload']);
 </code></pre>
 
-<p>注意布尔选项可以指定使用一个没有值的键. 例如, 在命行中运行<code>grunt deploy --staging</code>将导致<code>grunt.option('staging')</code>返回<code>true</code>.</p>
+<p><em>注意布尔类型的选项(options)可以只指定使用一个没有值的键。例如，在命行中运行<code>grunt deploy --staging</code>将导致<code>grunt.option('staging')</code>返回<code>true</code>.</em></p>
 
 <h3>全局和配置</h3>
 
-<p>在其他情况下, 你可能需要暴露一种方式来设置配置或者全局的值. 在这种情况下, 注册一个任务并设置其参数作为一个全局的或者配置值.</p>
+<p>在其他情况下，你可能希望暴露一个设置配置或者全局的值方法。 在这种情况下，可以在注册任务时设置其参数作为一个全局对象的或者项目配置的值。</p>
 
-<p>在下面的例子中, 在命令行运行<code>grunt set_global:name:peter set_config:target:staging deploy</code>将导致<code>global.name</code>为<code>"peter"</code>以及<code>grunt.config('target')</code>将会返回<code>"staging"</code>. 由此推断, <code>deploy</code>任务将使用这些值.</p>
+<p>在下面的例子中，在命令行运行<code>grunt set_global:name:peter set_config:target:staging deploy</code>会导致<code>global.name</code>的值为<code>"peter"</code>以及<code>grunt.config('target')</code>将会返回<code>"staging"</code>。由此推断，<code>deploy</code>任务就可以使用这些值。</p>
 
 <pre><code>grunt.registerTask('set_global', 'Set a global variable.', function(name, val){
     global[name] = val;
@@ -109,11 +109,11 @@ grunt.registerTask('set_config', 'Set a config property.', function(name, val){
 
 <h3>在Windows的Grunt 0.3中, 为什么当我尝试运行grunt时会打开我的JS编辑器</h3>
 
-<p>如果你在<a href="http://gruntjs.com/getting-started">Gruntfile</a>同一目录中, 当你输入grunt时, Windows中会尝试执行该文件. 因此你应该输入<code>grunt.cmd</code>来替代.</p>
+<p>如果你在<a href="http://gruntjs.com/getting-started">Gruntfile</a>所在目录中(在命令行进入到这个目录)，当你输入grunt时，Windows中会尝试执行该文件(实际上Windows中会尝试执行grunt.js，因为在0.4.x之前的版本中Gruntfile.js名为grunt.js)。因此你应该输入<code>grunt.cmd</code>来替代。</p>
 
-<p>另一种方式是使用<code>DOSKEY</code>命令创建一个Grunt宏, 以<a href="http://devblog.point2.com/2010/05/14/setup-persistent-aliases-macros-in-windows-command-prompt-cmd-exe-using-doskey/">这种方式</a>. 这样就会允许你使用<code>grunt</code>来替代<code>grunt.cmd</code>.</p>
+<p>另一种方式是使用<code>DOSKEY</code>命令创建一个Grunt宏, 可以参考也读<a href="http://devblog.point2.com/2010/05/14/setup-persistent-aliases-macros-in-windows-command-prompt-cmd-exe-using-doskey/">这篇文章</a>。这样就会允许你使用<code>grunt</code>来替代<code>grunt.cmd</code>。</p>
 
-<p>下面是你可以使用的<code>DOSKEY</code>命令:</p>
+<p>下面是你可以使用的<code>DOSKEY</code>命令：</p>
 
 <pre><code>DOSKEY grunt=grunt.cmd $*
 </code></pre></article>
