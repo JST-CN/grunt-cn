@@ -23,9 +23,9 @@
     </header>
     <section class="wrapper content clearfix">
       <div class="post_wrapper">
-        <article class="post"><p>Grunt中所有的方法和属性都通过传递到你的<a href="http://gruntjs.com/getting-started">Gruntfile</a>, Grunt插件或者<a href="http://gruntjs.com/creating-tasks">任务文件</a>的<code>module.exports</code>出口函数中而暴露在<code>grunt</code>对象上.</p>
+        <article class="post"><p>Grunt中所有的方法和属性都是通过传递到你的<a href="http://gruntjs.com/getting-started">Gruntfile</a>、Grunt插件或者<a href="http://gruntjs.com/creating-tasks">任务文件</a>的<code>module.exports</code>出口函数中来暴露在<code>grunt</code>对象上的。</p>
 
-<p>下面几乎所有的方法都是在别处定义的，但是能够很方面的提供给<code>grunt</code>对象。详细的解释和例子请参阅独立的API文档部分。</p>
+<p>下面几乎所有的方法都是在别处定义的，但是也能够很方便的提供给<code>grunt</code>对象来使用。更详细的解释和例子请参阅它们所对应单独的API文档部分。</p>
 
 <h3>Config</h3>
 
@@ -71,7 +71,7 @@
 
 <h4>grunt.option</h4>
 
-<p>检索命令行选项的值，例如<code>debug</code>。注意对于每个命令行选项，都有相反的测试，例如<code>no-debug</code>。</p>
+<p>检索命令行选项的值，例如<code>debug</code>。注意对于每个命令行选项，都有反例选项，例如<code>no-debug</code>。</p>
 
 <pre><code>grunt.options(optionName)
 </code></pre>
@@ -80,7 +80,7 @@
 
 <h4>grunt.package</h4>
 
-<p>当前grunt的<code>package.json</code>元数据，一个对象。</p>
+<p>当前Grunt的<code>package.json</code>元数据，它是一个对象。</p>
 
 <pre><code>grunt.package
 </code></pre>
@@ -132,8 +132,8 @@
         </dl>
         <dl>
           <dt>其他</dt>
-          <dd><a href="#">内置任务</a></dd>
-          <dd><a href="#">出口代码</a></dd>
+          <dd><a href="#">任务内部秘密</a></dd>
+          <dd><a href="exit_codes.html">出口代码</a></dd>
         </dl>
         <p><a href="https://github.com/basestyle/grunt-cn" class="btn">Github</a></p>
         <p><a href="https://github.com/basestyle/grunt-cn/issues">讨论组</a></p>
