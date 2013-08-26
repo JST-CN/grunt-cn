@@ -1,6 +1,6 @@
 # 哪些人在使用Grunt
 
-这里仅仅只是一个使用Grunt的企业和项目的简表. 如果你在项目中使用了Grunt并希望在这个页面上列出来, [请编辑这个页面](https://github.com/gruntjs/grunt/wiki/Who-uses-Grunt/_edit)
+下面只是一个使用Grunt的企业和项目的简表。如果你在项目中使用了Grunt并希望在这个页面上列出来，[请编辑这个页面](https://github.com/gruntjs/grunt/wiki/Who-uses-Grunt/_edit)。
 
 ## [Adobe](http://www.adobe.com/)
 

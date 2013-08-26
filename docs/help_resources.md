@@ -6,4 +6,8 @@
 
 ## 论坛
 
-你可以在[StackOverflow](http://stackoverflow.com/questions/tagged/gruntjs)提交带有"gruntjs"标签的问题.
+你可以在[StackOverflow](http://stackoverflow.com/questions/tagged/gruntjs)社区提交带有"gruntjs"标签的问题。
+
+## 中文QQ群
+
+16613475
