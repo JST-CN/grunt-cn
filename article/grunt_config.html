@@ -23,24 +23,24 @@
     </header>
     <section class="wrapper content clearfix">
       <div class="post_wrapper">
-        <article class="post"><p>使用定义在Gruntfile中具体的项目配置数据。</p>
+        <article class="post"><p>访问定义在Gruntfile中项目特定的配置数据。</p>
 
-<p>注意在<code>grunt</code>对象中任何使用☃(unicode形式的雪人)标记的方法都是直接有效的，任何在任务内的<code>this</code>对象中使用☆(白色星星)标记的方法也是有效的。这些都是你需要知道的。</p>
+<p>注意任何使用☃(unicode形式的雪人)标记的方法直接用在<code>grunt</code>对象上都是有效的，任何在任务内部使用☆(白色星星)标记的方法用<code>this</code>访问也是有效的。你只需要知道这些就行。</p>
 
 <h2>初始化配置数据</h2>
 
-<p><em>注意下面的方法在<code>grunt</code>对象中如同<code>grunt.initConfig</code>中一样都是可用的。</em></p>
+<p><em>注意下面的方法在<code>grunt</code>对象上如同在<code>grunt.initConfig</code>中都是可用的。</em></p>
 
 <h3>grunt.config.init</h3>
 
-<p>初始化当前项目的一个配置对象。任务所使用的指定的<code>configObject</code>可以使用<code>grunt.config</code>方法访问。几乎每一个项目的Gruntfile都将调用这个方法。</p>
+<p>为当前项目初始化一个配置对象。指定的<code>configObject</code>可以在任务中使用，并且可以使用<code>grunt.config</code>来访问。几乎每个项目的Gruntfile都会调用这个方法。</p>
 
 <pre><code>grunt.config.init(configObject)
 </code></pre>
 
-<p>注意任何指定的<code>&lt;% %&gt;</code>模板字符串在配置数据解析之后都将被处理。</p>
+<p>注意任何指定在<code>&lt;% %&gt;</code>中模板字符串在配置数据检索完成之后都会被处理。</p>
 
-<p>这里有一个<a href="https://github.com/gruntjs/grunt-contrib-jshint">grunt-contrib-jshint插件</a>的<code>jshint</code>任务包含了简单的配置数据。</p>
+<p>这里有一个例子包含了<a href="https://github.com/gruntjs/grunt-contrib-jshint">grunt-contrib-jshint插件</a>的<code>jshint</code>任务中的简单的配置数据。</p>
 
 <pre><code>grunt.config.init({
     jshint: {
@@ -49,72 +49,72 @@
 });
 </code></pre>
 
-<p>查看<a href="http://www.gruntjs.com/">入门</a>指南可以看到更多的配置的例子。</p>
+<p>查看<a href="http://www.gruntjs.com/">新手入门</a>指南可以看到更多的配置相关的例子。</p>
 
-<p><em>这个方法如同<code>grunt.initConfig</code>一样也是有效的。</em></p>
+<p><em>这个方法还可以作为<code>grunt.initConfig</code>来使用。</em></p>
 
 <h3>使用配置数据</h3>
 
-<p>下面的方法允许通过点号分割的字符串, 像<code>pkg.author.name</code>, 或者通过属性名数组, 像<code>['pkg','author', 'name']</code>来访问Grunt配置数据.</p>
+<p>下面的方法允许通过点号分割的字符串--像<code>pkg.author.name</code>或者通过属性名数组--像<code>['pkg','author', 'name']</code>来访问Grunt配置数据。</p>
 
-<p>注意如果指定的属性名中包含一个<code>.</code>，它必须使用一个斜线字符进行转义。例如: <code>concat.dist/built\\.js</code>。如果指定了一个数组部分，grunt将使用<code>grunt.config.escape</code>方法在内部进行转义处理。</p>
+<p>注意如果指定的属性名中包含一个<code>.</code>(点号)，就须使用一个斜线字符进行转义。例如: <code>concat.dist/built\\.js</code>。如果指定了一个数组部分，grunt将使用<code>grunt.config.escape</code>方法在内部进行转义处理。</p>
 
-<h2>从项目的grunt配置中获取或者设置一个值。这个方法作为其他方法的别名；如果传递两个参数，<code>grunt.config.set</code>被调用，另一方面<code>grunt.config.get</code>也被调用。</h2>
+<h2>从项目的Grunt配置中获取或者设置一个值。这个方法时其他两个具体方法的别名；如果传递两个参数，则<code>grunt.config.set</code>被调用，否则调用<code>grunt.config.get</code>。</h2>
 
 <pre><code>grunt.config([prop [, value]]);
 </code></pre>
 
 <h3>grunt.config.get</h3>
 
-<p>从项目的grunt配置中获取一个值。如果指定<code>prop</code>，则返回该属性的值；如果没有定义该属性则返回<code>null</code>。如果没有指定<code>prop</code>，返回一个完整的配置对象副本。模板字符串将使用<code>grunt.config.process</code>方法进行递归处理。</p>
+<p>从项目的grunt配置中获取一个值。如果指定<code>prop</code>，则返回该属性的值；如果没有定义该属性则返回<code>null</code>。如果没有指定<code>prop</code>，则返回一个完整的配置对象副本。模板字符串将使用<code>grunt.config.process</code>方法以递归的方式处理。</p>
 
 <pre><code>grunt.config.get([prop]);
 </code></pre>
 
 <h3>grunt.config.process</h3>
 
-<p>处理一个值，在grunt配置环境内递归展开<code>&lt;% %&gt;</code>模板(通过<code>grunt.template.process</code>方法)，当遇到这种情况时。这个方法通过<code>grunt.config.get</code>但不是<code>grunt.config.getRow</code>自动调用。</p>
+<p>处理一个值，当遇到这种情况时，它会在Grunt配置上下文环境中以递归方式展开<code>&lt;% %&gt;</code>模板(通过<code>grunt.template.process</code>方法实现)。这个方法会通过<code>grunt.config.get</code>来自动调用而不是<code>grunt.config.getRow</code>方法。</p>
 
 <pre><code>grunt.config.process(value);
 </code></pre>
 
-<p>如果检索到任意的独立的<code>'&lt;%= foo %&gt;'</code>或者<code>'&lt;%= foo.bar %&gt;'</code>模板字符串，并且指定的<code>foo</code>或者<code>foo.bar</code>属性是一个非字符串值(不是<code>null</code>或者<code>undefined</code>)，它将指向实际的值。结合grunt任务系统自动处理数组的功能，它是非常有用的。</p>
+<p>如果检索到任意的独立的<code>'&lt;%= foo %&gt;'</code>或者<code>'&lt;%= foo.bar %&gt;'</code>模板字符串，并且其中所指定的<code>foo</code>或者<code>foo.bar</code>属性是一个非字符串值(不是<code>null</code>或者<code>undefined</code>)，它会指向实际的值。结合grunt任务系统自动处理数组的功能，它是非常有用的。</p>
 
 <h3>grunt.config.getRaw</h3>
 
-<p>从项目的grunt配置中获取一个原始值，没有经过处理的<code>&lt;% %&gt;</code>模板字符串。如果指定了<code>prop</code>，返回该属性的值，或者如果该属性没有定义则返回<code>null</code>。如果没有指定<code>prop</code>，返回一个完成的配置对象副本。</p>
+<p>从项目的grunt配置数据中获取一个原始值，而不是经过处理的<code>&lt;% %&gt;</code>模板字符串。如果指定了<code>prop</code>，返回该属性的值，或者如果该属性没有定义则返回<code>null</code>。如果没有指定<code>prop</code>属性，则返回一个完成的配置对象副本。</p>
 
 <pre><code>grunt.config.getRaw([prop])
 </code></pre>
 
 <h3>grunt.config.set</h3>
 
-<p>给项目的grunt配置设置一个值。</p>
+<p>在项目的Grunt配置中设置一个值。</p>
 
 <pre><code>grunt.config.set(prop, value)
 </code></pre>
 
-<p>注意任意指定的<code>&lt;% %&gt;</code>模板字符串只会在检索配置数据时处理。</p>
+<p>注意任何指定在<code>&lt;% %&gt;</code>模板字符串都只会在检索配置数据时处理。</p>
 
 <h3>grunt.config.escape</h3>
 
-<p>忽略给定的<code>propString</code>中的<code>.</code>点号. 这应该用于包含点号的属性名.</p>
+<p>忽略给定的<code>propString</code>中的<code>.</code>点号。这个方法这应该用于处理包含点号的属性名的情况。</p>
 
 <pre><code>grunt.config.escape(propString);
 </code></pre>
 
 <h2>载入配置数据</h2>
 
-<p><em>注意下面列出的方法在任务内部的<code>this</code>对象中如同<code>this.requiresConfig</code>一样也是有效的。</em></p>
+<p><em>注意下面列出的方法在任务内部的<code>this</code>对象中就是<code>this.requiresConfig</code>。</em></p>
 
 <h3>grunt.config.requires ☆</h3>
 
-<p>如果省略一个或者多个需要的配置属性, 为<code>null</code>或者<code>undefined</code>当前任务将失败. 配置属性可以指定一个或者多个字符串或者数组。</p>
+<p>如果省略一个或者多个项目所需的配置属性, 或者属性值为<code>null</code>或者<code>undefined</code>当前任务就会失败。 可以指定一个或者多个字符串或者数组形式的配置属性。</p>
 
 <pre><code>grunt.config.requires(prop [, prop [, …]])
 </code></pre>
 
-<p><em>这个方法在任务内部如同<code>this.requiresConfig</code>一样也是有效的。</em></p></article>
+<p><em>这个方法就是任务内部的<code>this.requiresConfig</code>。</em></p></article>
       </div>
       <aside class="sidebar">
         <dl>

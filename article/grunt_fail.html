@@ -23,39 +23,39 @@
     </header>
     <section class="wrapper content clearfix">
       <div class="post_wrapper">
-        <article class="post"><p>针对一些事情发生错误.</p>
+        <article class="post"><p>用户发生致命错误时执行某些行为。</p>
 
-<p>查看<a href="https://github.com/gruntjs/grunt/blob/master/lib/grunt/fail.js">fail lib source</a>了解更多信息.</p>
+<p>查看<a href="https://github.com/gruntjs/grunt/blob/master/lib/grunt/fail.js">fail lib source</a>可以了解更多详细信息。</p>
 
 <h2>The fail API</h2>
 
-<p>如果任务内部一些事情出错(即将出错), 它可以强制终止Grunt运行. 在<a href="http://gruntjs.com/exit-codes">出口代码文档</a>中可以查看grunt内置的出口代码列表.</p>
+<p>如果任务内部已经崩溃(或者即将崩溃)，这个API可以用于强制终止Grunt运行。在<a href="http://gruntjs.com/exit-codes">出口代码</a>中可以查看内置的完整的Grunt出口代码列表。</p>
 
-<p>注意<code>grunt</code>对象上任何使用☃(unicode雪人)标记的方法也是直接有效的. 你知道就行. 查看<a href="http://gruntjs.com/grunt">API主页</a>可以了解更多的使用信息.</p>
+<p>注意任何使用☃(unicode雪人)标记的方法都可以在<code>grunt</code>对象上直接调用。这里你只需要知道就行了，可以查看<a href="http://gruntjs.com/grunt">API主页</a>可以了解更多用法相关的信息。</p>
 
 <h3>grunt.warn ☃</h3>
 
-<p>显示警告并立即终止grunt.  如果执行<code>--force</code>命令行选项Grunt会继续处理任务文件. <code>error</code>参数可以时一个字符串信息或者一错误对象.</p>
+<p>显示警告信息，同时立即终止Grunt运行。如果指定了命令行选项<code>--force</code>，Grunt会继续处理任务文件。<code>error</code>参数可以是一个字符串信息或者一错误对象。</p>
 
 <pre><code>grunt.fail.warn(error [, errorcode]);
 </code></pre>
 
-<p>如果在命令行指定了<code>--debug 9</code>并指定了一个错误对象, 将记录一个堆栈跟踪.</p>
+<p>如果在命令行指定了<code>--debug 9</code>，同时还指定了一个错误对象，它会输出一个堆栈跟踪信息。</p>
 
-<p><em>这个方法如同<code>grunt.warn</code>一样有效</em></p>
+<p><em>这个方法也可以作为<code>grunt.warn</code>来使用。</em></p>
 
 <h3>grunt.fatal ☃</h3>
 
-<p>显示警告并立即终止Grunt. <code>error</code>参数可以是一个字符串信息或者一个错误对象.</p>
+<p>显示警告信息，同时立即终止Grunt运行。<code>error</code>参数也可以是一个字符串信息或者一个错误对象。</p>
 
 <pre><code>grunt.fail.fatal(error [, errorcode]);
 </code></pre>
 
-<p>如果在命令行指定了<code>--debug 9</code>并指定了一个错误对象, 将记录一个堆栈跟踪.</p>
+<p>如果在命令行指定了<code>--debug 9</code>，还指定了一个错误对象，它会输出一个堆栈跟踪信息。</p>
 
-<p>发出一个致命的警报, 除非指定<code>--no-color</code>选项.</p>
+<p>发生致命错误时会发出一个警报信息，除非指定<code>--no-color</code>选项.</p>
 
-<p><em>这个方法如同<code>grunt.fatal</code>一样有效</em></p></article>
+<p><em>这个方法还可以作为<code>grunt.fatal</code>使用。</em></p></article>
       </div>
       <aside class="sidebar">
         <dl>

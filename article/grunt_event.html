@@ -23,48 +23,48 @@
     </header>
     <section class="wrapper content clearfix">
       <div class="post_wrapper">
-        <article class="post"><p>尽管在这个页面中仅仅列出了大多数相关的方法，但是完整的<a href="https://github.com/hij1nx/EventEmitter2">EventEmitter2 API</a>在<code>grunt.event</code>对象中都是有效的。Event命名空间可以使用<code>.</code>(点)操作符指定，并且已经启用了命名空间通配符。</p>
+        <article class="post"><p>尽管在这个页面中只是列出了大多数重要的方法，但是完整的<a href="https://github.com/hij1nx/EventEmitter2">EventEmitter2 API</a>在<code>grunt.event</code>对象中都是有效的。Event命名空间可以使用<code>.</code>(点)操作符指定，还可以启用命名空间通配符。</p>
 
-<p><em>注意grunt并不允许发布任何events，但是在你自己的任务中任然是有用的。</em></p>
+<p><em>注意grunt并不允许你公开发布任何events(事件)，但是在你自己的任务中任然是有用的。</em></p>
 
 <h3>grunt.event.on</h3>
 
-<p>在指定的event监听器数组尾部添加一个监听器.</p>
+<p>给指定的事件监听器数组尾部添加一个监听器。</p>
 
 <pre><code>grunt.event.on(event, listener)
 </code></pre>
 
 <h3>grunt.event.once</h3>
 
-<p>给event添加一个<strong>一次性</strong>监听器。这个监听器仅仅在event第一次触发时被调用，之后便被移除。</p>
+<p>给事件添加一个<strong>一次性</strong>监听器。这个监听器仅仅在event第一次触发时被调用，之后便会被移除。</p>
 
 <pre><code>grunt.event.once(event, listener)
 </code></pre>
 
 <h3>grunt.event.many</h3>
 
-<p>添加一个在event被移除之前会执行<strong>n次</strong>的监听器.</p>
+<p>添加一个在事件被移除之前会执行<strong>n次</strong>的监听器。</p>
 
 <pre><code>grunt.event.many(event, timesToListen, listener);
 </code></pre>
 
 <h3>grunt.event.off</h3>
 
-<p>从指定的event监听器数组中移除一个监听器.</p>
+<p>从指定的事件监听器数组中移除一个监听器。</p>
 
 <pre><code>grunt.event.off(event, listener);
 </code></pre>
 
 <h3>grunt.event.removeAllListeners</h3>
 
-<p>移除所有的监听器或者它们指定的event</p>
+<p>移除所有的监听器或者它们指定的事件。</p>
 
 <pre><code>grunt.event.removeAllListeners([event]);
 </code></pre>
 
 <h3>grunt.event.emit</h3>
 
-<p>执行每一个监听器, 可能按照指定event参数列表指定的顺序进行监听.</p>
+<p>按照参数列表中自定的事件顺序执行每一个事件监听器。</p>
 
 <pre><code>grunt.event.emit(event. [arg1], [arg2], [...]);
 </code></pre></article>
