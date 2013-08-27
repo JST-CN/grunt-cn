@@ -23,11 +23,11 @@
     </header>
     <section class="wrapper content clearfix">
       <div class="post_wrapper">
-        <article class="post"><p>Grunt option API用于跨多任务共参数以及在命令行中访问参数设置.</p>
+        <article class="post"><p>Grunt的option API可以用来跨多任务共享参数，以及在命令行中访问参数设置。</p>
 
-<p>很明显的例子便是无论构建目标是在开发期还是演示期间都有一个标志. 在命令行中: <code>grunt deploy --target=staging</code>会导致<code>grunt.option('target')</code>返回<code>"staging"</code>.</p>
+<p>一个简单的例子就是给你的目标(任务目标)打一个标记，标识任务是在开发阶段还是暂存阶段。在命令行中运行<code>grunt deploy --target=staging</code>就会让<code>grunt.option('target')</code>返回<code>"staging"</code>。</p>
 
-<p>一个Gruntfile利用<code>target</code>选项的例子可能如下:</p>
+<p>下面是一个在<code>Gruntfile</code>中使用<code>target</code>选项的例子：</p>
 
 <pre><code>grunt.initConfig({
     compass: {
@@ -49,9 +49,9 @@ var target = grunt.option('target') || 'dev';
 grunt.registerTask('deploy', ['compass:' + target]);
 </code></pre>
 
-<p>当你运行<code>grunt deploy</code>时你的样式表将默认为<code>dev</code>目标并且输出CSS扩展格式. 如果你运行<code>grunt deploy --target=staging</code>, <code>staging</code>目标会替代运行, 你的CSS将变成压缩格式.</p>
+<p>当你运行<code>grunt deploy</code>时你的样式表默认情况下为<code>dev</code>目标，并且它会以展开的格式输出CSS代码。如果你运行<code>grunt deploy --target=staging</code>, <code>staging</code>目标会替代父级的<code>dev</code>目标，同时它会以压缩格式输出CSS代码。</p>
 
-<p><code>grunt.option</code>也可以用在任务中, 例如:</p>
+<p><code>grunt.option</code>也可以用在任务中，例如：</p>
 
 <pre><code>grunt.registerTask('upload', 'Upload code to specified target.', function(n) {
     var target = grunt.option('target');
@@ -60,16 +60,16 @@ grunt.registerTask('deploy', ['compass:' + target]);
 grunt.registerTask('deploy', ['validate', 'upload']);
 </code></pre>
 
-<p><em>注意: 布尔值选项可以用于只指定一个没有值的键. 例如, 在命令行中运行<code>grunt deploy --staging</code>将导致<code>grunt.option('staging')</code>返回<code>true</code></em>.</p>
+<p><em>注意：可以只用只有键(属性)而没有值的方式来指定布尔值选项。例如，在命令行中运行<code>grunt deploy --staging</code>会导致<code>grunt.option('staging')</code>返回<code>true</code>。</em></p>
 
 <h3>grunt.option ☃</h3>
 
-<p>获取或者设置一个选项.</p>
+<p>获取或者设置一个选项。</p>
 
 <pre><code>grunt.option(key[, val])
 </code></pre>
 
-<p>布尔值选项可以通过在<code>key</code>上前置<code>no-</code>来否定, 例如:</p>
+<p>可以通过在<code>key</code>键上使用一个前置的<code>no-</code>来否定buerhi选项。例如：</p>
 
 <pre><code>grunt.option('staging', false);
 var isDev = grunt.option('no-staging');
@@ -78,14 +78,14 @@ var isDev = grunt.option('no-staging');
 
 <h3>grunt.option.init</h3>
 
-<p>初始化<code>grunt.option</code>. 如果<code>initObject</code>选项省略将初始化为一个空对象, 否则将设置为<code>initObject</code>.</p>
+<p>初始化<code>grunt.option</code>设置。如果忽略参数中的<code>initObject</code>选项就会初始化为一个空对象，否则设置为指定的<code>initObject</code>。</p>
 
 <pre><code>grunt.option.init([initObject])
 </code></pre>
 
 <h3>grunt.options.flags</h3>
 
-<p>返回命令行参数的选项数组.</p>
+<p>以数组的形式选为命令行参数选项。</p>
 
 <pre><code>grunt.option.flags()    
 </code></pre></article>
