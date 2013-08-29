@@ -46,7 +46,7 @@ Grunt.js中文社区是一个开源项目，由网友创建并维护。
 贡献者：
 
 + [Toobug](http://www.toobug.net/) - [Github](https://github.com/TooooBug)
-+ [Basecss](http://weibo.com/html5mm) - [Github](https://github.com/basestyle)
++ [Basecss](http://www.basecss.net/) - [Github](https://github.com/basestyle)
 + [Jsonzhang](https://github.com/Jsonzhang)
 + [wuxiaolan91](https://github.com/wuxiaolan91)
 + [bluemsn](https://github.com/bluemsn)
@@ -60,6 +60,7 @@ Grunt.js中文社区是一个开源项目，由网友创建并维护。
 
 ## 更新日志
 
++ 2013-8-29 文档和API整体校对完成
 + 2013-8-7  新版页面上线；
 + 2013-6-10 完成编译构建，启用gruntjs.org域名；
 + 2013-4-7  中文文档beta版；
