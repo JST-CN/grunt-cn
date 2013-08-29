@@ -1,54 +1,54 @@
 # grunt.util
 
-其他实用工具, 包括Lo-Dash, Async和Hooker.
+各种实用工具，包括Lo-Dash，Async和Hooker等。
 
 ### grunt.util.kindOf
 
-返回一个值的"种类". 好比`typeof`返回内部的`[Class](Class/)`值. 可能返回`"number"`, `"string"`, `"boolean"`, `"function"`, `"regexp"`, `"array"`, `"date"`, `"error"`, `"null"`, `"undefined"`以及全面的`"object"`.
+返回给定值的"类型"。就像`typeof`运算符就会返回内部的`[Class](Class/)`信息。这个方法可能会返回`"number"`，`"string"`，`"boolean"`，`"function"`，`"regexp"`，`"array"`，`"date"`，`"error"`，`"null"`，`"undefined"`和代表一切类型的`"object"`。
 
 	grunt.util.kindOf(value)
 
 ### grunt.util.error
 
-返回一个新的Error实例(可以抛出)与相应的消息. 如果指定一个Error对象而不是`message`, 将放回该对象. 另外, 如果指定一个Error对象`origError`并且使用`--debug 9`选项运行Grunt, 原始的Error堆栈将被抛出.
+返回一个新的Error实例(它也可以抛出)与相应的消息。如果指定的是一个Error对象而不是`message`，会返回指定的对象。另外，如果指定一个Error对象作为`origError`参数，同时使用`--debug 9`选项运行Grunt，那么就会输出原始的Error堆栈信息。
 
 	grunt.util.error(message [, origError])
 
 ### grunt.util.linefeed
 
-标准化当前操作系统的换行符(Window上是`\r\n`,否则为`\n`).
+将换行符标准化为当前操作系统使用的形式(Window上是`\r\n`，否则为`\n`)。
 
 ### grunt.util.normalizeIf
 
-给定一个字符串, 返回一个新字符串, 所有的换行符都被标准化为当前操作系统中的形式(Window上是`\r\n`,否则为`\n`).
+给定一个字符串，返回一个新字符串，原始字符串中所有的换行符都会被标准化为当前操作系统中使用的形式(Window上是`\r\n`，否则为`\n`)。
 
 	grunt.util.normalizeIf(string)
 
 ### grunt.util.recurse
 
-递归嵌套的对象和数组, 为每个非对象值执行`callbackFunction`. 如果`continueFunction`返回`false`, 给定的对象和值将会跳过.
+以递归的方式遍历嵌套的对象和数组，然后为每个非对象类型的值执行`callbackFunction`(回调函数)。如果`continueFunction`返回`false`，那么就会跳过给定的对象和值。
 
 	grunt.util.recurse(object, callbackFunction, continueFunction)
 
 ### grunt.util.repeat
 
-返回重复`n`次的字符串`str`
+返回重复`n`次的字符串`str`。
 
 	grunt.util.repeat(n, str)
 
 ### grunt.util.pluralize
 
-给定一个`"a/b"`形式的`str`, 如果`n`为`1`, 返回`"a"`否则返回`"b"`. 如果你不能使用'/'则你可以指定一个自定义的分隔符.
+给定一个`"a/b"`形式的`str`，如果`n`为`1`则返回`"a"`；否则返回`"b"`。如果你不能使用'/'，你还可以指定一个自定义的分隔符。
 
 	grunt.util.pluralize(n, str, separator)
 
 ### grunt.util.spawn
 
-生成一个子进程, 跟踪其标准输出, 标准错误和退出代码. 该方法返回一个生成的子进程的引用. 当子进程退出时, 将调用done函数.
+生成一个子进程，跟踪它的stdout(标准输出)，stderr(标准错误)和退出码代。这个方法会返回所生成的子进程的引用。当子进程退出时，就会调用done函数。
 
 	grunt.util.spawn(options, doneFunction)
 
-`options`对象可能有以下属性:
+`options`对象可以指定下面这些属性：
 
 	var options = {
 		// The command to execute. It should be in the system path.
@@ -66,7 +66,7 @@
 		fallback: fallbackValue
 	};
 
-done函数接收以下参数:
+done函数可以接收以下参数：
 
 	function doneFunction(error, result, code) {
 		// If the exit code was non-zero and a fallback wasn't specified, an Error
@@ -86,17 +86,17 @@ done函数接收以下参数:
 
 ### grunt.util.toArray
 
-给定一个数组或者一个类数组对象, 返回一个数组. 转换`arguments`对象为数组是很好的.
+给定一个数组或者一个类数组对象，然后返回一个(新)数组。将`arguments`对象转换为数组是非常有用的。
 
 	grunt.util.toArray(arrayLikeObject)
 
 ### grunt.util.callbackify
 
-标准化"返回值"和"传递结果给回调"的函数, 总是传递一个结果给指定的回调函数. 如果原始函数返回一个值, 该值将即刻传递给回调函数, 并指定为最后一个参数, 在是哟有的预定义参数之后. 如果原始函数传递一个值给回调函数, 它也会继续这样做.
+标准化"返回值"和"传递结果给回调"的函数，并且总是传递一个结果给指定的回调函数。如果原始函数返回一个值，那么这个返回值会立即传递给回调函数，同时指定为回调函数的最后一个参数，在所有预定义的参数之后。如果原始函数给回调函数传递一个值，它也会这么做。
 
 	grunt.util.callbackify(syncOrAsyncFunction)
 
-下面这个例子可能能够更好的说明:
+下面这个例子也许能够更好的说明这个问题：
 
 	function add1(a, b) {
 		return a + b;
@@ -119,24 +119,24 @@ done函数接收以下参数:
 
 ### grunt.util.namespace
 
-一个内部库用于解决对象内部深层嵌套的属性.
+一个用于解析对象内部深度嵌套的属性的内部库。
 
 ### grunt.util.task
 
-一个用于运行任务内部库.
+一个用于运行任务内部库。
 
 ## 外部库
 
 ### grunt.util._
 
-[Lo-Dash](http://lodash.com/) - 超级有用的数组, 函数和对象实用方法. [Underscore.string] - 极其实用的字符串方法.
+[Lo-Dash](http://lodash.com/) - 它带有很多超级有用的处理数组、函数和对象的实用方法。[Underscore.string] - 它就包含了很多字符串处理的实用方法。
 
-注意Underscore.string是混合在`grunt.util._`中的, 它也可以作为`grunt.util._.str`的方法, 但是它与现有的Lo-Dash方法冲突.
+注意Underscore.string已经混合到`grunt.util._`中了，它也可以以`grunt.util._.str`的形式调用这个方法，但是这样做它就会与现有的Lo-Dash方法冲突。
 
 ### grunt.util.async
 
-[Async](https://github.com/caolan/async) - node和浏览器异步实用工具.
+[Async](https://github.com/caolan/async) - 用于Node.js和浏览器异步操作的实用工具。
 
 ### grunt.util.hooker
 
-[JavaScript Hooker](https://github.com/cowboy/javascript-hooker) - 进行调试和填充的小补丁[Monkey-patch](钩子).
+[JavaScript Hooker](https://github.com/cowboy/javascript-hooker) - 用于调试和作其他补充的补丁[Monkey-patch](钩子)函数。
