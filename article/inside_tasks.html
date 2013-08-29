@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Grunt中文社区是由网友发起的Grunt.js中文交流社区，关注前端构建工具Grunt.js的应用推广。">
+    <meta name="keywords" content="Grunt.js,Grunt,web前端,前端,HTML,CSS,JavaScript,js,构建,压缩,合并,发布">
+    <title>任务内幕 - Grunt中文社区</title>
+    <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/googlecode.css">
+  </head>
+  <body>
+    <header>
+      <div class="wrapper inner">
+        <h1 class="logo"><a href="http://www.gruntjs.org">Gruntjs</a></h1>
+        <nav>
+          <ul class="clearfix">
+            <li><a href="#documention">Documention</a></li>
+            <li><a href="#api">API</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <section class="wrapper content clearfix">
+      <div class="post_wrapper">
+        <article class="post"><blockquote>
+  <p>inside 有『内幕，内情，内部秘密之意，因而本节译作内幕』。</p>
+</blockquote>
+
+<p>当一个任务运行时，Grunt通过函数内部的<code>this</code>对象暴露了很多特定于任务的实用属性和方法。同样这个对象也可以暴露为<code>grunt.task.current</code>的形式在<a href="http://gruntjs.com/grunt.template">templates</a>中使用，例如，<code>this.name</code>属性也可以作为<code>grunt.task.current.name</code>来实用。</p>
+
+<h2>所有任务内部都可以使用的方法/属性</h2>
+
+<h3>this.async</h3>
+
+<p>如果一个任务时异步的，就必须通知Grunt延迟调用这个方法。它会返回一个应该在完成任务时调用的"done"函数来处理任务相关的操作。可能会传递一个<code>false</code>或者<code>Error</code>类的对象给这个"done"函数，以便通知Grunt当前调用done函数的任务失败了。</p>
+
+<p>如果没有调用<code>this.async</code>方法，那么任务就会同步执行。</p>
+
+<pre><code>// 下面这行代码用于通知Grunt这是一个异步任务
+var done = this.async();
+// 下面是你的异步代码，应该延迟执行
+setTimeout(function(){
+    // 这里我们模拟一个可能会产生的错误
+    var success = Math.random() &gt; 0.5;
+    // 所有准备工作做好之后调用done函数
+    done(success);
+}, 1000);
+</code></pre>
+
+<h3>this.requires</h3>
+
+<p>如果一个任务的运行愈来愈另外一个任务(或者一些)任务的成功执行，这个方法可以用于保证在其他任务没有运行，或者其他任务执行失败时强制终止Grunt(注：其他任务就是当前任务执行所依赖的任务)。这个方法的参数任务列表可以时一个指定多个任务名称的数组，也可以是单个任务名称。</p>
+
+<p>注意，这个方法实际上不会真正执行指定的任务，它只是在其他任务没有成功运行的时候通知系统当前任务失败。</p>
+
+<pre><code>this.requires(taskList);
+</code></pre>
+
+<h3>this.requiresConfig</h3>
+
+<p>如果当前任务所需的一个或多个<a href="http://gruntjs.com/grunt.config">config</a>属性缺失，就通知系统当前任务失败。可以指定一个或者多个字符串或者数组类型的配置(config)属性。</p>
+
+<pre><code>this.requiresConfig(prop [, prop [, ...]]);
+</code></pre>
+
+<p>查看<a href="http://gruntjs.com/grunt.config">grunt.config文档</a>可以了解更多关于config属性相关的信息。</p>
+
+<p><em>这个方式是<a href="http://gruntjs.com/grunt.config#grunt.config.requires">grunt.config.requires</a>方法的一个别名。</em></p>
+
+<h3>this.name</h3>
+
+<p>当前任务的名称，和定义在<code>grunt.registerTask</code>中的任务名一样。例如，如果以<code>grunt sample</code>或者<code>grunt sample:foo</code>的方式运行一个名为"sample"的任务，那么在这个任务函数内部，它的<code>this.name</code>属性值就为<code>"sample"</code>。</p>
+
+<p><em>注意，如果一个任务使用<a href="http://gruntjs.com/grunt.task#grunt.task.renametask">grunt.task.renameTask</a>方法重命名过，那么这个属性就会指向对应的新名称。</em></p>
+
+<h3>this.nameArgs</h3>
+
+<p>当前任务的名称，它会包含在命令行中指定的任意使用逗号分割的参数或者标记(标志)。例如，如果以<code>grunt sample:foo</code>的方式运行一个名为"sample"的任务，那么在这个任务函数内部，<code>this.nameArgs</code>属性的值就为<code>"sample:foo"</code>。</p>
+
+<p><em>注意，如果一个任务使用<a href="http://gruntjs.com/grunt.task#grunt.task.renametask">grunt.task.renameTask</a>方法重命名过，那么这个属性也会指向对应的新名称。</em></p>
+
+<h3>this.args</h3>
+
+<p>传递给当前任务的参数数组。例如，以<code>grunt sample:foo:bar</code>的方式运行一个名为"sample"的任务，那么在这个任务函数内部，<code>this.args</code>属性的值就为<code>["foo", "bar"]</code>。</p>
+
+<p><em>注意，在多任务形式中，当前目标(名)会从<code>this.args</code>数组中省略。</em></p>
+
+<h3>this.flags</h3>
+
+<p>根据传递给当前任务的参数生成的一个对象。例如，以<code>grunt sample:foo:bar</code>的形式运行一个名为"sample"的任务，那么在这个任务函数内部，<code>this.flags</code>属性的值就为<code>{foo: true, bar: true}</code>。</p>
+
+<p><em>注意，在多任务形式中，任务目标名不会被设置为一个标记(标志)。</em></p>
+
+<h3>this.errorCount</h3>
+
+<p>当前任务执行期间<a href="http://gruntjs.com/grunt.log#grunt.log.error">grunt.log.error</a>方法被调用的次数。如果在任务运行期间有错误信息输出，这个方法可以用来让任务执行失败。</p>
+
+<h3>this.options</h3>
+
+<p>返回一个options对象，可选的<code>defaultsObj</code>参数的属性会被任意的任务级<code>options</code>对象的属性覆盖；在多任务形式中，可以进一步使用目标级的<code>options</code>对象的属性来覆盖默认父级的<code>options</code>对象的属性。</p>
+
+<pre><code>this.options([defaultsObj]);
+</code></pre>
+
+<blockquote>
+  <p>PS：这里优点绕口，以JS代码为例做个简单的解释：</p>
+</blockquote>
+
+<pre><code>var task = {
+    options : {
+        // 这里是任务级的配置
+    },
+    targetA: {
+        options : {
+            // 这里可以使用任务目标级的配置覆盖父级的配置
+        }
+    }
+}
+</code></pre>
+
+<p>下面给出了一个例子，展示了在任务中可以如何使用<code>this.options</code>方法：</p>
+
+<pre><code>var options = this.options({
+    enabled: false
+});
+
+doSomething(options.enabled);
+</code></pre>
+
+<p>在<a href="http://gruntjs.com/configuring-tasks#options">配置任务</a>指南中展示了一个如何从用户任务的角度来指定options的例子。</p>
+
+<h2>多任务形式内部可用的方法/属性</h2>
+
+<h3>this.target</h3>
+
+<p>在一个多任务形式中，这个属性包含了遍历当前任务返回的目标名称。例如，如果一个名为"sample"的多任务带有<code>{sample: {foo: "bar"}}</code>这样的配置数据，当以<code>grunt sample:foo</code>的形式运行这个任务时，那么在这个任务函数内部，<code>this.target</code>属性的值就为<code>"foo"</code>。</p>
+
+<h3>this.files</h3>
+
+<p>在一个多任务形式中，使用任何一种Grunt所支持的<a href="http://gruntjs.com/configuring-tasks#files">文件格式和选项</a>，<a href="http://gruntjs.com/configuring-tasks#globbing-patterns">通配符模式</a>或者<a href="http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically">动态映射</a>方式指定的所有文件，都会被自动标准化为一个唯一的格式：即<a href="http://gruntjs.com/configuring-tasks#files-array-format">文件数组格式</a>。</p>
+
+<p>这意味着，任务不需要包含大量显示的处理自定义文件格式，通配符格式，源文件到目标文件映射或者过滤输出文件或者目录这些形式的模板。任务用户只需要根据<a href="http://gruntjs.com/configuring-tasks#files">配置任务</a>指南中的说明指定文件，接下来的事情Grunt会自动处理所有的细节工作。</p>
+
+<p>Grunt会利用数组中每个对象的<code>src</code>和<code>dest</code>属性遍历任务的<code>this.files</code>返回的数组。并且任务的<code>this.files</code>属性永远都是一个数组。在你的任务管理多个源文件所对应的目标文件的情况下，你会发现<code>src</code>属性也永远都是一个数组。</p>
+
+<p><em>注意，<code>src</code>属性的值中可能会包含不存在的源文件，所以在你使用这些文件之前最好明确的检测一下它们是否存在。</em></p>
+
+<p>这里有一个例子，展示了可以如何在一个简单的名为"concat"的任务中使用<code>this.files</code>属性：</p>
+
+<pre><code>this.files.forEach(function(file) {
+    var contents = file.src.filter(function(filepath) {
+    // Remove nonexistent files (it's up to you to filter or warn here).
+        if (!grunt.file.exists(filepath)) {
+            grunt.log.warn('Source file "' + filepath + '" not found.');
+            return false;
+        } else {
+            return true;
+        }
+    }).map(function(filepath) {
+        // Read and return the file's source.
+        return grunt.file.read(filepath);
+    }).join('\n');
+    // Write joined contents to destination filepath.
+    grunt.file.write(file.dest, contents);
+    // Print a success message.
+    grunt.log.writeln('File "' + file.dest + '" created.');
+});
+</code></pre>
+
+<p><em>如果你还需要使用原始的文件对象属性，可以通过每个单独的文件对象的<code>orig</code>属性来使用原始文件对象的信息，但是目前都没发现有访问原始属性的用例。</em></p>
+
+<h3>this.filesSrc</h3>
+
+<p>在多任务形式中，通过任意的<a href="http://gruntjs.com/configuring-tasks#files">文件格式</a>指定的所有的    <code>src</code>属性中的文件都会被归并到一个单独的数组中。如果你的任务是"只读"任务并且无需关心目标文件路径，可以使用这个数组来替代<code>this.files</code>。</p>
+
+<p>这里有一个例子，展示了可以如何在一个简单的名为"lint"的任务中使用<code>this.filesSrc</code>属性：</p>
+
+<pre><code>// Lint specified files
+var files = this.filesSrc;
+var errorCount = 0;
+files.forEach(function(filepath) {
+    if (!lint(grunt.file.read(filepath))) {
+        errorCount++;
+    }
+});
+
+// Fail task if errors were logged.
+if (errorCount &gt; 0) { return false; }
+
+// Otherwise, print a success message.
+grunt.log.ok('Files lint free: ' + files.length);
+</code></pre>
+
+<h3>this.data</h3>
+
+<p>在多任务形式中，这个属性值就是给定目标存储在Grunt配置数据中的真实数据。例如，如果一个名为"sample"的多任务带有<code>{sample: {foo: "bar"}}</code>这样的配置数据，当以<code>grunt sample:foo</code>的形式运行这个任务时，那么在这个任务函数内部，<code>this.data</code>属性的值就为<code>"bar"</code>。</p>
+
+<p><em>推荐使用<code>this.options</code>，<code>this.files</code>和<code>this.filesSrc</code>来替代<code>this.data</code>, 因为这些属性的值都是标准化后的值。</em></p></article>
+      </div>
+      <aside class="sidebar">
+        <dl>
+          <dt id="documention">文档</dt>
+          <dd><a href="getting_started.html">新手上路</a></dd>
+          <dd><a href="configuring_tasks.html">配置任务</a></dd>
+          <dd><a href="sample_gruntfile.html">Gruntfile范例</a></dd>
+          <dd><a href="creating_tasks.html">创建任务</a></dd>
+          <dd><a href="creating_plugins.html">创建插件</a></dd>
+        </dl>
+        <dl>
+          <dt>高级</dt>
+          <dd><a href="installing_grunt.html">安装Grunt</a></dd>
+          <dd><a href="frequently_asked_questions.html">常见问题</a></dd>
+          <dd><a href="project_scaffolding.html">项目脚手架</a></dd>
+        </dl>
+        <dl>
+          <dt>社区</dt>
+          <dd><a href="help_resources.html">参考资源</a></dd>
+          <dd><a href="who_use_grunt.html">Grunt用户</a></dd>
+          <dd><a href="contributing.html">参与贡献</a></dd>
+        </dl>
+        <dl>
+          <dt>迁移指南</dt>
+          <dd><a href="grunt.html">从0.3升级到0.4</a></dd>
+        </dl>
+        <dl>
+          <dt id="api">API</dt>
+          <dd><a href="grunt.html">grunt</a></dd>
+          <dd><a href="grunt_config.html">grunt config</a></dd>
+          <dd><a href="grunt_event.html">grunt event</a></dd>
+          <dd><a href="grunt_fail.html">grunt fail</a></dd>
+          <dd><a href="grunt_file.html">grunt file</a></dd>
+          <dd><a href="grunt_log.html">grunt log</a></dd>
+          <dd><a href="grunt_option.html">grunt option</a></dd>
+          <dd><a href="grunt_task.html">grunt task</a></dd>
+          <dd><a href="grunt_template.html">grunt template</a></dd>
+          <dd><a href="grunt_util.html">grunt util</a></dd>
+        </dl>
+        <dl>
+          <dt>其他</dt>
+          <dd><a href="inside_task.html">任务内幕</a></dd>
+          <dd><a href="exit_codes.html">出口代码</a></dd>
+        </dl>
+        <p><a href="https://github.com/basestyle/grunt-cn" class="btn">Github</a></p>
+        <p><a href="https://github.com/basestyle/grunt-cn/issues">讨论组</a></p>
+      </aside>
+    </section>
+    <footer class="clearfix">
+      <div class="wrapper">
+        <p>Grunt.js 中文社区为开源项目，由网友创建并维护。</p>
+        <p>贡献: <a href="http://www.toobug.net">Toobug</a> <a href="http://www.basecss.net">Basecss</a></p>
+      </div>
+      <script type="text/javascript" src="http://tajs.qq.com/stats?sId=23584984" charset="UTF-8"></script>
+    </footer>
+    <div id="top">top</div>
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../js/highlight.min.js"></script>
+    <script type="text/javascript" src="../js/page.js"></script>
+  </body>
+</html>

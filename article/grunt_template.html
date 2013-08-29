@@ -23,20 +23,20 @@
     </header>
     <section class="wrapper content clearfix">
       <div class="post_wrapper">
-        <article class="post"><p>模板字符串可以使用提供的模板函数手动的处理. 此外, config.get方法自动解析Gruntfile里面指定的配置数据中的<code>&lt;% %&gt;</code>风格的模板字符串.</p>
+        <article class="post"><p>可以使用Grunt提供的模板相关函数来手动的处理模板字符串。此外，<code>config.get</code>方法(许多任务都有用到这个方法)可以自动解析指定在<code>Gruntfile</code>中作为配置数据的<code>&lt;% %&gt;</code>风格的模板字符串。</p>
 
 <h3>grunt.template.process</h3>
 
-<p>处理一个<a href="http://lodash.com/docs/#template">Lo-Dash模板</a>字符串. <code>template</code>参数将递归的处理直到没有更多的模板需要处理.</p>
+<p>处理<a href="http://lodash.com/docs/#template">Lo-Dash模板</a>字符串。<code>template</code>参数会以递归的方式进行处理，直到不再有需要处理的模板。</p>
 
-<p>默认的数据对象是完整的配置对象, 但是如果设置<code>options.data</code>, 则不是该配置对象. 默认模板分隔符是<code>&lt;% %&gt;</code>, 但是如果<code>options.delimiters</code>设置了自定义的分隔符名称, 这些模板分隔符将会被替换(默认分隔符会被替换).</p>
+<p>默认情况下数据对象就是项目完整的配置对象，但是如果设置了<code>options.data</code>，就会使用这个<code>options.data</code>中指定的数据，而不会使用项目完整的配置对象。默认的模板分隔符是<code>&lt;% %&gt;</code>，但是如果将<code>options.delimiters</code>设置为自定义的分隔符，模板就会使用自定义的分隔符替换默认分隔符。</p>
 
 <pre><code>grunt.template.process(template [,options])
 </code></pre>
 
-<p>模板内部, <code>grunt</code>对象是暴露的, 因此你可以这样做<code>&lt;%= grunt.template.tody('yyyy') %&gt;</code>. <em>注意, 如果数据对象已经有了<code>grunt</code>属性, 在模板内将无法访问<code>grunt</code>API</em>.</p>
+<p>在模板内部，<code>grunt</code>对象是暴露的，因此你可以这样做<code>&lt;%= grunt.template.tody('yyyy') %&gt;</code>。<em>注意，如果数据对象也有一个名为<code>grunt</code>的属性，那么在模板里面就无法使用<code>grunt</code>系列的API。</em></p>
 
-<p>这里有一个例子, <code>baz</code>属性将递归的处理, 直到没有更多的<code>&lt;% %&gt;</code>模板要处理.</p>
+<p>这里有一个例子，Grunt会以递归的方式处理到<code>baz</code>属性中的模板，知道不再有<code>&lt;% %&gt;</code>风格的模板需要处理。</p>
 
 <pre><code>var obj = {
     foo: 'c',
@@ -48,16 +48,16 @@ grunt.template.process('&lt;%= baz %&gt;', {data: obj}) // 'abcde'
 
 <h3>grunt.template.setDelimiters</h3>
 
-<p>设置<a href="http://lodash.com/docs/#template">Lo-Dash模板</a>分隔符为预定义的, 以便你的<code>grunt.util._.template</code>需要手动的调用. <code>config</code>分隔符<code>&lt;% %&gt;</code>是默认包含的.</p>
+<p>设置<a href="http://lodash.com/docs/#template">Lo-Dash模板</a>分隔符为预定义的分隔符，以防你需要手动的调用<code>grunt.util._.template</code>方法来进行处理。默认情况下<code>config</code>中会使用<code>&lt;% %&gt;</code>风格的分隔符。</p>
 
-<p><em>你或许不需要使用这个方法, 因为你将使用<code>grunt.template.process</code>在内部使用这个方法</em>.</p>
+<p><em>你或许无需使用这个方法，因为你所使用的<code>grunt.template.process</code>方法会在内部使用这个方法进行处理。</em></p>
 
 <pre><code>grunt.template.setDelimiters(name)
 </code></pre>
 
 <h3>grunt.template.addDelimiters</h3>
 
-<p>添加一组命名<a href="http://lodash.com/docs/#template">Lo-Dash模板</a>分隔符. 你或许不需要使用这个方法, 因为内置的分割符应该足以使用, 但是你可以随时添加<code>&lt;% %&gt;</code>或者<code>[% %]</code>风格的分隔符.</p>
+<p>给<a href="http://lodash.com/docs/#template">Lo-Dash模板</a>添加一组命名分隔符。你或许无需使用这个方法，因为内置的分割符应该足以满足你的需求，但是你也可以随时添加<code>&lt;% %&gt;</code>或者<code>[% %]</code>风格的分隔符。</p>
 
 <pre><code>grunt.template.addDelimiters(name, opener, closer)
 </code></pre>
@@ -66,29 +66,29 @@ grunt.template.process('&lt;%= baz %&gt;', {data: obj}) // 'abcde'
 
 <h3>grunt.template.date</h3>
 
-<p>使用<a href="https://github.com/felixge/node-dateformat">dateformat库</a>格式化一个日期.</p>
+<p>使用<a href="https://github.com/felixge/node-dateformat">dateformat库</a>格式化一个日期。</p>
 
 <pre><code>grunt.template.date(date, format)
 </code></pre>
 
-<p>这里有一个例子, 一个指定的日期将被格式化为月/日/年.</p>
+<p>这里有一个例子，指定的日期将被格式化为年-月-日的形式。</p>
 
 <pre><code>grunt.template.date(847602000000, 'yyyy-mm-dd') // '1996-11-10'
 </code></pre>
 
 <h3>grunt.template.today</h3>
 
-<p>使用<a href="https://github.com/felixge/node-dateformat">dateformat库</a>格式化今天的日期.</p>
+<p>使用<a href="https://github.com/felixge/node-dateformat">dateformat库</a>格式化当前日期。</p>
 
 <pre><code>grunt.template.today(format)
 </code></pre>
 
-<p>这里有一个例子, 今天的日期将被格式化为一个4位数的年份.</p>
+<p>这里有一个例子，当前日期会被格式化为一个用4位数字表示年份的格式。</p>
 
 <pre><code>grunt.template.today('yyyy')  //'2013'
 </code></pre>
 
-<p><em>(有人提醒我每年更新这个日期, 因此这个文档只出现当前年份的日期)</em>.</p></article>
+<p><em>(有人提醒我每年都更新一下日期相关的信息，因此在文档只会出现当前年份的日期信息)。</em></p></article>
       </div>
       <aside class="sidebar">
         <dl>
@@ -130,7 +130,7 @@ grunt.template.process('&lt;%= baz %&gt;', {data: obj}) // 'abcde'
         </dl>
         <dl>
           <dt>其他</dt>
-          <dd><a href="#">任务内部秘密</a></dd>
+          <dd><a href="inside_task.html">任务内幕</a></dd>
           <dd><a href="exit_codes.html">出口代码</a></dd>
         </dl>
         <p><a href="https://github.com/basestyle/grunt-cn" class="btn">Github</a></p>

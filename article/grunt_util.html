@@ -23,62 +23,62 @@
     </header>
     <section class="wrapper content clearfix">
       <div class="post_wrapper">
-        <article class="post"><p>其他实用工具, 包括Lo-Dash, Async和Hooker.</p>
+        <article class="post"><p>各种实用工具，包括Lo-Dash，Async和Hooker等。</p>
 
 <h3>grunt.util.kindOf</h3>
 
-<p>返回一个值的"种类". 好比<code>typeof</code>返回内部的<code>[Class](Class/)</code>值. 可能返回<code>"number"</code>, <code>"string"</code>, <code>"boolean"</code>, <code>"function"</code>, <code>"regexp"</code>, <code>"array"</code>, <code>"date"</code>, <code>"error"</code>, <code>"null"</code>, <code>"undefined"</code>以及全面的<code>"object"</code>.</p>
+<p>返回给定值的"类型"。就像<code>typeof</code>运算符就会返回内部的<code>[Class](Class/)</code>信息。这个方法可能会返回<code>"number"</code>，<code>"string"</code>，<code>"boolean"</code>，<code>"function"</code>，<code>"regexp"</code>，<code>"array"</code>，<code>"date"</code>，<code>"error"</code>，<code>"null"</code>，<code>"undefined"</code>和代表一切类型的<code>"object"</code>。</p>
 
 <pre><code>grunt.util.kindOf(value)
 </code></pre>
 
 <h3>grunt.util.error</h3>
 
-<p>返回一个新的Error实例(可以抛出)与相应的消息. 如果指定一个Error对象而不是<code>message</code>, 将放回该对象. 另外, 如果指定一个Error对象<code>origError</code>并且使用<code>--debug 9</code>选项运行Grunt, 原始的Error堆栈将被抛出.</p>
+<p>返回一个新的Error实例(它也可以抛出)与相应的消息。如果指定的是一个Error对象而不是<code>message</code>，会返回指定的对象。另外，如果指定一个Error对象作为<code>origError</code>参数，同时使用<code>--debug 9</code>选项运行Grunt，那么就会输出原始的Error堆栈信息。</p>
 
 <pre><code>grunt.util.error(message [, origError])
 </code></pre>
 
 <h3>grunt.util.linefeed</h3>
 
-<p>标准化当前操作系统的换行符(Window上是<code>\r\n</code>,否则为<code>\n</code>).</p>
+<p>将换行符标准化为当前操作系统使用的形式(Window上是<code>\r\n</code>，否则为<code>\n</code>)。</p>
 
 <h3>grunt.util.normalizeIf</h3>
 
-<p>给定一个字符串, 返回一个新字符串, 所有的换行符都被标准化为当前操作系统中的形式(Window上是<code>\r\n</code>,否则为<code>\n</code>).</p>
+<p>给定一个字符串，返回一个新字符串，原始字符串中所有的换行符都会被标准化为当前操作系统中使用的形式(Window上是<code>\r\n</code>，否则为<code>\n</code>)。</p>
 
 <pre><code>grunt.util.normalizeIf(string)
 </code></pre>
 
 <h3>grunt.util.recurse</h3>
 
-<p>递归嵌套的对象和数组, 为每个非对象值执行<code>callbackFunction</code>. 如果<code>continueFunction</code>返回<code>false</code>, 给定的对象和值将会跳过.</p>
+<p>以递归的方式遍历嵌套的对象和数组，然后为每个非对象类型的值执行<code>callbackFunction</code>(回调函数)。如果<code>continueFunction</code>返回<code>false</code>，那么就会跳过给定的对象和值。</p>
 
 <pre><code>grunt.util.recurse(object, callbackFunction, continueFunction)
 </code></pre>
 
 <h3>grunt.util.repeat</h3>
 
-<p>返回重复<code>n</code>次的字符串<code>str</code></p>
+<p>返回重复<code>n</code>次的字符串<code>str</code>。</p>
 
 <pre><code>grunt.util.repeat(n, str)
 </code></pre>
 
 <h3>grunt.util.pluralize</h3>
 
-<p>给定一个<code>"a/b"</code>形式的<code>str</code>, 如果<code>n</code>为<code>1</code>, 返回<code>"a"</code>否则返回<code>"b"</code>. 如果你不能使用'/'则你可以指定一个自定义的分隔符.</p>
+<p>给定一个<code>"a/b"</code>形式的<code>str</code>，如果<code>n</code>为<code>1</code>则返回<code>"a"</code>；否则返回<code>"b"</code>。如果你不能使用'/'，你还可以指定一个自定义的分隔符。</p>
 
 <pre><code>grunt.util.pluralize(n, str, separator)
 </code></pre>
 
 <h3>grunt.util.spawn</h3>
 
-<p>生成一个子进程, 跟踪其标准输出, 标准错误和退出代码. 该方法返回一个生成的子进程的引用. 当子进程退出时, 将调用done函数.</p>
+<p>生成一个子进程，跟踪它的stdout(标准输出)，stderr(标准错误)和退出码代。这个方法会返回所生成的子进程的引用。当子进程退出时，就会调用done函数。</p>
 
 <pre><code>grunt.util.spawn(options, doneFunction)
 </code></pre>
 
-<p><code>options</code>对象可能有以下属性:</p>
+<p><code>options</code>对象可以指定下面这些属性：</p>
 
 <pre><code>var options = {
     // The command to execute. It should be in the system path.
@@ -97,7 +97,7 @@
 };
 </code></pre>
 
-<p>done函数接收以下参数:</p>
+<p>done函数可以接收以下参数：</p>
 
 <pre><code>function doneFunction(error, result, code) {
     // If the exit code was non-zero and a fallback wasn't specified, an Error
@@ -118,19 +118,19 @@
 
 <h3>grunt.util.toArray</h3>
 
-<p>给定一个数组或者一个类数组对象, 返回一个数组. 转换<code>arguments</code>对象为数组是很好的.</p>
+<p>给定一个数组或者一个类数组对象，然后返回一个(新)数组。将<code>arguments</code>对象转换为数组是非常有用的。</p>
 
 <pre><code>grunt.util.toArray(arrayLikeObject)
 </code></pre>
 
 <h3>grunt.util.callbackify</h3>
 
-<p>标准化"返回值"和"传递结果给回调"的函数, 总是传递一个结果给指定的回调函数. 如果原始函数返回一个值, 该值将即刻传递给回调函数, 并指定为最后一个参数, 在是哟有的预定义参数之后. 如果原始函数传递一个值给回调函数, 它也会继续这样做.</p>
+<p>标准化"返回值"和"传递结果给回调"的函数，并且总是传递一个结果给指定的回调函数。如果原始函数返回一个值，那么这个返回值会立即传递给回调函数，同时指定为回调函数的最后一个参数，在所有预定义的参数之后。如果原始函数给回调函数传递一个值，它也会这么做。</p>
 
 <pre><code>grunt.util.callbackify(syncOrAsyncFunction)
 </code></pre>
 
-<p>下面这个例子可能能够更好的说明:</p>
+<p>下面这个例子也许能够更好的说明这个问题：</p>
 
 <pre><code>function add1(a, b) {
     return a + b;
@@ -154,27 +154,27 @@ fn2(1, 2, function(result) {
 
 <h3>grunt.util.namespace</h3>
 
-<p>一个内部库用于解决对象内部深层嵌套的属性.</p>
+<p>一个用于解析对象内部深度嵌套的属性的内部库。</p>
 
 <h3>grunt.util.task</h3>
 
-<p>一个用于运行任务内部库.</p>
+<p>一个用于运行任务内部库。</p>
 
 <h2>外部库</h2>
 
 <h3>grunt.util._</h3>
 
-<p><a href="http://lodash.com/">Lo-Dash</a> - 超级有用的数组, 函数和对象实用方法. [Underscore.string] - 极其实用的字符串方法.</p>
+<p><a href="http://lodash.com/">Lo-Dash</a> - 它带有很多超级有用的处理数组、函数和对象的实用方法。[Underscore.string] - 它就包含了很多字符串处理的实用方法。</p>
 
-<p>注意Underscore.string是混合在<code>grunt.util._</code>中的, 它也可以作为<code>grunt.util._.str</code>的方法, 但是它与现有的Lo-Dash方法冲突.</p>
+<p>注意Underscore.string已经混合到<code>grunt.util._</code>中了，它也可以以<code>grunt.util._.str</code>的形式调用这个方法，但是这样做它就会与现有的Lo-Dash方法冲突。</p>
 
 <h3>grunt.util.async</h3>
 
-<p><a href="https://github.com/caolan/async">Async</a> - node和浏览器异步实用工具.</p>
+<p><a href="https://github.com/caolan/async">Async</a> - 用于Node.js和浏览器异步操作的实用工具。</p>
 
 <h3>grunt.util.hooker</h3>
 
-<p><a href="https://github.com/cowboy/javascript-hooker">JavaScript Hooker</a> - 进行调试和填充的小补丁<a href="钩子">Monkey-patch</a>.</p></article>
+<p><a href="https://github.com/cowboy/javascript-hooker">JavaScript Hooker</a> - 用于调试和作其他补充的补丁<a href="钩子">Monkey-patch</a>函数。</p></article>
       </div>
       <aside class="sidebar">
         <dl>
@@ -216,7 +216,7 @@ fn2(1, 2, function(result) {
         </dl>
         <dl>
           <dt>其他</dt>
-          <dd><a href="#">任务内部秘密</a></dd>
+          <dd><a href="inside_task.html">任务内幕</a></dd>
           <dd><a href="exit_codes.html">出口代码</a></dd>
         </dl>
         <p><a href="https://github.com/basestyle/grunt-cn" class="btn">Github</a></p>
