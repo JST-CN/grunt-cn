@@ -10,7 +10,7 @@
 
 ## Grunt能在Windows上工作吗？
 
-Grunt可以很好的工作在Windows平台，因为[Node.js](http://nodejs.org/)和[npm](http://npmjs.org/)在Windows上都工作得很好(Grunt是基于Node.js的，因而子在工作平台上是能够跨平台工作的，对于对于特定平台不支持的特性一般都会有相关说明或者有兼容性的选择来支持)。通常情况下问题在于[Cygwin](http://www.cygwin.com/)，因为它捆绑了一个过时版本的Node.js。
+Grunt可以很好的工作在Windows平台，因为[Node.js](http://nodejs.org/)和[npm](http://npmjs.org/)在Windows上都工作得很好(Grunt是基于Node.js的，因而是能够跨平台工作的，对于特定平台不支持的特性一般都会有相关说明或者有兼容性的选择来支持)。通常情况下问题在于[Cygwin](http://www.cygwin.com/)，因为它捆绑了一个过时版本的Node.js。
 
 避免这个问题最好的方式是使用[msysGit安装器](http://msysgit.github.com/)安装二进制的`git`，然后使用[Node.js安装器](http://nodejs.org/#download)安装二进制的`node`和`npm`，并且使用内置的[Window命令提示符](http://www.cs.princeton.edu/courses/archive/spr05/cos126/cmd-prompt.html)或者[PowerShell](http://support.microsoft.com/kb/968929)替代Cygwin(或者说我们首可以先安装好Git环境，然后将托管在Github上的Grunt库克隆到本地来安装使用Grunt，在工具方面Windows对Node.js的支持或许有欠缺，但是在对Node.js本身的支持上已经做得很好了)。
 
@@ -33,7 +33,7 @@ Grunt可以很好的工作在Windows平台，因为[Node.js](http://nodejs.org/)
 
     eval "$(grunt --completion=bash)"
     
-当然，假设你已经使用`npm install -g grunt`在全局安装好了Grunt。因为Grunt目前仅仅支持bash命令。
+当然前提是你已经使用`npm install -g grunt`在全局范围内安装好了Grunt。当前，自动补全唯一支持的shell脚本是bash。
 
 ## 如何跨多任务共享参数？
 
