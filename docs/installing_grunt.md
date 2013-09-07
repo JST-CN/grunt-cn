@@ -14,7 +14,7 @@ Grunt和Grunt插件应该作为[项目依赖](https://npmjs.org/doc/json.html#de
 
 ## 安装已发布的开发版本的Grunt
 
-通常当新功能开发完成后，Grunt构建都可会定期被发布到npm中。这些构建都不能通过显示的指定一个版本号来安装到依赖中，通常它(开发中的构建功能，比如内置模块，插件等)会有一个候选指定的内部版本号/alpha/beta/release。
+通常当新功能开发完成后，Grunt构建都可能会定期被发布到npm中。没有显式指定的版本号，这些构建**不可能**安装到依赖中，通常它会有一个内部版本号或者alpha/beta/指定候选版本号。
 
 与安装指定版本的Grunt一样，运行`npm install grunt@VERSION --save-dev`其中`VERSION`就是你所需要的版本，同时npm将会安装那个版本(所指定版本的模块)的Grunt到你的项目目录中(通常都会安装到nodemodule中)，并把它添加到`package.json`依赖中。
 
