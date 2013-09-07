@@ -126,12 +126,10 @@ grunt.registerTask('log','log stuff.', function(){
 <p>任务也可以访问它们自身名称和参数.</p>
 
 <pre><code>grunt.registerTask('foo', 'My "foo" task.', function(a, b) {
-grunt.log.writeln(this.name, a, b);
-</code></pre>
+    grunt.log.writeln(this.name, a, b);
+});
 
-<p>});</p>
-
-<pre><code>// 用法:
+// 用法:
 // grunt foo foo:bar
 //   logs: "foo", undefined, undefined
 //   logs: "foo", "bar", undefined
