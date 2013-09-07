@@ -92,8 +92,8 @@
 任务也可以访问它们自身名称和参数.
 
     grunt.registerTask('foo', 'My "foo" task.', function(a, b) {
-    grunt.log.writeln(this.name, a, b);
-});
+        grunt.log.writeln(this.name, a, b);
+    });
 
     // 用法:
     // grunt foo foo:bar

@@ -19,11 +19,11 @@
 
 ### 存储任务文件
 
-只要在项目根目录的.grunt/[npm-module-name]目录中存储数据，并且可以在适当的时候清除它。对于临时文件这并不是一个好的解决方案，在这种情况下可以使用常用的npm模块(如:[temporary](https://npmjs.org/package/temporary)，[tmp](https://npmjs.org/package/tmp))来启用操作系统(系统级)的临时目录。
+只在项目根目录的.grunt/[npm-module-name]目录中存储数据，并且在适当的时候清除它。对于临时文件这并不是一个好的解决方案，在这种情况下可以使用常用的npm模块(如:[temporary](https://npmjs.org/package/temporary)，[tmp](https://npmjs.org/package/tmp))来充分利用操作系统级的临时目录。
 
 ### 避免改变当前工作目录：`process.cwd()`
 
-默认情况下，当前工作目录被设置为包含Gruntfile的目录。用户可以在它们的Gruntfile中使用`grunt.file.setBase`去改变它(改变当前工作目录)，但是当心插件会改变它。
+默认情况下，当前工作目录被设置为包含Gruntfile的目录。用户可以在它们的Gruntfile中使用`grunt.file.setBase`去改变它(改变当前工作目录)，但是插件应该当心点不要去改变它。
 
 `path.resolve('foo')`可以用于获取相对于`Gruntfile`所在目录的`foo`文件路径的绝对路径。
 
