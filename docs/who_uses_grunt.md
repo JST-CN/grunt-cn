@@ -16,6 +16,7 @@
 ## [Twitter](https://twitter.com/)
 
 + [Tweetdeck](http://www.tweetdeck.com/)
++ [Typehead](https://github.com/twitter/typeahead.js)([Gruntfile](https://github.com/twitter/typeahead.js/blob/master/Gruntfile.js))
 
 ## [Cloudant](https://cloudant.com/)
 
@@ -41,5 +42,22 @@
 ## [Modernizr](http://modernizr.com/)
 
 + [Modernizr](http://modernizr.com/)
+
+## [Opera](http://opera.com/)
+
++ [Opera GitHub Projects](https://github.com/operasoftware)
+
+## [LiveChat](http://www.livechatinc.com/)
+
++ [LiveChat Grunt Workflow](http://developers.livechatinc.com/blog/how-livechat-uses-grunt-js-for-easy-product-deployment/)
+
+## [WordPress](http://wordpress.com/)
+
++ [WordPress Build Process](http://make.wordpress.org/core/2013/08/06/a-new-frontier-for-core-development/)
+
+## [Walmart](http://www.walmart.com/)
+
++ [Thorax](https://github.com/walmartlabs/thorax)([Gruntfile](https://github.com/walmartlabs/thorax/blob/master/Gruntfile.js))
++ [Lumbar](http://walmartlabs.github.io/lumbar/)([Gruntfile](https://github.com/walmartlabs/lumbar/blob/master/Gruntfile.js))
 
 ## [Bazaarvoice](http://www.bazaarvoice.com/)
