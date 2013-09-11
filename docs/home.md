@@ -52,6 +52,8 @@ Grunt.js中文社区是一个开源项目，由网友创建并维护。
 + [bluemsn](https://github.com/bluemsn)
 + [linkgod](https://github.com/linkgod)
 + [hotoo](https://github.com/hotoo)
++ [qivhou](https://github.com/qivhou)
++ [sourcebank](https://github.com/sourcebank)
 + 你
 
 **欢迎你的加入。**
