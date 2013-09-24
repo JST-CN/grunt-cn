@@ -26,7 +26,7 @@
 
 大部分的contrib任务(主要是指官方提供的任务)，包括[grunt-contrib-jshint插件的jshint任务](https://github.com/gruntjs/grunt-contrib-jshint)，以及[grunt-contrib-concat插件的concat任务](https://github.com/gruntjs/grunt-contrib-concat)都是多任务形式的。
 
-    grunt.registerTask(taskName, [description, ], taskFunction);
+    grunt.registerMultiTask(taskName, [description, ], taskFunction);
     
 鉴于指定的配置，这里有一个示例演示了如果通过`grunt log:foo`运行Grunt，它会输出`foo: 1,2,3`；如果通过`grunt log:bar`来运行Grunt， 它会输出`bar: hello world`。然而如果通过`grunt log`运行Grunt, 它会输出`foo: 1,2,3`，然后是`bar: hello world`，最后是`baz: false`(任务目标会按照指定的顺序进行处理)。
 
