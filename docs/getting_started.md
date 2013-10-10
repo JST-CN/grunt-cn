@@ -30,7 +30,7 @@ Grunt和Grunt的插件都是通过[Node.js](http://nodejs.org/)的包管理器[n
 
 假设已经安装好Grunt CLI并且项目也已经使用一个`package.json`和一个`Gruntfile`文件配置好了，那么接下来用Grunt进行工作就非常容易了：
 
-1. 进入到项目的根目录(在命令行面板定位到项目根目录)。
+1. 进入到项目的根目录(在命令行面板定位到项目根目录。在windows系统下，也可以进入项目根目录的文件夹后，按Shift+鼠标右键，打开右键菜单，选择“在此处打开命令窗口(W)”)。
 2. 运行`npm install`安装项目相关依赖(插件，Grunt内置任务等依赖)。
 3. 使用`grunt`(命令)运行Grunt。
 
@@ -176,7 +176,7 @@ Grunt和Grunt的插件都是通过[Node.js](http://nodejs.org/)的包管理器[n
 		});
 	};
 
-自定义的项目特定的任务可以不定义在Gruntfile中；它们可以定义在一个外部`.js`文件中，然后通过[grunt.loadTasks](http://gruntjs.com/grunt#grunt.loadtasks)方法来加载(Grunt 0.4.x中是`grunt.loadNpmTasks`)。
+自定义的项目特定的任务可以不定义在Gruntfile中；它们可以定义在一个外部`.js`文件中，然后通过[grunt.loadTasks](http://gruntjs.com/grunt#grunt.loadtasks)方法来加载。
 
 ## 扩展阅读
 

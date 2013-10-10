@@ -8,7 +8,7 @@ Grunt是一个自动化的项目构建工具。如果你需要重复的执行像
 
 Grunt是一个庞大的生态系统，每天都在成长。你可以自由的选择数以百计的插件以帮助你自动化的处理任务。
 
-如果你所需要的插件还被有人创建，那么你可以自己创建插件并通过npm很方便的发布以供更多人使用并一起完善。
+如果你所需要的插件还没有被人创建, 那么你可以自己创建插件并通过npm很方便的发布以供更多人使用并一起完善. 
 
 ## Grunt都有哪些插件？
 
@@ -54,6 +54,7 @@ Grunt.js中文社区是一个开源项目，由网友创建并维护。
 + [hotoo](https://github.com/hotoo)
 + [qivhou](https://github.com/qivhou)
 + [sourcebank](https://github.com/sourcebank)
++ [peigong](http://www.peigong.tk) - [Github](https://github.com/peigong)
 + 你
 
 **欢迎你的加入。**
