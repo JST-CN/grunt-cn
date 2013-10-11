@@ -71,11 +71,12 @@
 
 <p><a href="http://gruntjs.com/grunt#wiki-grunt-registertask">别名任务</a>是非常简单的，一个常规的任务可以使用<a href="http://gruntjs.com/grunt.task#wiki-grunt-task-run">grunt.task.run</a>方法让它编程一个有效的"动态的"别名任务函数。在下面的例子中，在命令行运行<code>grunt build:001</code>的结果就是执行<code>foo:001</code>,<code>bar:001</code>和<code>baz:001</code>这三个任务。</p>
 
-<pre><code>grunt.registerTask('build', 'Run all my build task.', function(){
-    if(n == null){
-        grunt.warn('Build num must be specified, like build:001');
-    }
-})
+<pre><code>grunt.registerTask('build', 'Run all my build tasks.', function(n) {
+  if (n == null) {
+    grunt.warn('Build num must be specified, like build:001.');
+  }
+  grunt.task.run('foo:' + n, 'bar:' + n, 'baz:' + n);
+});
 </code></pre>
 
 <h3>-- options</h3>
