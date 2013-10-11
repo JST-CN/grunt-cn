@@ -45,11 +45,12 @@ Grunt可以很好的工作在Windows平台，因为[Node.js](http://nodejs.org/)
 
 [别名任务](http://gruntjs.com/grunt#wiki-grunt-registertask)是非常简单的，一个常规的任务可以使用[grunt.task.run](http://gruntjs.com/grunt.task#wiki-grunt-task-run)方法让它编程一个有效的"动态的"别名任务函数。在下面的例子中，在命令行运行`grunt build:001`的结果就是执行`foo:001`,`bar:001`和`baz:001`这三个任务。
 
-    grunt.registerTask('build', 'Run all my build task.', function(){
-        if(n == null){
-            grunt.warn('Build num must be specified, like build:001');
-        }
-    })
+	grunt.registerTask('build', 'Run all my build tasks.', function(n) {
+	  if (n == null) {
+	    grunt.warn('Build num must be specified, like build:001.');
+	  }
+	  grunt.task.run('foo:' + n, 'bar:' + n, 'baz:' + n);
+	});
     
 ### -- options
 
