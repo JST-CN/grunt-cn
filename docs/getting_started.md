@@ -62,7 +62,7 @@ Grunt和Grunt的插件都是通过[Node.js](http://nodejs.org/)的包管理器[n
 		"devDependencies": { // 项目依赖
 			"grunt": "~0.4.1", // Grunt库
 			"grunt-contrib-jshint": "~0.6.0", //以下三个是Grunt内置任务
-			"grunt-contrib-nodeunit":s "~0.2.0",
+			"grunt-contrib-nodeunit": "~0.2.0",
 			"grunt-contrib-uglify": "~0.2.2"
 		}
 	}
