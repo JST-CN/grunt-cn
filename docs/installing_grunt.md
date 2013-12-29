@@ -1,6 +1,6 @@
 # 安装Grunt
 
-这个文档说明了如何安装指定版本的Grunt和Grunt插件。如果你还没有阅读[入门](getting-started.html)指南，那么你应该先阅读它。
+本文档说明了如何安装指定版本的Grunt和Grunt插件。如果你还没有阅读[入门](getting-started.html)指南，那么你应该先阅读它。
 
 ## 概览
 
