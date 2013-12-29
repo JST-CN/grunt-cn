@@ -55,6 +55,7 @@ Grunt.js中文社区是一个开源项目，由网友创建并维护。
 + [qivhou](https://github.com/qivhou)
 + [sourcebank](https://github.com/sourcebank)
 + [peigong](http://www.peigong.tk) - [Github](https://github.com/peigong)
++ [htynkn](https://github.com/htynkn)
 + 你
 
 **欢迎你的加入。**
