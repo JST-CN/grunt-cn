@@ -96,7 +96,7 @@
 }
 </code></pre>
 
-<p>这里我们让<code>uglify</code>在<code>dist/</code>目录中创建了一个包含压缩结果的JavaScript文件。注意这里我使用了<code>&lt;%= concat.dist.dest&gt;</code>，因此uglify会自动压缩concat任务中生成的文件。</p>
+<p>这里我们让<code>uglify</code>在<code>dist/</code>目录中创建了一个包含压缩结果的JavaScript文件。注意这里我使用了<code>&lt;%= concat.dist.dest&gt;</code>，因此uglify会压缩concat任务中生成的文件。</p>
 
 <p>QUnit插件的设置非常简单。你只需要给它提供用于测试运行的文件的位置，注意这里的QUnit是运行在HTML文件上的。</p>
 

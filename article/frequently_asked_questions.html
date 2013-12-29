@@ -34,7 +34,7 @@
 
 <h2>Grunt能在Windows上工作吗？</h2>
 
-<p>Grunt可以很好的工作在Windows平台，因为<a href="http://nodejs.org/">Node.js</a>和<a href="http://npmjs.org/">npm</a>在Windows上都工作得很好(Grunt是基于Node.js的，因而是能够跨平台工作的，对于特定平台不支持的特性一般都会有相关说明或者有兼容性的选择来支持)。通常情况下问题在于<a href="http://www.cygwin.com/">Cygwin</a>，因为它捆绑了一个过时版本的Node.js。</p>
+<p>Grunt可以很好的工作在Windows平台，因为<a href="http://nodejs.org/">Node.js</a>和<a href="http://npmjs.org/">npm</a>在Windows上都工作得很好(Grunt是基于Node.js的，因而是能够跨平台工作，对于特定平台不支持的特性一般都会有相关说明或者有兼容性的选择来支持)。通常情况下问题在于<a href="http://www.cygwin.com/">Cygwin</a>，因为它捆绑了一个过时版本的Node.js。</p>
 
 <p>避免这个问题最好的方式是使用<a href="http://msysgit.github.com/">msysGit安装器</a>安装二进制的<code>git</code>，然后使用<a href="http://nodejs.org/#download">Node.js安装器</a>安装二进制的<code>node</code>和<code>npm</code>，并且使用内置的<a href="http://www.cs.princeton.edu/courses/archive/spr05/cos126/cmd-prompt.html">Window命令提示符</a>或者<a href="http://support.microsoft.com/kb/968929">PowerShell</a>替代Cygwin(或者说我们首可以先安装好Git环境，然后将托管在Github上的Grunt库克隆到本地来安装使用Grunt，在工具方面Windows对Node.js的支持或许有欠缺，但是在对Node.js本身的支持上已经做得很好了)。</p>
 

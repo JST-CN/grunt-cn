@@ -24,7 +24,7 @@
     </header>
     <section class="wrapper content clearfix">
       <div class="post_wrapper">
-        <article class="post"><p>这个指南解释了如何使用<code>Gruntfile</code>来为你的项目配置任务。如果你还不知道Gruntfile是什么，请先阅读<a href="getting_started.html">新手上路</a>指南并看看这个<a href="http://gruntjs.com/sample-gruntfile/">Gruntfile示例</a>。</p>
+        <article class="post"><p>这个指南解释了如何使用<code>Gruntfile</code>来为你的项目配置任务。如果你还不知道Gruntfile是什么，请先阅读<a href="getting_started.html">新手上路</a>指南并参考<a href="http://gruntjs.com/sample-gruntfile/">Gruntfile示例</a>。</p>
 
 <h2>Grunt配置</h2>
 
@@ -70,7 +70,7 @@
 
 <h2>options</h2>
 
-<p>在一个任务配置中，<code>options</code>属性可以用来指定覆盖内置属性的默认值。此外，每一个任务目标中更具体的目标都可以拥有一个<code>options</code>属性。目标级的选项将会覆盖任务级的选项(就近原则————<code>options</code>离目标越近,其优先级越高)。</p>
+<p>在一个任务配置中，<code>options</code>属性可以用来指定覆盖属性的内置默认值。此外，每一个任务目标中更具体的目标都可以拥有一个<code>options</code>属性。目标级的选项将会覆盖任务级的选项(就近原则————<code>options</code>离目标越近,其优先级越高)。</p>
 
 <p><code>options</code>对象是可选，如果不需要，可以省略。</p>
 
@@ -93,7 +93,7 @@
 
 <h2>文件</h2>
 
-<p>由于大多的任务都是执行文件操作，Grunt有一个强大的抽象声明说明任务应该操作哪些文件。这里有好几种定义<strong>src-dest</strong>(源文件-目标文件)文件映射的方式，都提供了不同程度的描述和控制操作方式。任何一种多任务(包含多个任务目标的任务)都能理解下面的格式，所以你只需要选择满足你需求的格式就行。</p>
+<p>由于大多数的任务执行文件操作，Grunt有一个强大的抽象声明说明任务应该操作哪些文件。这里有好几种定义<strong>src-dest</strong>(源文件-目标文件)文件映射的方式，都提供了不同程度的描述和控制操作方式。任何一种多任务(包含多个任务目标的任务)都能理解下面的格式，所以你只需要选择满足你需求的格式就行。</p>
 
 <p>所有的文件格式都支持<code>src</code>和<code>dest</code>属性，此外"Compact"[简洁]和"Files Array"[文件数组]格式还支持以下一些附加的属性：</p>
 
@@ -108,7 +108,7 @@
 
 <h3>简洁格式</h3>
 
-<p>这种形式允许每个目标对应一个<strong>src-dest</strong>文件映射。通常情况下它用于只读任务，比如<a href="https://github.com/gruntjs/grunt-contrib-jshint">grunt-contrib-jshint</a>, 它就值需要一个单一的<code>src</code>属性，而不需要关联的<code>dest</code>选项. 这种格式还支给每个<code>src-dest</code>文件映射指定附加属性。</p>
+<p>这种形式允许每个目标对应一个<strong>src-dest</strong>文件映射。通常情况下它用于只读任务，比如<a href="https://github.com/gruntjs/grunt-contrib-jshint">grunt-contrib-jshint</a>, 它就值需要一个单一的<code>src</code>属性，而不需要关联的<code>dest</code>选项. 这种格式还支持为每个<code>src-dest</code>文件映射指定附加属性。</p>
 
 <pre><code>grunt.initConfig({
     jshint: {
@@ -227,7 +227,7 @@
 <li><p><code>!</code>在模式的开头用于否定一个匹配模式(即排除与模式匹配的信息)</p></li>
 </ul>
 
-<p>大多数的人都知道<code>foo/*.js</code>将匹配位于<code>foo/</code>目录下的所有的<code>.js</code>结尾的文件, 而<code>foo/**/*js</code>将匹配<code>foo/</code>目录以及其子目录中所有以<code>.js</code>结尾的文件。</p>
+<p>大多数的人都知道<code>foo/*.js</code>将匹配位于<code>foo/</code>目录下的所有的<code>.js</code>结尾的文件, 而<code>foo/**/*.js</code>将匹配<code>foo/</code>目录以及其子目录中所有以<code>.js</code>结尾的文件。</p>
 
 <p>此外, 为了简化原本复杂的通配符模式，Grunt允许指定一个数组形式的文件路径或者一个通配符模式。模式处理的过程中，带有<code>!</code>前缀模式不包含结果集中与模式相配的文件。 而且其结果集也是唯一的。</p>
 
@@ -310,7 +310,7 @@
 
 <h3>模板</h3>
 
-<p>使用<code>&lt;% %&gt;</code>分隔符指定的模会在任务从它们的配置中读取相应的数据时将自动扩展扫描。模板会被递归的展开，直到配置中不再存在遗留的模板相关的信息(与模板匹配的)。</p>
+<p>使用<code>&lt;% %&gt;</code>分隔符指定的模板会在任务从配置中读取相应的数据时将自动填充。模板会以递归的方式填充，直到配置中不再存在遗留模板相关的信息(与模板匹配的)。</p>
 
 <p>整个配置对象决定了属性上下文(模板中的属性)。此外，在模板中使用<code>grunt</code>以及它的方法都是有效的，例如： <code>&lt;%= grunt.template.today('yyyy-mm-dd') %&gt;</code>。</p>
 
