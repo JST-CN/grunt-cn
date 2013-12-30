@@ -22,7 +22,7 @@ Grunt和Grunt的插件都是通过[Node.js](http://nodejs.org/)的包管理器[n
 
 每次运行`grunt`时，它都会使用node的`require()`系统查找本地已安装好的grunt。正因为如此，你可以从你项目的任意子目录运行`grunt`。
 
-如果找到本地已经安好装的Grunt，CLI就会加载这个本地安装好的Grunt库，然后应用你项目中的`Gruntfile`中的配置(这个文件用于配置项目中使用的任务，Grunt也正是根据这个文件中的配置来处理相应的任务)，并执行你所指定的所有任务。
+如果找到本地已经安装好的Grunt，CLI就会加载这个本地安装好的Grunt库，然后应用你项目中的`Gruntfile`中的配置(这个文件用于配置项目中使用的任务，Grunt也正是根据这个文件中的配置来处理相应的任务)，并执行你所指定的所有任务。
 
 *想要真正的了解这里发生了什么，[可以阅读源码](https://github。com/gruntjs/grunt-cli/blob/master/bin/grunt)。这份代码很短。*
 
@@ -38,11 +38,11 @@ Grunt和Grunt的插件都是通过[Node.js](http://nodejs.org/)的包管理器[n
 
 ## 准备一个新的Grunt项目
 
-一个标准的配置过程只需要给项目添加两个文件：`package.json`和`Gruntfile`。
+一个典型的配置过程通常只涉及到两个文件：`package.json`和`Gruntfile`。
 
 **package.json**：这个文件被用来存储已经作为npm模块发布的项目元数据(也就是依赖模块)。你将在这个文件中列出你的项目所[依赖](https://npmjs.org/doc/json.html#devDependencies)的Grunt(通常我们在这里配置Grunt版本)和Grunt插件(相应版本的插件)。
 
-**Gruntfile**：通常这个文件被命名为`Gruntfile.js`或者`Gruntfile.coffee`，它是用于配置或者定义Grunt任务和加载Grunt插件的。
+**Gruntfile**：通常这个文件被命名为`Gruntfile.js`或者`Gruntfile.coffee`，它用于配置或者定义Grunt任务和加载Grunt插件。
 
 ### package.json
 
@@ -87,7 +87,7 @@ Grunt和Grunt的插件都是通过[Node.js](http://nodejs.org/)的包管理器[n
 
 + "wrapper"函数(包装函数)
 + 项目和任务配置
-+ 加载Grunt插件和任务
++ 加载的Grunt插件和任务
 + 自定义任务
 
 #### 一个Gruntfile示例
