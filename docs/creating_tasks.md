@@ -8,7 +8,7 @@
 
 如果指定了一个任务列表，新任务(名)便是其他一个或多个任务的别名。每当运行'别名任务'时，指定在`taskList`中的每个任务(指在`grunt.initConfig()`中定义的任务)都会按照指定它们的顺序运行。`taskList`参数必须是一个任务数组。其语法如下：
 
-    grunt.registerTask(taskName, [description, ], taskList);
+    grunt.registerTask(taskName, [description, ] taskList);
     
 这里有一个例子，它定义了一个名为'default'别名任务，如果运行Grunt时没有指定任何任务，它将自动运行'jshint'，'qunit'，'concat'和'uglify'任务。
 
