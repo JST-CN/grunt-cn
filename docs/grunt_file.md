@@ -103,7 +103,7 @@
 
 类似`mkdir -p`操作。可以使用任意参考目录创建一个新目录。如果没有指定`mode`选项，则默认为`0777 & (~process.umask())`。
 
-*如果指定了`--no-write`命令行选项，者不会真正创建目录。*
+*如果指定了`--no-write`命令行选项，则不会真正创建目录。*
 
     grunt.file.mkdir(dirpath [, mode])
     
