@@ -197,7 +197,7 @@
 
 就像Node.js的[path.join](http://nodejs.org/docs/latest/api/path.html#path_path_join_path1_path2)方法，这个方法会连接所有的参数并标准化返回的路径。
 
-    grunt.file.exusts(path1 [, path2 [, …]])
+    grunt.file.exists(path1 [, path2 [, …]])
     
 ### grunt.file.isLink
 
