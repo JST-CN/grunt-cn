@@ -53,7 +53,7 @@
 
 <p>大部分的contrib任务(主要是指官方提供的任务)，包括<a href="https://github.com/gruntjs/grunt-contrib-jshint">grunt-contrib-jshint插件的jshint任务</a>，以及<a href="https://github.com/gruntjs/grunt-contrib-concat">grunt-contrib-concat插件的concat任务</a>都是多任务形式的。</p>
 
-<pre><code>grunt.registerMultiTask(taskName, [description, ], taskFunction);
+<pre><code>grunt.registerMultiTask(taskName, [description, ] taskFunction);
 </code></pre>
 
 <p>鉴于指定的配置，这里有一个示例演示了如果通过<code>grunt log:foo</code>运行Grunt，它会输出<code>foo: 1,2,3</code>；如果通过<code>grunt log:bar</code>来运行Grunt， 它会输出<code>bar: hello world</code>。然而如果通过<code>grunt log</code>运行Grunt, 它会输出<code>foo: 1,2,3</code>，然后是<code>bar: hello world</code>，最后是<code>baz: false</code>(任务目标会按照指定的顺序进行处理)。</p>
@@ -75,7 +75,7 @@ grunt.registerTask('log','log stuff.', function(){
 
 <p>当运行一个基本任务时，Grunt并不会查找配置和检查运行环境--它仅仅运行指定的任务函数，可以传递任意使用冒号分割的参数作为任务函数的参数(注意多任务中的冒号并不是传递参数，而是指定具体任务的目标)。</p>
 
-<pre><code>grunt.registerTask(taskName, [description, ], taskFunction);
+<pre><code>grunt.registerTask(taskName, [description, ] taskFunction);
 </code></pre>
 
 <p>这里有一个例子演示了如果通过<code>grunt foo:testing:123</code>运行Grunt将输出<code>foo, testing 123</code>。如果运行这个任务时不传递参数，只运行<code>grunt foo</code>，那么这个任务会输出<code>foo, no args</code>。</p>
