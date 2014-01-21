@@ -29,7 +29,7 @@
 
 	module.exports = function(grunt){
 		grunt.initConfig({
-			pkg: grunt.file.readJSON('package.json');
+			pkg: grunt.file.readJSON('package.json')
 		});
 	}
 	
@@ -64,7 +64,7 @@
 		}
 	}
 
-这里我们让`uglify`在`dist/`目录中创建了一个包含压缩结果的JavaScript文件。注意这里我使用了`<%= concat.dist.dest>`，因此uglify会自动压缩concat任务中生成的文件。
+这里我们让`uglify`在`dist/`目录中创建了一个包含压缩结果的JavaScript文件。注意这里我使用了`<%= concat.dist.dest>`，因此uglify会压缩concat任务中生成的文件。
 
 QUnit插件的设置非常简单。你只需要给它提供用于测试运行的文件的位置，注意这里的QUnit是运行在HTML文件上的。
 

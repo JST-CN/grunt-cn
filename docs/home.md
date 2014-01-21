@@ -38,6 +38,7 @@ Grunt是一个庞大的生态系统，每天都在成长。你可以自由的选
 
 + [GruntJS官方](http://www.gruntjs.com/)
 + [GruntJS中文](http://www.gruntjs.org/)
++ 中文社区QQ群：16613475
 
 ## 关于中文社区的说明
 
@@ -55,6 +56,7 @@ Grunt.js中文社区是一个开源项目，由网友创建并维护。
 + [qivhou](https://github.com/qivhou)
 + [sourcebank](https://github.com/sourcebank)
 + [peigong](http://www.peigong.tk) - [Github](https://github.com/peigong)
++ [htynkn](https://github.com/htynkn)
 + 你
 
 **欢迎你的加入。**

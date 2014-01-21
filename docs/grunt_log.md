@@ -2,7 +2,7 @@
 
 输出信息到控制器。
 
-查看[og lib source](https://github.com/gruntjs/grunt/blob/master/lib/grunt/log.js)可以了解更多详细信息。
+查看[log库源文件](https://github.com/gruntjs/grunt/blob/master/lib/grunt/log.js)可以了解更多详细信息。
 
 ## The log API
 
