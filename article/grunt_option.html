@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Grunt中文社区是由网友发起的Grunt.js中文交流社区，关注前端构建工具Grunt.js的应用推广。">
+    <meta name="keywords" content="Grunt.js,Grunt,web前端,前端,HTML,CSS,JavaScript,js,构建,压缩,合并,发布">
+    <title>grunt.option - Grunt中文社区</title>
+    <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/googlecode.css">
+  </head>
+  <body>
+    <header>
+      <div class="wrapper inner">
+        <h1 class="logo"><a href="http://www.gruntjs.org">Gruntjs</a></h1>
+        <nav>
+          <ul class="clearfix">
+            <li><a href="getting_started.html">新手上路</a></li>
+            <li><a href="#documention">文档</a></li>
+            <li><a href="#api">API</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <section class="wrapper content clearfix">
+      <div class="post_wrapper">
+        <article class="post"><p>Grunt的option API可以用来跨多任务共享参数，以及在命令行中访问参数设置。</p>
+
+<p>一个简单的例子就是给你的目标(任务目标)打一个标记，标识任务是在开发阶段还是暂存阶段。在命令行中运行<code>grunt deploy --target=staging</code>就会让<code>grunt.option('target')</code>返回<code>"staging"</code>。</p>
+
+<p>下面是一个在<code>Gruntfile</code>中使用<code>target</code>选项的例子：</p>
+
+<pre><code>grunt.initConfig({
+    compass: {
+        dev: {
+            options: {
+                /* ... */
+                outputStyle: 'expanded'
+            },
+        },
+        staging: {
+            options: {
+                /* ... */
+                outputStyle: 'compressed'
+            },
+        },
+    },
+});
+var target = grunt.option('target') || 'dev';
+grunt.registerTask('deploy', ['compass:' + target]);
+</code></pre>
+
+<p>当你运行<code>grunt deploy</code>时你的样式表默认情况下为<code>dev</code>目标，并且它会以展开的格式输出CSS代码。如果你运行<code>grunt deploy --target=staging</code>, <code>staging</code>目标会替代父级的<code>dev</code>目标，同时它会以压缩格式输出CSS代码。</p>
+
+<p><code>grunt.option</code>也可以用在任务中，例如：</p>
+
+<pre><code>grunt.registerTask('upload', 'Upload code to specified target.', function(n) {
+    var target = grunt.option('target');
+  // do something useful with target here
+});
+grunt.registerTask('deploy', ['validate', 'upload']);
+</code></pre>
+
+<p><em>注意：可以只用只有键(属性)而没有值的方式来指定布尔值选项。例如，在命令行中运行<code>grunt deploy --staging</code>会导致<code>grunt.option('staging')</code>返回<code>true</code>。</em></p>
+
+<h3>grunt.option ☃</h3>
+
+<p>获取或者设置一个选项。</p>
+
+<pre><code>grunt.option(key[, val])
+</code></pre>
+
+<p>可以通过在<code>key</code>键上使用一个前置的<code>no-</code>来否定buerhi选项。例如：</p>
+
+<pre><code>grunt.option('staging', false);
+var isDev = grunt.option('no-staging');
+// isDev === true
+</code></pre>
+
+<h3>grunt.option.init</h3>
+
+<p>初始化<code>grunt.option</code>设置。如果忽略参数中的<code>initObject</code>选项就会初始化为一个空对象，否则设置为指定的<code>initObject</code>。</p>
+
+<pre><code>grunt.option.init([initObject])
+</code></pre>
+
+<h3>grunt.options.flags</h3>
+
+<p>以数组的形式选为命令行参数选项。</p>
+
+<pre><code>grunt.option.flags()    
+</code></pre></article>
+        <div id="disqus_thread"></div>
+        <script>
+          var disqus_shortname = 'gruntcn';
+          
+          (function() {
+           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+      <aside class="sidebar">
+        <dl>
+          <dt id="documention">文档</dt>
+          <dd><a href="getting_started.html">新手上路</a></dd>
+          <dd><a href="configuring_tasks.html">配置任务</a></dd>
+          <dd><a href="sample_gruntfile.html">Gruntfile范例</a></dd>
+          <dd><a href="creating_tasks.html">创建任务</a></dd>
+          <dd><a href="creating_plugins.html">创建插件</a></dd>
+        </dl>
+        <dl>
+          <dt>高级</dt>
+          <dd><a href="installing_grunt.html">安装Grunt</a></dd>
+          <dd><a href="frequently_asked_questions.html">常见问题</a></dd>
+          <dd><a href="project_scaffolding.html">项目脚手架</a></dd>
+        </dl>
+        <dl>
+          <dt>社区</dt>
+          <dd><a href="help_resources.html">参考资源</a></dd>
+          <dd><a href="who_uses_grunt.html">Grunt用户</a></dd>
+          <dd><a href="contributing.html">参与贡献</a></dd>
+        </dl>
+        <dl>
+          <dt>迁移指南</dt>
+          <dd><a href="grunt.html">从0.3升级到0.4</a></dd>
+        </dl>
+        <dl>
+          <dt id="api">API</dt>
+          <dd><a href="grunt.html">grunt</a></dd>
+          <dd><a href="grunt_config.html">grunt config</a></dd>
+          <dd><a href="grunt_event.html">grunt event</a></dd>
+          <dd><a href="grunt_fail.html">grunt fail</a></dd>
+          <dd><a href="grunt_file.html">grunt file</a></dd>
+          <dd><a href="grunt_log.html">grunt log</a></dd>
+          <dd><a href="grunt_option.html">grunt option</a></dd>
+          <dd><a href="grunt_task.html">grunt task</a></dd>
+          <dd><a href="grunt_template.html">grunt template</a></dd>
+          <dd><a href="grunt_util.html">grunt util</a></dd>
+        </dl>
+        <dl>
+          <dt>其他</dt>
+          <dd><a href="inside_tasks.html">任务内幕</a></dd>
+          <dd><a href="exit_codes.html">出口代码</a></dd>
+        </dl>
+        <p><a href="https://github.com/JST-CN/grunt-cn" class="btn">Github</a></p>
+        <p><a href="https://github.com/JST-CN/grunt-cn/issues?state=open">讨论组</a></p>
+      </aside>
+    </section>
+    <footer class="clearfix">
+      <div class="wrapper">
+        <p>Grunt.js 中文社区为开源项目，由网友创建并维护。</p>
+        <p>贡献: <a href="http://www.toobug.net">Toobug</a> <a href="http://www.basecss.net">Basecss</a></p>
+      </div>
+      <script type="text/javascript" src="http://tajs.qq.com/stats?sId=23584984" charset="UTF-8"></script>
+    </footer>
+    <div id="top">top</div>
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../js/highlight.min.js"></script>
+    <script type="text/javascript" src="../js/page.js"></script>
+  </body>
+</html>

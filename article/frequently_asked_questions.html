@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Grunt中文社区是由网友发起的Grunt.js中文交流社区，关注前端构建工具Grunt.js的应用推广。">
+    <meta name="keywords" content="Grunt.js,Grunt,web前端,前端,HTML,CSS,JavaScript,js,构建,压缩,合并,发布">
+    <title>常见问题 - Grunt中文社区</title>
+    <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/googlecode.css">
+  </head>
+  <body>
+    <header>
+      <div class="wrapper inner">
+        <h1 class="logo"><a href="http://www.gruntjs.org">Gruntjs</a></h1>
+        <nav>
+          <ul class="clearfix">
+            <li><a href="getting_started.html">新手上路</a></li>
+            <li><a href="#documention">文档</a></li>
+            <li><a href="#api">API</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <section class="wrapper content clearfix">
+      <div class="post_wrapper">
+        <article class="post"><h2>如何安装Grunt?</h2>
+
+<p>对于一般安装说明，请阅读<a href="http://gruntjs.com/getting-started/">新手入门</a>指南。如果你在阅完读新手入门指南之后想要了解更多具体的信息，请阅读详细的<a href="http://gruntjs.com/installing-grunt/">安装Grunt</a>指南。</p>
+
+<h2>我什么时候能够使用开发中的某个特性？</h2>
+
+<p>依据<a href="http://gruntjs.com/installing-grunt/">安装Grunt</a>指南中的说明可以了解如何安装发布的和未发布的开发版本的Grunt(对于插件，你也可以使用npm安装并添加到依赖中使用；对于新的特性可以查阅相关说明安装使用)。</p>
+
+<h2>Grunt能在Windows上工作吗？</h2>
+
+<p>Grunt可以很好的工作在Windows平台，因为<a href="http://nodejs.org/">Node.js</a>和<a href="http://npmjs.org/">npm</a>在Windows上都工作得很好(Grunt是基于Node.js的，因而是能够跨平台工作，对于特定平台不支持的特性一般都会有相关说明或者有兼容性的选择来支持)。通常情况下问题在于<a href="http://www.cygwin.com/">Cygwin</a>，因为它捆绑了一个过时版本的Node.js。</p>
+
+<p>避免这个问题最好的方式是使用<a href="http://msysgit.github.com/">msysGit安装器</a>安装二进制的<code>git</code>，然后使用<a href="http://nodejs.org/#download">Node.js安装器</a>安装二进制的<code>node</code>和<code>npm</code>，并且使用内置的<a href="http://www.cs.princeton.edu/courses/archive/spr05/cos126/cmd-prompt.html">Window命令提示符</a>或者<a href="http://support.microsoft.com/kb/968929">PowerShell</a>替代Cygwin(或者说我们首可以先安装好Git环境，然后将托管在Github上的Grunt库克隆到本地来安装使用Grunt，在工具方面Windows对Node.js的支持或许有欠缺，但是在对Node.js本身的支持上已经做得很好了)。</p>
+
+<h2>为什么我的异步任务不能完成？</h2>
+
+<p>如果发生这种情况可能是由于你忘记调用<a href="http://gruntjs.com/grunt.task#wiki-this-async">this.async</a>方法来告诉Grunt，你的任务是异步的。为了简单起见，Grunt使用了同步编码的风格，可以通过在任务体内调用<code>this.async()</code>方法将该任务转换为异步任务。</p>
+
+<p>注意，可以传递<code>false</code>给<code>done()</code>函数来告诉Grunt该任务失败。</p>
+
+<p>例子:</p>
+
+<pre><code>grunt.registerTask('asyncme', 'My asynchronous task.', function() {
+    var done = this.async();
+    doSomethingAsync(done);
+});
+</code></pre>
+
+<h2>如何启用tab命令来自动补全？</h2>
+
+<p>添加下面的代码到你的<code>~/.bashrc</code>文件中来在Grunt中来启用bash tab自动补全功能：</p>
+
+<pre><code>eval "$(grunt --completion=bash)"
+</code></pre>
+
+<p>当然前提是你已经使用<code>npm install -g grunt</code>在全局范围内安装好了Grunt。当前，自动补全唯一支持的shell脚本是bash。</p>
+
+<h2>如何跨多任务共享参数？</h2>
+
+<p>虽然每个任务都可以接受它自己的参数，但是这里有几个选项可以在多个任务之间进行参数共享。</p>
+
+<h3>"动态"别名任务</h3>
+
+<p><strong>这是在多任务间共享参数的首选方法。</strong></p>
+
+<p><a href="http://gruntjs.com/grunt#wiki-grunt-registertask">别名任务</a>是非常简单的，一个常规的任务可以使用<a href="http://gruntjs.com/grunt.task#wiki-grunt-task-run">grunt.task.run</a>方法让它编程一个有效的"动态的"别名任务函数。在下面的例子中，在命令行运行<code>grunt build:001</code>的结果就是执行<code>foo:001</code>,<code>bar:001</code>和<code>baz:001</code>这三个任务。</p>
+
+<pre><code>grunt.registerTask('build', 'Run all my build tasks.', function(n) {
+  if (n == null) {
+    grunt.warn('Build num must be specified, like build:001.');
+  }
+  grunt.task.run('foo:' + n, 'bar:' + n, 'baz:' + n);
+});
+</code></pre>
+
+<h3>-- options</h3>
+
+<p>另一种跨多任务共享参数的方式就是使用<a href="http://gruntjs.com/grunt#wiki-grunt-option">grunt.option</a>。在下面的例子中，在命令行中运行<code>grunt deploy --target=staging</code>将导致<code>grunt.option('target')</code>返回<code>"staging"</code>。</p>
+
+<pre><code>grunt.registerTask('upload','Upload code to specified target.', function(n){
+    var target = grunt.option('target');
+    //在这里使用target做一些有用的事情
+});
+grunt.registerTask('deploy', ['validate', 'upload']);
+</code></pre>
+
+<p><em>注意布尔类型的选项(options)可以只指定使用一个没有值的键。例如，在命行中运行<code>grunt deploy --staging</code>将导致<code>grunt.option('staging')</code>返回<code>true</code>.</em></p>
+
+<h3>全局和配置</h3>
+
+<p>在其他情况下，你可能希望暴露一个设置配置或者全局的值方法。 在这种情况下，可以在注册任务时设置其参数作为一个全局对象的或者项目配置的值。</p>
+
+<p>在下面的例子中，在命令行运行<code>grunt set_global:name:peter set_config:target:staging deploy</code>会导致<code>global.name</code>的值为<code>"peter"</code>以及<code>grunt.config('target')</code>将会返回<code>"staging"</code>。由此推断，<code>deploy</code>任务就可以使用这些值。</p>
+
+<pre><code>grunt.registerTask('set_global', 'Set a global variable.', function(name, val){
+    global[name] = val;
+});
+
+grunt.registerTask('set_config', 'Set a config property.', function(name, val){
+    grunt.config.set(name, val);
+});
+</code></pre>
+
+<h2>Grunt 0.3相关问题</h2>
+
+<h3>在Windows的Grunt 0.3中, 为什么当我尝试运行grunt时会打开我的JS编辑器</h3>
+
+<p>如果你在<a href="http://gruntjs.com/getting-started">Gruntfile</a>所在目录中(在命令行进入到这个目录)，当你输入grunt时，Windows中会尝试执行该文件(实际上Windows中会尝试执行grunt.js，因为在0.4.x之前的版本中Gruntfile.js名为grunt.js)。因此你应该输入<code>grunt.cmd</code>来替代。</p>
+
+<p>另一种方式是使用<code>DOSKEY</code>命令创建一个Grunt宏, 可以参考也读<a href="http://devblog.point2.com/2010/05/14/setup-persistent-aliases-macros-in-windows-command-prompt-cmd-exe-using-doskey/">这篇文章</a>。这样就会允许你使用<code>grunt</code>来替代<code>grunt.cmd</code>。</p>
+
+<p>下面是你可以使用的<code>DOSKEY</code>命令：</p>
+
+<pre><code>DOSKEY grunt=grunt.cmd $*
+</code></pre></article>
+        <div id="disqus_thread"></div>
+        <script>
+          var disqus_shortname = 'gruntcn';
+          
+          (function() {
+           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+      <aside class="sidebar">
+        <dl>
+          <dt id="documention">文档</dt>
+          <dd><a href="getting_started.html">新手上路</a></dd>
+          <dd><a href="configuring_tasks.html">配置任务</a></dd>
+          <dd><a href="sample_gruntfile.html">Gruntfile范例</a></dd>
+          <dd><a href="creating_tasks.html">创建任务</a></dd>
+          <dd><a href="creating_plugins.html">创建插件</a></dd>
+        </dl>
+        <dl>
+          <dt>高级</dt>
+          <dd><a href="installing_grunt.html">安装Grunt</a></dd>
+          <dd><a href="frequently_asked_questions.html">常见问题</a></dd>
+          <dd><a href="project_scaffolding.html">项目脚手架</a></dd>
+        </dl>
+        <dl>
+          <dt>社区</dt>
+          <dd><a href="help_resources.html">参考资源</a></dd>
+          <dd><a href="who_uses_grunt.html">Grunt用户</a></dd>
+          <dd><a href="contributing.html">参与贡献</a></dd>
+        </dl>
+        <dl>
+          <dt>迁移指南</dt>
+          <dd><a href="grunt.html">从0.3升级到0.4</a></dd>
+        </dl>
+        <dl>
+          <dt id="api">API</dt>
+          <dd><a href="grunt.html">grunt</a></dd>
+          <dd><a href="grunt_config.html">grunt config</a></dd>
+          <dd><a href="grunt_event.html">grunt event</a></dd>
+          <dd><a href="grunt_fail.html">grunt fail</a></dd>
+          <dd><a href="grunt_file.html">grunt file</a></dd>
+          <dd><a href="grunt_log.html">grunt log</a></dd>
+          <dd><a href="grunt_option.html">grunt option</a></dd>
+          <dd><a href="grunt_task.html">grunt task</a></dd>
+          <dd><a href="grunt_template.html">grunt template</a></dd>
+          <dd><a href="grunt_util.html">grunt util</a></dd>
+        </dl>
+        <dl>
+          <dt>其他</dt>
+          <dd><a href="inside_tasks.html">任务内幕</a></dd>
+          <dd><a href="exit_codes.html">出口代码</a></dd>
+        </dl>
+        <p><a href="https://github.com/JST-CN/grunt-cn" class="btn">Github</a></p>
+        <p><a href="https://github.com/JST-CN/grunt-cn/issues?state=open">讨论组</a></p>
+      </aside>
+    </section>
+    <footer class="clearfix">
+      <div class="wrapper">
+        <p>Grunt.js 中文社区为开源项目，由网友创建并维护。</p>
+        <p>贡献: <a href="http://www.toobug.net">Toobug</a> <a href="http://www.basecss.net">Basecss</a></p>
+      </div>
+      <script type="text/javascript" src="http://tajs.qq.com/stats?sId=23584984" charset="UTF-8"></script>
+    </footer>
+    <div id="top">top</div>
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../js/highlight.min.js"></script>
+    <script type="text/javascript" src="../js/page.js"></script>
+  </body>
+</html>

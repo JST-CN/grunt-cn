@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Grunt中文社区是由网友发起的Grunt.js中文交流社区，关注前端构建工具Grunt.js的应用推广。">
+    <meta name="keywords" content="Grunt.js,Grunt,web前端,前端,HTML,CSS,JavaScript,js,构建,压缩,合并,发布">
+    <title>grunt.template - Grunt中文社区</title>
+    <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/googlecode.css">
+  </head>
+  <body>
+    <header>
+      <div class="wrapper inner">
+        <h1 class="logo"><a href="http://www.gruntjs.org">Gruntjs</a></h1>
+        <nav>
+          <ul class="clearfix">
+            <li><a href="getting_started.html">新手上路</a></li>
+            <li><a href="#documention">文档</a></li>
+            <li><a href="#api">API</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <section class="wrapper content clearfix">
+      <div class="post_wrapper">
+        <article class="post"><p>可以使用Grunt提供的模板相关函数来手动的处理模板字符串。此外，<code>config.get</code>方法(许多任务都有用到这个方法)可以自动解析指定在<code>Gruntfile</code>中作为配置数据的<code>&lt;% %&gt;</code>风格的模板字符串。</p>
+
+<h3>grunt.template.process</h3>
+
+<p>处理<a href="http://lodash.com/docs/#template">Lo-Dash模板</a>字符串。<code>template</code>参数会以递归的方式进行处理，直到不再有需要处理的模板。</p>
+
+<p>默认情况下数据对象就是项目完整的配置对象，但是如果设置了<code>options.data</code>，就会使用这个<code>options.data</code>中指定的数据，而不会使用项目完整的配置对象。默认的模板分隔符是<code>&lt;% %&gt;</code>，但是如果将<code>options.delimiters</code>设置为自定义的分隔符，模板就会使用自定义的分隔符替换默认分隔符。</p>
+
+<pre><code>grunt.template.process(template [,options])
+</code></pre>
+
+<p>在模板内部，<code>grunt</code>对象是暴露的，因此你可以这样做<code>&lt;%= grunt.template.tody('yyyy') %&gt;</code>。<em>注意，如果数据对象也有一个名为<code>grunt</code>的属性，那么在模板里面就无法使用<code>grunt</code>系列的API。</em></p>
+
+<p>这里有一个例子，Grunt会以递归的方式处理到<code>baz</code>属性中的模板，知道不再有<code>&lt;% %&gt;</code>风格的模板需要处理。</p>
+
+<pre><code>var obj = {
+    foo: 'c',
+    bar: 'b&lt;%= foo %&gt;d',
+    baz: 'a&lt;%= bar %&gt;e'
+};
+grunt.template.process('&lt;%= baz %&gt;', {data: obj}) // 'abcde'
+</code></pre>
+
+<h3>grunt.template.setDelimiters</h3>
+
+<p>设置<a href="http://lodash.com/docs/#template">Lo-Dash模板</a>分隔符为预定义的分隔符，以防你需要手动的调用<code>grunt.util._.template</code>方法来进行处理。默认情况下<code>config</code>中会使用<code>&lt;% %&gt;</code>风格的分隔符。</p>
+
+<p><em>你或许无需使用这个方法，因为你所使用的<code>grunt.template.process</code>方法会在内部使用这个方法进行处理。</em></p>
+
+<pre><code>grunt.template.setDelimiters(name)
+</code></pre>
+
+<h3>grunt.template.addDelimiters</h3>
+
+<p>给<a href="http://lodash.com/docs/#template">Lo-Dash模板</a>添加一组命名分隔符。你或许无需使用这个方法，因为内置的分割符应该足以满足你的需求，但是你也可以随时添加<code>&lt;% %&gt;</code>或者<code>[% %]</code>风格的分隔符。</p>
+
+<pre><code>grunt.template.addDelimiters(name, opener, closer)
+</code></pre>
+
+<h2>帮助</h2>
+
+<h3>grunt.template.date</h3>
+
+<p>使用<a href="https://github.com/felixge/node-dateformat">dateformat库</a>格式化一个日期。</p>
+
+<pre><code>grunt.template.date(date, format)
+</code></pre>
+
+<p>这里有一个例子，指定的日期将被格式化为年-月-日的形式。</p>
+
+<pre><code>grunt.template.date(847602000000, 'yyyy-mm-dd') // '1996-11-10'
+</code></pre>
+
+<h3>grunt.template.today</h3>
+
+<p>使用<a href="https://github.com/felixge/node-dateformat">dateformat库</a>格式化当前日期。</p>
+
+<pre><code>grunt.template.today(format)
+</code></pre>
+
+<p>这里有一个例子，当前日期会被格式化为一个用4位数字表示年份的格式。</p>
+
+<pre><code>grunt.template.today('yyyy')  //'2013'
+</code></pre>
+
+<p><em>(有人提醒我每年都更新一下日期相关的信息，因此在文档只会出现当前年份的日期信息)。</em></p></article>
+        <div id="disqus_thread"></div>
+        <script>
+          var disqus_shortname = 'gruntcn';
+          
+          (function() {
+           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+      </div>
+      <aside class="sidebar">
+        <dl>
+          <dt id="documention">文档</dt>
+          <dd><a href="getting_started.html">新手上路</a></dd>
+          <dd><a href="configuring_tasks.html">配置任务</a></dd>
+          <dd><a href="sample_gruntfile.html">Gruntfile范例</a></dd>
+          <dd><a href="creating_tasks.html">创建任务</a></dd>
+          <dd><a href="creating_plugins.html">创建插件</a></dd>
+        </dl>
+        <dl>
+          <dt>高级</dt>
+          <dd><a href="installing_grunt.html">安装Grunt</a></dd>
+          <dd><a href="frequently_asked_questions.html">常见问题</a></dd>
+          <dd><a href="project_scaffolding.html">项目脚手架</a></dd>
+        </dl>
+        <dl>
+          <dt>社区</dt>
+          <dd><a href="help_resources.html">参考资源</a></dd>
+          <dd><a href="who_uses_grunt.html">Grunt用户</a></dd>
+          <dd><a href="contributing.html">参与贡献</a></dd>
+        </dl>
+        <dl>
+          <dt>迁移指南</dt>
+          <dd><a href="grunt.html">从0.3升级到0.4</a></dd>
+        </dl>
+        <dl>
+          <dt id="api">API</dt>
+          <dd><a href="grunt.html">grunt</a></dd>
+          <dd><a href="grunt_config.html">grunt config</a></dd>
+          <dd><a href="grunt_event.html">grunt event</a></dd>
+          <dd><a href="grunt_fail.html">grunt fail</a></dd>
+          <dd><a href="grunt_file.html">grunt file</a></dd>
+          <dd><a href="grunt_log.html">grunt log</a></dd>
+          <dd><a href="grunt_option.html">grunt option</a></dd>
+          <dd><a href="grunt_task.html">grunt task</a></dd>
+          <dd><a href="grunt_template.html">grunt template</a></dd>
+          <dd><a href="grunt_util.html">grunt util</a></dd>
+        </dl>
+        <dl>
+          <dt>其他</dt>
+          <dd><a href="inside_tasks.html">任务内幕</a></dd>
+          <dd><a href="exit_codes.html">出口代码</a></dd>
+        </dl>
+        <p><a href="https://github.com/JST-CN/grunt-cn" class="btn">Github</a></p>
+        <p><a href="https://github.com/JST-CN/grunt-cn/issues?state=open">讨论组</a></p>
+      </aside>
+    </section>
+    <footer class="clearfix">
+      <div class="wrapper">
+        <p>Grunt.js 中文社区为开源项目，由网友创建并维护。</p>
+        <p>贡献: <a href="http://www.toobug.net">Toobug</a> <a href="http://www.basecss.net">Basecss</a></p>
+      </div>
+      <script type="text/javascript" src="http://tajs.qq.com/stats?sId=23584984" charset="UTF-8"></script>
+    </footer>
+    <div id="top">top</div>
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../js/highlight.min.js"></script>
+    <script type="text/javascript" src="../js/page.js"></script>
+  </body>
+</html>
