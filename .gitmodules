@@ -1,3 +1,3 @@
 [submodule "source"]
 	path = source
-	url = https://github.com/basestyle/grunt-cn
+	url = https://github.com/JST-CN/grunt-cn
