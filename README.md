@@ -38,7 +38,7 @@ Grunt是一个庞大的生态系统, 每天都在成长. 你可以自由的选�
 
 + [GruntJS官方](http://www.gruntjs.com/)
 + [GruntJS中文](http://www.gruntjs.org/)
-+ 中文社区QQ群：16613475
++ 中文社区QQ群: 16613475
 
 ##关于中文社区的说明.
 
@@ -47,6 +47,6 @@ Grunt.js中文社区是一个开源项目, 由网友创建并维护.
 贡献者:
 
 + [Toobug](http://www.toobug.net/) - [Github](https://github.com/TooooBug)
-+ [Basecss](http://weibo.com/html5mm) - [Github](https://github.com/basestyle)
++ [Basecss](http://weibo.com/html5mm) - [Github](https://github.com/basecss)
 
 **欢迎你的加入.**
