@@ -103,7 +103,7 @@
 
 类似`mkdir -p`操作。可以使用任意参考目录创建一个新目录。如果没有指定`mode`选项，则默认为`0777 & (~process.umask())`。
 
-*如果指定了`--no-write`命令行选项，者不会真正创建目录。*
+*如果指定了`--no-write`命令行选项，则不会真正创建目录。*
 
     grunt.file.mkdir(dirpath [, mode])
     
@@ -197,7 +197,7 @@
 
 就像Node.js的[path.join](http://nodejs.org/docs/latest/api/path.html#path_path_join_path1_path2)方法，这个方法会连接所有的参数并标准化返回的路径。
 
-    grunt.file.exusts(path1 [, path2 [, …]])
+    grunt.file.exists(path1 [, path2 [, …]])
     
 ### grunt.file.isLink
 
