@@ -46,6 +46,6 @@ Grunt.js中文社区是一个开源项目, 由网友创建并维护.
 贡献者:
 
 + [Toobug](http://www.toobug.net/) - [Github](https://github.com/TooooBug)
-+ [Basecss](http://weibo.com/html5mm) - [Github](https://github.com/basestyle)
++ [Basecss](http://weibo.com/html5mm) - [Github](https://github.com/basecss)
 
 **欢迎你的加入.**
