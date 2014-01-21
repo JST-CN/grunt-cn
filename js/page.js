@@ -1,1 +1,0 @@
-$(function(){hljs.initHighlightingOnLoad(),$(window).scroll(function(){0!=$(this).scrollTop()?$("#top").fadeIn():$("#top").fadeOut()}),$("#top").click(function(){$("body,html").animate({scrollTop:0},800)})});
