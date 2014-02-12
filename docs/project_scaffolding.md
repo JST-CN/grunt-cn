@@ -30,7 +30,7 @@
 
 一旦模板被安装到你的`~/.grunt-init/`目录中(在Windows平台是`%USERPROFILE%\.grunt-init\`目录)，那么就可以通过`grunt-init`命令来使用它们了。建议你使用git将模板克隆到项目目录中。例如, [grunt-init-jquery](https://github.com/gruntjs/grunt-init-jquery)模板可以像下面这样安装：
 
-    git clone git@github.com:gruntjs/grunt-init-jquery.git ~/.grunt-init/jquery
+    git clone https://github.com/gruntjs/grunt-init-jquery.git ~/.grunt-init/jquery
 
 *注意：如果你希望在本地像"foobarbaz"这样使用模板，你应该指定`~/.grunt-init/foobarbaz`之后再克隆。`grunt-init`会使用实际在于`~/.grunt-init/`目录中的实际的目录名。*
 
