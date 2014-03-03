@@ -154,7 +154,7 @@
 	grunt.registerTask('foo', 'My "foo" task', function(){
 		//如果缺省"meta.name"配置属性则任务失败
 		grunt.config.requires('meta.name');
-		//如果缺省"mata.name"配置属性则任务同样失败
+		//与上一句相同，如果缺省"meta.name"配置属性则任务失败
 		grunt.config.requires(['meta', 'name']);
 		//附加记录
 		grunt.log.writeln('This will only log if meta.name is defined in the config');
@@ -166,7 +166,7 @@
 		// 记录属性值，如果属性未定义则返回null
 		grunt.log.writeln('The meta.name property is:' + grunt.config('meta.name'));
 		// 同样的记录属性值，如果属性未定义则返回null
-		grunt.log.writeln('Ths meta.name property is:' + grunt.config(['meta', 'name']));
+		grunt.log.writeln('The meta.name property is:' + grunt.config(['meta', 'name']));
 	});
 	
 在[contrib tasks](https://github.com/gruntjs/)中可以查看更多的例子。
