@@ -23,7 +23,7 @@
 
 接下来我们可以从`package.json`文件中读取我们的项目配置并存储到`pkg`属性中。这就允许我们引用存储在`package.json`文件中的属性值(通过读取`package.json`中配置并存储在一个名为pkg的属性中，这样我们就可以在定义在`grunt.initConfig`中的配置对象中使用快捷方式`pkg`来引用`package.json`文件中的项目配置属性)，正如我们很快就可以看到：
 
-	pkg: grunt.file.readJSON('package.json');
+	pkg: grunt.file.readJSON('package.json')
 	
 到目前为止我们就可以看到如下配置：
 
